@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
-
+import logo from '../../assets/sticky_logo.png'
 
 const NavBar = () => {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -35,8 +35,14 @@ const NavBar = () => {
 
   return (
     <>
-        <h1>Project Sticky</h1>
-        { getLinks() }
+        <div className='nav-bar'>
+          <Link to='/home'>
+            <img className='nav-logo' src={logo} alt='sticky_logo' />
+          </Link>
+          <div className='nav-link'>
+            { getLinks() }
+          </div>
+        </div>
     </>
   )
 }
