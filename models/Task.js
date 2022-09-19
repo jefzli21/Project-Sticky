@@ -28,7 +28,10 @@ const taskSchema = Schema(
             type: Integer,
             require: [true, 'Please select priority']
         },
-    }
+    }, 
+    {
+        timestamps: true
+    }   
 )
 
 module.export = mongoose.model("Task", taskSchema);
