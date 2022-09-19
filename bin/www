@@ -30,7 +30,7 @@ mongoose
   .then(() => {
     debug("Connected to MongoDB successfully");
 
-    server.listen(port);
+    // server.listen(port);
   })
   .catch(err => debug(err));
 // listen for requests on the specified port:
