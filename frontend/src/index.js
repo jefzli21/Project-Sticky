@@ -8,6 +8,11 @@ import configureStore from './store/store';
 
 let store = configureStore({});
 
+if (process.env.NODE_ENV !== "production") {
+  window.store = store;
+}
+
+
 
 function Root() {
   return (
