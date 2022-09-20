@@ -1,9 +1,16 @@
 .nav-bar{
-    background-color:aquamarine;
+    background-color:aquamarine ;
+    display: flex ;
+    flex-direction: column ;
+    top: 0 ;
+    width: 100% ;
+
+}
+
+.nav-left{
     display: flex;
-    flex-direction: column;
-    top: 0;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .links-nav{
