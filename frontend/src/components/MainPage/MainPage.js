@@ -1,13 +1,20 @@
 import './MainPage.css';
+import { Container } from '@mui/material';
+import { SideBar } from './SideBar';
+import Feed from './Feed';
+import RightBar from './RightBar';
 
 function MainPage(){
     const current = new Date();
-    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+    const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
 
     return(
         <>
-            <h3>Today is {date}</h3>
-            <h1 className="header">Hello</h1>
+           <div className='home-container'>
+            <SideBar/>
+            <Feed/>
+            <RightBar/>
+           </div>
         </>
     )
 }
