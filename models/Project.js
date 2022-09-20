@@ -1,13 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const projectSchema = Schema(
+const projectSchema = new Schema(
     {
-        user: {
-            type: Schema.Types.ObjectId,
-            required: true,
-            ref: "User"
-        },
         title: {
             type: String,
             required: [true, 'Please add a title']
@@ -19,10 +14,18 @@ const projectSchema = Schema(
             type: Date,
             require: [true, 'Please add a deadline']
         },
-        member: {
+        members: [
+            {
             type: Schema.Types.ObjectId,
             ref: "User"
-        }
+            }
+        ],
+        tasks: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Task',
+            }
+        ]
     }, 
     {
         timestamps: true
