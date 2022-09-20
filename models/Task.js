@@ -3,31 +3,33 @@ const Schema = mongoose.Schema;
 
 const taskSchema = Schema(
     {
-        user: {
-            type: Schema.Types.ObjectId,
-            required: true,
-            ref: "User"
-        },
-        project: {
-            type: Schema.Types.ObjectId,
-            required: true,
-            ref: "Project"
-        },
         title: {
             type: String,
             require: [true, 'Please add a title']
         },
         body: {
-            type: Text,
+            type: String,
+        },
+        userId: {
+            type: String,
+            required: true
+        },
+        groupId: {
+            type: String,
+            required: true
         },
         deadline: {
             type: Date,
             require: [true, 'Please add a deadline']
         },
         priority: {
-            type: Integer,
+            type: Number,
             require: [true, 'Please select priority']
         },
+        completed: {
+            type: Boolean,
+            default: false
+        }
     }, 
     {
         timestamps: true
