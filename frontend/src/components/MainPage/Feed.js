@@ -3,6 +3,7 @@ import './Feed.css'
 import { Container, Tabs } from '@mui/material';
 import { Box } from '@mui/system';
 import Tab from '@mui/material/Tab';
+import TicketCard from './TicketCard';
 
 
 
@@ -31,8 +32,9 @@ const Feed = () => {
                 <Tab label="collaborators"/>
               </Tabs>
             </Box>
+            {/* <TicketCard/> */}
 
-            
+
         </div>
     </>
   )

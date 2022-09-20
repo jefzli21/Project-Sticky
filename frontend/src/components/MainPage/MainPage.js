@@ -4,7 +4,7 @@ import { SideBar } from './SideBar';
 import Feed from './Feed';
 import RightBar from './RightBar';
 import { useState } from 'react';
-
+import { Box } from '@mui/system';
 
 function MainPage(){
     const [mode, setMode] = useState('light');
@@ -19,11 +19,13 @@ function MainPage(){
 
     return(
         <>
+
                 <div className='home-container'>
                     <SideBar setMode={setMode} mode={mode}/>
                     <Feed/>
                     <RightBar/>
                 </div>
+
         </>
     )
 }

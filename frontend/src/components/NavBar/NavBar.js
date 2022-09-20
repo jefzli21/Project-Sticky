@@ -12,6 +12,8 @@ const NavBar = () => {
   const [open, setOpen] = useState(false);
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state=> state.session.user);
+
 
   const StyledToolbar = styled(Toolbar)({
     display:"flex",
@@ -22,6 +24,18 @@ const NavBar = () => {
     e.preventDefault();
     dispatch(logout());
   }
+
+  let profileButtons;
+
+  if(!sessionUser) return null;
+
+  if(sessionUser){
+    profileButtons =(<>
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>My account</MenuItem>
+          <MenuItem onClick={logoutUser}>Logout</MenuItem>
+          </>)
+  } else profileButtons = (<></>)
 
   const getLinks = () => {
     if (loggedIn) {
@@ -87,9 +101,8 @@ const NavBar = () => {
             horizontal: 'right',
           }}
         >
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>My account</MenuItem>
-          <MenuItem onClick={logoutUser}>Logout</MenuItem>
+          {profileButtons}
+
         </Menu>
         </AppBar>
 
