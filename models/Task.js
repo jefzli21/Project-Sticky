@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const taskSchema = Schema(
+const taskSchema = new Schema(
     {
         title: {
             type: String,
@@ -14,7 +14,7 @@ const taskSchema = Schema(
             type: String,
             required: true
         },
-        groupId: {
+        projectId: {
             type: String,
             required: true
         },
