@@ -13,7 +13,7 @@ const projectSchema = Schema(
             required: [true, 'Please add a title']
         },
         description: {
-            type: Text
+            type: String
         },
         deadline: {
             type: Date,
