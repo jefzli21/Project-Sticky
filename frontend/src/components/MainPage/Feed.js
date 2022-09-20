@@ -24,13 +24,15 @@ const Feed = () => {
                 Today is {date}
             </h4>
             <h3 className="feed-header">Welcome</h3>
-            <Box sx={{borderRadius: 99, border:1, borderColor:'background.paper'}}>
+            <Box sx={{borderRadius: 5, borderColor:'background.paper'}}>
               <Tabs value={value} onChange={handleChange} centered>
                 <Tab label="My week"/>
                 <Tab label="tasks completed"/>
                 <Tab label="collaborators"/>
               </Tabs>
             </Box>
+
+            
         </div>
     </>
   )

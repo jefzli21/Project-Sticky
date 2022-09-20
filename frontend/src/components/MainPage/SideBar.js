@@ -15,6 +15,8 @@ import TaskIcon from '@mui/icons-material/Task';
 import InboxIcon from '@mui/icons-material/Inbox';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
+import ModeNightIcon from '@mui/icons-material/ModeNight';
+import { Switch } from '@mui/material';
 
 
 
@@ -23,7 +25,7 @@ import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 
 
 
-export const SideBar = () => {
+export const SideBar = ({mode, setMode}) => {
   const data = [
     { icon: <People />, label: 'Feature1'},
     { icon: <Dns/>, label: 'Feature2'},
@@ -86,6 +88,14 @@ export const SideBar = () => {
               <ListItemText primary="Goals" />
             </ListItemButton>
           </Link>
+        </ListItem>
+        <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <ModeNightIcon />
+              </ListItemIcon>
+              <Switch onChange={e=>setMode(mode ==='light' ? 'dark' : 'light')}/>
+            </ListItemButton>
         </ListItem>
       </List>
     </div>

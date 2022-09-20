@@ -18,6 +18,8 @@ function App() {
     dispatch(getCurrentUser()).then(()=> setLoaded(true))
   },[dispatch]);
 
+  
+
   return loaded && (
     <>
       <NavBar/>
