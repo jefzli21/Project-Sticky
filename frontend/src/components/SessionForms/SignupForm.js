@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './SessionForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 
+
 function SignForm () {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
