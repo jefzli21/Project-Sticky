@@ -34,7 +34,7 @@ const Feed = () => {
             </Box>
             {/* <TicketCard/> */}
 
-
+            
         </div>
     </>
   )

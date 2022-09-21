@@ -66,6 +66,3 @@ input {
     cursor:pointer;
 }
 
-.log-in-button:disabled{
-    cursor: default;
-}
