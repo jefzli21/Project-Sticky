@@ -3,6 +3,28 @@
     grid-template-columns: repeat(3,1fr);
 }
 
+
+
+.card-top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(20%);
+}
+
+.pushPin{
+    color: crimson;
+    transform: translateY(-100%);
+}
+
+.card-top-decor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-end;
+}
+
 .card-title{
     display: flex;
     justify-content: center;
@@ -20,9 +42,14 @@
     justify-content: space-between;
 }
 
+.card-info p {
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
 .card{
-    padding-left: 20px;
-    margin: 10px;
+    margin: 20px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 6px 18px -9px rgba(0,0,0,0.75);
@@ -31,6 +58,10 @@
     align-items: center;
     justify-content: center;
     width: 10rem;
+}
+
+.card-info{
+    background-color: bisque;
 }
 
 
