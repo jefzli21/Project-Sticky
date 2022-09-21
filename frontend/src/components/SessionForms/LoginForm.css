@@ -1,0 +1,68 @@
+.body{
+    background-image:url('../../assets/Sticky.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 100vh;
+    width: 100wh;
+    display: flex;
+    position: fixed;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.form-title{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+.form-container {
+    width: 360px;
+    background-color: white;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.24);
+    padding: 12px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px;
+    height: 50vh;
+    width: 50wh;
+}
+
+.form-field{
+    margin: 10px 0 10px 0;
+    padding: 15px;
+    font-size: 16px;
+    border: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.form-span{
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    color: rgb(82, 160, 110);
+    margin-bottom: 15px;
+}
+
+input {
+    background: #f2f0f0;
+    width: 85%;
+}
+
+.log-in-button{
+    background: green;
+    height: 45px;
+    color: white;
+    cursor:pointer;
+}
+
