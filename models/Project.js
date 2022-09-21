@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const projectSchema = Schema(
     {
         creator: {
-            type: Object,
+            type: Schema.Types.ObjectId ,
+            ref: 'User',
             required: true
         },
         title: {
