@@ -7,7 +7,7 @@ const validateProjectInput = require('../../validation/project')
 //get all projects
 router.get('/users/:userId', async (req, res, next) => {
     try {
-        const projects = await Project.find({ userId: req.params.userId }).populate().sort({ deadline: -1 });
+        const projects = await Project.find({ userId: req.params.userId }).populate("creator").sort({ deadline: -1 });
         return res.json(projects)
     }
     catch (_err) {
@@ -21,7 +21,7 @@ router.get('/users/:userId', async (req, res, next) => {
 
 //get a single project
 router.get('/:id', async (req, res) => {
-    Project.findById(req.params.id)
+    Project.findById(req.params.id).populate("creator")
         .then(project => res.json(project))
         .catch(err => res.status(404).json({ noprojectfound: "No projct found with that ID" }))
 })
@@ -35,8 +35,8 @@ router.post('/', validateProjectInput, async (req, res, next) => {
             title: req.body.title,
             description: req.body.description,
             deadline: req.body.deadline,
-            members: req.body.members,
-            tasks: req.body.tasks
+            // members: req.user._id,
+            // tasks: req.task._id
         })
         let project = await newProject.save()
         return res.json(project)

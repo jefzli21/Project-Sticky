@@ -80,8 +80,13 @@ router.get('/current', restoreUser, (req, res) => {
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
+    projects: req.user.projects,
+    tasks: req.user.tasks
   });
 })
+
+
+
 
 module.exports = router;

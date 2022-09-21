@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const projectSchema = Schema(
     {
         creator: {
-            type: Schema.Types.ObjectId ,
+            type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
         },
@@ -17,14 +17,16 @@ const projectSchema = Schema(
         },
         deadline: {
             type: Date,
-            required: true
+            // required: true
         },
-        members: {
-            type: Object
-        },
-        tasks: {
-            type: Object
-        }
+        members: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }],
+        tasks: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Task'
+        }]
 
     },
     {
