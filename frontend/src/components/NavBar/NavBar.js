@@ -69,8 +69,8 @@ const NavBar = () => {
 
   return (
     <>
-        <AppBar position='sticky'>
-          <StyledToolbar>
+        <AppBar position='sticky' >
+          <StyledToolbar >
             <div className='nav-left'>
               <img alt='sticky-logo' style={{height:'30px', width:'30px'}} src={logo}></img>
               <Typography variant='h6' sx={{display:{xs:'none', sm:"block"}}}>Sticky

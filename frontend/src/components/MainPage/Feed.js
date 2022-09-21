@@ -9,6 +9,7 @@ import TicketCard from './TicketCard';
 
 
 
+
 const Feed = () => {
   const current = new Date();
   const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
@@ -27,14 +28,12 @@ const Feed = () => {
             <h3 className="feed-header">Welcome</h3>
             <Box sx={{borderRadius: 5, borderColor:'background.paper'}}>
               <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="My week"/>
+                <Tab label="My Projects"/>
                 <Tab label="tasks completed"/>
                 <Tab label="collaborators"/>
               </Tabs>
             </Box>
-            {/* <TicketCard/> */}
-
-            
+            <TicketCard/>
         </div>
     </>
   )
