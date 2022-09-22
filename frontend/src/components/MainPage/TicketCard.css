@@ -40,15 +40,28 @@
 .card-functions{
     display: flex;
     justify-content: space-between;
+
 }
 
-.card-info p {
-    padding: 5px;
-    align-items: center;
+.project-content p {
+    display: block;
+    padding: 20px;
+    height: 100px;
+    align-items:center;
     justify-content: center;
 }
 
+.project-bot{
+    padding-top: 5px;
+    transform: translateX(5%);
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+
 .card{
+    background-color: bisque;
     margin: 20px;
     border-radius: 10px;
     overflow: hidden;
@@ -61,7 +74,7 @@
 }
 
 .card-info{
-    background-color: bisque;
+    /* background-color: bisque; */
 }
 
 

@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 const TicketCard = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state)=> state.session.user); //grabbing sessionUser from session state
-  const projects = useSelector(selectProjects()) //selected projects filtered by sessionUserId
+  const projects = useSelector(selectProjects()).filter((project)=> project.creator._id ? project.creator._id === sessionUser._id : null) //selected projects filtered by sessionUserId
   //for create a project
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -32,9 +32,9 @@ const TicketCard = () => {
 
 
 
-  if(projects.length){
-    projects.filter((project)=> project.creator._id ? project.creator._id === sessionUser._id : null)
-  }
+  // if(projects.length){
+  //   projects.filter((project)=> project.creator._id ? project.creator._id === sessionUser._id : null)
+  // }
 
 
   // project create
@@ -80,12 +80,12 @@ const TicketCard = () => {
             </div>
             </Link>
           </div>
-          <p>{project.description}</p>
+          <div className='project-content'>
+            <p className='description'>{project.description}</p>
+          </div>
 
-
-
-          {console.log(project.deadline.slice(0,10))}
-          <p>Deadline: {project.deadline}</p>
+        <div className='project-bot'>
+          <p className='deadline'>Deadline: {project.deadline}</p>
           <div className='card-functions'>
             <Button >
                 <EditIcon/>
@@ -94,6 +94,7 @@ const TicketCard = () => {
                 <DeleteForeverIcon/>
             </Button>
           </div>
+        </div>
         </div>
       </div>
     ))}
