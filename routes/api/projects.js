@@ -26,7 +26,11 @@ router.get('/', async (req, res, next) => {
 
 //get a single project
 router.get('/:id', async (req, res) => {
-    Project.findById(req.params.id).populate("creator")
+    Project
+        .findById(req.params.id)
+        .populate("creator")
+        .populate("members")
+        .populate("tasks")
         .then(project => res.json(project))
         .catch(err => res.status(404).json({ noprojectfound: "No projct found with that ID" }))
 })

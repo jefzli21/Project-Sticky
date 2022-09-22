@@ -29,6 +29,9 @@ router.get('/', async (req, res, next) => {
 //get single task
 router.get('/:id', async (req, res) => {
     Task.findById(req.params.id)
+        .populate("project")
+        .populate("worker")
+        .populate("comments")
         .then(task => res.json(task))
         .catch(err => res.status(404).json({ noprojectfound: "No task found with that ID" }))
 })
