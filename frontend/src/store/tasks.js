@@ -80,9 +80,9 @@ export const fetchTask = taskId => async dispatch =>{
     }
 }
 
-export const createTask = taskData => async dispatch =>{
+export const createTask = (taskData) => async dispatch =>{
     try{
-        const res = await jwtFetch(`api/tasks/`,{
+        const res = await jwtFetch(`/api/tasks`,{
             method: 'POST',
             body: JSON.stringify(taskData)
         });
@@ -148,7 +148,7 @@ const tasksReducer = (state = {}, action) =>{
     const nextState = {...state};
     switch(action.type){
         case RECEIVE_TASK:
-            nextState[action.task.id] = action.task;
+            nextState[action.task._id] = action.task;
             return nextState ;
         case RECEIVE_TASKS:
             return {...action.tasks}
