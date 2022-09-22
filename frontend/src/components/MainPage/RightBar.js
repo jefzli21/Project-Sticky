@@ -1,11 +1,18 @@
 import React from 'react';
 import './RightBar.css';
 
+
+
+
+
+
+
 const RightBar = () => {
   return (
-    <div className='rightBar-Container'>
-      RightBar
-    </div>
+   <div className='comment-container'>
+    <h3>comment</h3>
+    <textarea />
+   </div>
   )
 }
 

@@ -11,6 +11,7 @@ import SignupForm from './components/SessionForms/SignupForm';
 
 import { getCurrentUser } from './store/session';
 import Project from './components/Projects/Project';
+import { SideBar } from './components/MainPage/SideBar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

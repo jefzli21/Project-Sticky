@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './SessionForm.css';
+import './SignupForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
+import { useHistory } from 'react-router-dom';
 
 
 function SignForm () {
@@ -11,6 +12,7 @@ function SignForm () {
     const [password2, setPassword2] = useState('');
     const errors = useSelector(state => state.errors.session);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(()=> {
         return () => {
@@ -52,52 +54,63 @@ function SignForm () {
         dispatch(signup(user));
     }
     return (
-        <form className='session-form' onSubmit={usernameSubmit}>
-            <h2>Sign Up Form</h2>
-            <div className='errors'>{errors?.email}</div>
-            <label>
-                <span>Email</span>
-                <input type='text'
-                    value={email}
-                    onChange={update('email')}
-                    placeholder="Email"
-                />
-            </label>
-            <div className='errors'>{errors?.username}</div>
-            <label>
-                <span>username</span>
-                <input type='text'
-                    value={username}
-                    onChange={update('username')}
-                    placeholder="Username"
-                />
-            </label>
-            <div className='errors'>{errors?.password}</div>
-            <label>
-                <span>Password</span>
-                <input type='password'
-                    value={password}
-                    onChange={update('password')}
-                    placeholder="Password"
-                />
-            </label>
-            <div className='errors'>
-                {password !== password2 && 'Confirm Password field must match'}
-            </div>
-            <label>
-                <span>Confirm Password</span>
-                <input type="password"
-                    value={password2}
-                    onChange={update('password2')}
-                    placeholder="Confirm Password"
-                />
-            </label>
-            <input
-                type="submit"
-                value="Sign Up"
-                disabled={!email || !username || !password || password !== password2}
-            />
-        </form>
+    <div className='body'>
+        <div className='form-container'>
+            <form className='register-form' onSubmit={usernameSubmit}>
+                <h2 className='form-title'>Sign Up Form</h2>
+                <div className='errors'>{errors?.email}</div>
+                <label for='chk' aria-hidden="true">
+                    <span className='form-span'>Email</span>
+                    <input type='email'
+                        value={email}
+                        onChange={update('email')}
+                        placeholder="Email"
+                        className='form-field'
+                    />
+                </label>
+                <div className='errors'>{errors?.username}</div>
+                <label>
+                    <span className='form-span'>username</span>
+                    <input type='text'
+                        value={username}
+                        onChange={update('username')}
+                        placeholder="Username"
+                        className='form-field'
+                    />
+                </label>
+                <div className='errors'>{errors?.password}</div>
+                <label>
+                    <span className='form-span'>Password</span>
+                    <input type='password'
+                        value={password}
+                        onChange={update('password')}
+                        placeholder="Password"
+                        className='form-field'
+                    />
+                </label>
+                <div className='errors'>
+                    {password !== password2 && 'Confirm Password field must match'}
+                </div>
+                <label>
+                    <span className='form-span'>Confirm Password</span>
+                    <input type="password"
+                        className='form-field'
+                        value={password2}
+                        onChange={update('password2')}
+                        placeholder="Confirm Password"
+                    />
+                </label>
+                <button
+                    className='sign-up-button'
+                    type="submit"
+                    value="Sign Up"
+                    disabled={!email || !username || !password || password !== password2}>
+                        Sign Up
+                </button>
+                <span className='text-nav'>have account? <button className='form-button' onClick={()=> history.push(`/login`)}>Sign In</button></span>
+            </form>
+        </div>
+    </div>
     )
 }
 

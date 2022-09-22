@@ -19,13 +19,11 @@ function MainPage(){
 
     return(
         <>
-
                 <div className='home-container'>
                     <SideBar setMode={setMode} mode={mode}/>
                     <Feed/>
                     <RightBar/>
                 </div>
-
         </>
     )
 }
