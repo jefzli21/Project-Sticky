@@ -42,12 +42,16 @@ export const selectProjects = () => state =>{
     if(!state || !state.projects){
         return [];
     }else{
-        
+
             let ov = Object.values(state.projects)
             // .filter((project)=> project.creator._id === userId)
             // console.log(ov)
             return ov
     }
+}
+
+export const selectProject = projectId => state => {
+    return state.projects ? state.projects[projectId] : null;
 }
 
 // fetches
@@ -158,7 +162,7 @@ export const projectErrorsReducer = (state = nullErrors, action) => {
             default:
                 return state;
         }
-    
+
   }
 
   export default projectsReducer;

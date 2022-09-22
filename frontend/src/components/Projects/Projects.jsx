@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom';
 import { SideBar } from '../MainPage/SideBar';
-import './Project.css';
+import './Projects.css';
 import logo from '../../assets/demo-user.png'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
@@ -12,11 +12,11 @@ import { selectProjects, fetchProjects } from '../../store/projects';
 
 
 
-const Project = ({id, title, description, deadline}) => {
+const Projects = ({id, title, description, deadline}) => {
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory();
   const dispatch = useDispatch();
-  
+
   const tasks = useSelector(selectUserTasks())
 
   const projects = useSelector(selectProjects()) //selected projects filtered by sessionUserId
@@ -36,8 +36,8 @@ const Project = ({id, title, description, deadline}) => {
 //   console.log(projects)
 //   console.log(tasks)
 
-  
-    
+
+
     useEffect(()=>{
       dispatch(fetchProjects())
     },[]);
@@ -48,7 +48,7 @@ const Project = ({id, title, description, deadline}) => {
 
   //needs to have project belongs to from tasks
 
-  
+
 
 
 
@@ -81,10 +81,10 @@ const Project = ({id, title, description, deadline}) => {
                     </CardContent>
                 </CardActionArea>
             </Card>
-           )})}    
+           )})}
         </div>
     </div>
   )
 }
 
-export default Project
+export default Projects
