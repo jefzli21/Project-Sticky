@@ -36,6 +36,19 @@ export const clearProjectErrors = errors => ({
     errors
 })
 
+//selectors//
+
+export const selectProjects = () => state =>{
+    if(!state || !state.projects){
+        return [];
+    }else{
+        
+            let ov = Object.values(state.projects)
+            // .filter((project)=> project.creator._id === userId)
+            // console.log(ov)
+            return ov
+    }
+}
 
 // fetches
 
@@ -74,6 +87,7 @@ export const createProject = projectData => async dispatch =>{
         const project = await res.json();
         dispatch(receiveProject(project))
     } catch(err){
+        console.log(err)
         const resBody =  await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){
             return dispatch(receiveErrors(resBody.errors));
@@ -90,6 +104,7 @@ export const updateProject = projectData => async dispatch =>{
         const project = await res.json();
         dispatch(receiveProject(project))
     } catch(err){
+        console.log(err)
         const resBody = await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){
             return dispatch(receiveErrors(resBody.errors))

@@ -67,7 +67,7 @@ router.delete('/:id', async (req, res) => {
 
 
 //update a project
-router.patch('/:id', validateProjectInput, async (req, res) => {
+router.put('/:id', validateProjectInput, async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {

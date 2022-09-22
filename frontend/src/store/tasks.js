@@ -10,6 +10,20 @@ const RECEIVE_TASK_ERRORS = "tasks/RECEIVE_TASK_ERRORS";
 const CLEAR_TASK_ERRORS = "tasks/CLEAR_TASK_ERRORS";
 
 
+// selectors//
+
+export const selectUserTasks = userId => state =>{
+    if(!state || !state.tasks){
+        return [];
+    }else{
+        
+            let ov = Object.values(state.tasks)
+            // .filter((project)=> project.creator._id === userId)
+            // console.log(ov)
+            return ov
+    }
+}
+
 //Action Creators//
 
 export const receiveTask = task => ({
