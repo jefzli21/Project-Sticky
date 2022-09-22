@@ -1,7 +1,8 @@
-.rightBar-Container{
-    transform: translate(-15%,-400%);
+.project-container{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
 
+.form-content{
+    top: 20px;
 }
