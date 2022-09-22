@@ -5,6 +5,8 @@ const router = express.Router()
 
 const validateTaskInput = require('../../validation/task')
 
+
+//get all tasks
 router.get('/', async (req, res, next) => {
     try {
         const tasks = await Task

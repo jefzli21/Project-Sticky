@@ -6,12 +6,14 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store/store';
 import * as projectActions from './store/projects'
+import * as taskActions from './store/tasks'
 
 let store = configureStore({});
 
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
-  window.projectActions = projectActions
+  window.projectActions = projectActions;
+  window.taskActions = taskActions;
 }
 
 

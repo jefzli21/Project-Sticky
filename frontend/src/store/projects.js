@@ -39,9 +39,9 @@ export const clearProjectErrors = errors => ({
 
 // fetches
 
-export const fetchProjects = userId => async dispatch =>{
+export const fetchProjects = () => async dispatch =>{
     try{
-        const res = await jwtFetch(`/api/projects/user/${userId}`);
+        const res = await jwtFetch(`/api/projects`);
         const projects = await res.json();
         dispatch(receiveProjects(projects));
     } catch(err) {
@@ -52,9 +52,9 @@ export const fetchProjects = userId => async dispatch =>{
     }
 }
 
-export const fetchProject = projectData => async dispatch =>{
+export const fetchProject = projectId => async dispatch =>{
     try{
-        const res = await jwtFetch(`/api/projects/${projectData.id}`);
+        const res = await jwtFetch(`/api/projects/${projectId}`);
         const project = await res.json();
         dispatch(receiveProject(project));
     } catch(err) {
@@ -98,9 +98,9 @@ export const updateProject = projectData => async dispatch =>{
 }
 
 
-export const deleteProject = projectData => async dispatch =>{
+export const deleteProject = projectId => async dispatch =>{
     try{
-        const res = await jwtFetch(`api/projects/${projectData.id}`,{
+        const res = await jwtFetch(`api/projects/${projectId}`,{
             method: 'DELETE'
         })
     }catch(err){

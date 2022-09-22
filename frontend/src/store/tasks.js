@@ -40,9 +40,9 @@ export const clearTaskErrors = errors => ({
 
 //fetches
 
-export const fetchTasks = projectId => async dispatch => {
+export const fetchTasks = () => async dispatch => {
     try{
-        const res = await jwtFetch(`/api/tasks/projects/${projectId}`);
+        const res = await jwtFetch(`/api/tasks`);
         const tasks = await res.json();
         dispatch(receiveTasks(tasks));
     }catch(err){
@@ -53,9 +53,9 @@ export const fetchTasks = projectId => async dispatch => {
     }
 };
 
-export const fetchTask = taskData => async dispatch =>{
+export const fetchTask = taskId => async dispatch =>{
     try{
-        const res = await jwtFetch(`/api/tasks/${taskData.id}`);
+        const res = await jwtFetch(`/api/tasks/${taskId}`);
         const task = await res.json();
         dispatch(receiveTask(task));
     }catch(err){
@@ -99,9 +99,9 @@ export const updateTask = taskData => async dispatch =>{
 }
 
 
-export const deleteTask = taskData => async dispatch =>{
+export const deleteTask = taskId => async dispatch =>{
     try{
-        const res = await jwtFetch(`api/tasks/${taskData.id}`,{
+        const res = await jwtFetch(`api/tasks/${taskId}`,{
             method: 'DELETE'
         })
     }catch(err){

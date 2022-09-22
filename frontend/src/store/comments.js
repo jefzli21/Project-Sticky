@@ -38,9 +38,9 @@ export const clearCommentErrors = errors => ({
 
 // fetches
 
-export const fetchComments = taskId => async dispatch =>{
+export const fetchComments = () => async dispatch =>{
     try{
-        const res = await jwtFetch(`/api/comments/tasks/${taskId}`);
+        const res = await jwtFetch(`/api/comments`);
         const comments = await res.json();
         dispatch(receiveComments(comments));
     }catch(err) {
@@ -85,9 +85,9 @@ export const updateComment = commentData => async dispatch =>{
 }
 
 
-export const deleteComment = commentData => async dispatch =>{
+export const deleteComment = commentId => async dispatch =>{
     try{
-        const res = await jwtFetch(`api/comments/${commentData.id}`,{
+        const res = await jwtFetch(`api/comments/${commentId}`,{
             method: 'DELETE'
         })
     }catch(err){
