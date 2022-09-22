@@ -1,14 +1,15 @@
+import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createProject, selectProjects } from '../../store/projects';
 import './RightBar.css';
-import { SideSheet, Paragraph, Button } from 'evergreen-ui'
-
+const ModalContext = React.createContext()
 
 
 
 
 const RightBar = () => {
+
   const dispatch = useDispatch();
   const sessionUser = useSelector(state=> state.session.user);
   const projects = useSelector(selectProjects());
@@ -32,12 +33,8 @@ const RightBar = () => {
 
   return (
     <div className='project-container'>
-      <h1>Create a Project</h1>
         <div className='right-tab'>
-          <SideSheet isShown={isShown} onCloseComplete={() => setIsShown(false)}>
-            <Paragraph margin={40}>Basic Example</Paragraph>
-          </SideSheet>
-          <Button onClick={() => setIsShown(true)}>Show Basic Side Sheet</Button>
+
       </div>
     </div>
     )

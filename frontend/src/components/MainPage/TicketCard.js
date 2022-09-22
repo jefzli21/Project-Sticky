@@ -63,51 +63,44 @@ const TicketCard = () => {
 
   return (
     <>
-  <div className='card-container' >
-    {projects.map((project,i)=>(
-      <div className='card' key={i}>
-        <div className='card-info'>
-          <div className='card-title'>
-            <Link to={`/projects/${project._id}`}>
-            <div className='card-top'>
-              <div className='card-top-decor'>
-                <PushPinIcon className='pushPin' />
-                <CircularProgress value={40} color='green'>
-                  <CircularProgressLabel>40%</CircularProgressLabel>
-                </CircularProgress>
+      <div className='card-container' >
+        {projects.map((project,i)=>(
+          <div className='card' key={i}>
+            <div className='card-info'>
+              <div className='card-title'>
+                <Link to={`/projects/${project._id}`}>
+                <div className='card-top'>
+                  <div className='card-top-decor'>
+                    <PushPinIcon className='pushPin' />
+                    <CircularProgress value={40} color='green'>
+                      <CircularProgressLabel>40%</CircularProgressLabel>
+                    </CircularProgress>
+                  </div>
+                  <h4>{project.title}</h4>
+                </div>
+                </Link>
               </div>
-              <h4>{project.title}</h4>
+              <div className='project-content'>
+                <p className='description'>{project.description}</p>
+              </div>
+
+            <div className='project-bot'>
+              <p className='deadline'>Deadline: {project.deadline}</p>
+              <div className='card-functions'>
+                <Button >
+                    <EditIcon/>
+                </Button>
+                <Button onClick={()=> dispatch(deleteProject(project._id))}>
+                    <DeleteForeverIcon/>
+                </Button>
+              </div>
             </div>
-            </Link>
+            </div>
           </div>
-          <div className='project-content'>
-            <p className='description'>{project.description}</p>
-          </div>
-
-        <div className='project-bot'>
-          <p className='deadline'>Deadline: {project.deadline}</p>
-          <div className='card-functions'>
-            <Button >
-                <EditIcon/>
-            </Button>
-            <Button onClick={()=> dispatch(deleteProject(project._id))}>
-                <DeleteForeverIcon/>
-            </Button>
-          </div>
-        </div>
-        </div>
+        ))}
       </div>
-    ))}
-  </div>
 
 
-    <h1>Create a Project</h1>
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="title" value={title} onChange={(e)=> setTitle(e.target.value)} required/>
-            <input type="text" placeholder="description" value={description} onChange={(e) =>setDescription(e.target.value)}/>
-            <input type="date" value={deadline} onChange={(e)=> setDeadline(e.target.value)} />
-            <input type="submit" value="Create Project" />
-        </form>
 
     </>
   )
