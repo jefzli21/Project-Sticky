@@ -14,7 +14,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state=> state.session.user);
 
-
   const StyledToolbar = styled(Toolbar)({
     display:"flex",
     justifyContent:"space-between"
