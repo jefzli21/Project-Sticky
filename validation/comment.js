@@ -2,7 +2,7 @@ const { check } = require("express-validator");
 const handleValidationErrors = require('./handleValidationErrors');
 
 const validateCommentInput = [
-    check('description')
+    check('body')
         .exists({ checkFalsy: true })
         .withMessage('Comment cannot be empty'),
     handleValidationErrors

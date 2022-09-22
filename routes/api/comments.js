@@ -5,9 +5,9 @@ const router = express.Router()
 
 const validateCommentInput = require('../../validation/comment')
 // get task's comments
-router.get('/tasks/:taskId', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
-        const comments = await Comment.find({ taskId: req.params.projectId }).populate().sort({ createdAt: -1 })
+        const comments = await Comment.find().populate("creator").sort({ createdAt: -1 })
         return res.json(comments)
     }
     catch (_err) {
@@ -20,7 +20,7 @@ router.get('/tasks/:taskId', async (req, res, next) => {
 
 // create a comment
 
-router.post('/:tasks/create', validateCommentInput, async (req, res, next) => {
+router.post('/', validateCommentInput, async (req, res, next) => {
     try {
         const newComment = new Comment({
             body: req.body.body,

@@ -4,11 +4,14 @@ const Task = mongoose.model("Task")
 const router = express.Router()
 
 const validateTaskInput = require('../../validation/task')
-//get project's task
 
-router.get('/projects/:projectId', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
-        const tasks = await Task.find({ projectId: req.params.projectId }).populate("tasks").sort({ priority: -1 })
+        const tasks = await Task
+        .find()
+        .populate("worker")
+        .populate("comments")
+        .sort({ priority: -1 })
         return res.json(tasks)
     }
     catch (_err) {
@@ -33,12 +36,12 @@ router.get('/:id', async (req, res) => {
 
 //create a task
 
-router.post('/:projectId/create', validateTaskInput, async (req, res, next) => {
+router.post('/', validateTaskInput, async (req, res, next) => {
     try {
         const newTask = new Task({
             title: req.body.title,
             description: req.body.description,
-            creator: req.body.creator,
+            worker: req.body.worker,
             deadline: req.body.deadline,
             priority: req.body.priority,
             completed: req.body.completed,

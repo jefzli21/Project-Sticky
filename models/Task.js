@@ -11,8 +11,9 @@ const taskSchema = new Schema(
             type: String,
             require: true
         },
-        creator: {
-            type: Object,
+        worker: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
             required: true
         },
         deadline: {
@@ -27,9 +28,10 @@ const taskSchema = new Schema(
             type: Boolean,
             default: false
         },
-        comments: {
-            type: Object
-        }
+        comments: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Comment'
+        }]
     },
     {
         timestamps: true

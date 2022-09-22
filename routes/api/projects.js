@@ -5,9 +5,14 @@ const router = express.Router()
 
 const validateProjectInput = require('../../validation/project')
 //get all projects
-router.get('/users/:userId', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
-        const projects = await Project.find({ userId: req.params.userId }).populate("creator").sort({ deadline: -1 });
+        const projects = await Project
+        .find()
+        .populate("creator")
+        .populate("members")
+        .populate("tasks")
+        .sort({ deadline: -1 });
         return res.json(projects)
     }
     catch (_err) {
@@ -35,8 +40,8 @@ router.post('/', validateProjectInput, async (req, res, next) => {
             title: req.body.title,
             description: req.body.description,
             deadline: req.body.deadline,
-            // members: req.user._id,
-            // tasks: req.task._id
+            members: req.body.members,
+            tasks: req.body.tasks
         })
         let project = await newProject.save()
         return res.json(project)
