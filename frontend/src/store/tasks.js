@@ -148,7 +148,8 @@ const tasksReducer = (state = {}, action) =>{
     const nextState = {...state};
     switch(action.type){
         case RECEIVE_TASK:
-            return nextState[action.task.id] = action.task
+            nextState[action.task.id] = action.task;
+            return nextState ;
         case RECEIVE_TASKS:
             return {...action.tasks}
         case REMOVE_TASK:

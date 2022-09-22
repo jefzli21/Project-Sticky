@@ -120,7 +120,8 @@ const commentsReducer = (state={}, action)=>{
     const nextState = {...state};
     switch(action.type){
         case RECEIVE_COMMENT:
-            return nextState[action.comment.id] = action.comment;
+            nextState[action.comment.id] = action.comment;
+            return nextState;
         case RECEIVE_COMMENTS:
             return {...action.comments};
         case REMOVE_COMMENT:

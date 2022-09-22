@@ -144,12 +144,12 @@ export const projectErrorsReducer = (state = nullErrors, action) => {
 
 
   const projectsReducer = (state = {}, action) => {
-
-        Object.freeze(state)
+         Object.freeze(state)
         const nextState = {...state}
         switch(action.type){
             case RECEIVE_PROJECT:
-                return nextState[action.project.id]= action.project;
+                nextState[action.project.id]= action.project;
+                return nextState;
             case RECEIVE_PROJECTS:
                 return {...action.projects}
             case REMOVE_PROJECT:
