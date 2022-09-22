@@ -13,7 +13,6 @@ require('./models/Project')
 
 
 
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/api/users'); // update the import file path
 const csrfRouter = require('./routes/api/csrf');
 const projectRouter = require('./routes/api/projects')
@@ -30,6 +29,30 @@ require('./config/passport');
 const passport = require('passport')
 app.use(passport.initialize());
 const { isProduction } = require('./config/keys');
+
+
+
+// Security Middleware
+if (!isProduction) {
+  // enable CORS only in development because React will be on the React
+  // development server (http://localhost:3000)
+  // (In production, React files will be served statically on the Express server)
+  app.use(cors());
+}
+// Attach Express routers
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true
+    }
+  })
+);
+app.use('/api/users', usersRouter); // update the path
+app.use('/api/csrf', csrfRouter);
+app.use('/api/projects', projectRouter )
+
 
 // Serve static React build files statically in production
 if (isProduction) {
@@ -54,28 +77,6 @@ if (isProduction) {
   });
 }
 //
-
-// Security Middleware
-if (!isProduction) {
-  // enable CORS only in development because React will be on the React
-  // development server (http://localhost:3000)
-  // (In production, React files will be served statically on the Express server)
-  app.use(cors());
-}
-// Attach Express routers
-app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true
-    }
-  })
-);
-app.use('/', indexRouter);
-app.use('/api/users', usersRouter); // update the path
-app.use('/api/csrf', csrfRouter);
-app.use('/api/projects', projectRouter )
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
