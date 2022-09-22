@@ -10,7 +10,6 @@ router.get('/', async (req, res, next) => {
         const projects = await Project
         .find()
         .populate("creator")
-        .populate("projects")
         .populate("members")
         .populate("tasks")
         .sort({ deadline: -1 });

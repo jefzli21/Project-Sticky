@@ -9,6 +9,7 @@ router.get('/', async (req, res, next) => {
     try {
         const tasks = await Task
         .find()
+        .populate("project")
         .populate("worker")
         .populate("comments")
         .sort({ priority: -1 })
@@ -40,6 +41,7 @@ router.post('/', validateTaskInput, async (req, res, next) => {
     try {
         const newTask = new Task({
             title: req.body.title,
+            project: req.body.project,
             description: req.body.description,
             worker: req.body.worker,
             deadline: req.body.deadline,
