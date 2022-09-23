@@ -7,7 +7,7 @@ import './Projects.css';
 import logo from '../../assets/demo-user.png'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
-import { fetchTasks, selectUserTasks } from '../../store/tasks';
+import { fetchUserTasks, selectUserTasks } from '../../store/tasks';
 import { selectProjects, fetchProjects } from '../../store/projects';
 
 
@@ -35,6 +35,7 @@ const Projects = ({id, title, description, deadline}) => {
 
 //   console.log(projects)
 //   console.log(tasks)
+console.log(sessionUser)
 
 
 
@@ -43,7 +44,7 @@ const Projects = ({id, title, description, deadline}) => {
     },[]);
 
   useEffect(()=>{
-    dispatch(fetchTasks())
+    dispatch(fetchUserTasks())
   },[])
 
   //needs to have project belongs to from tasks

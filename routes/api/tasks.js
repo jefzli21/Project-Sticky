@@ -6,11 +6,28 @@ const router = express.Router()
 const validateTaskInput = require('../../validation/task')
 
 
-//get all tasks
+//get all project tasks
 router.get("/project/:projectId", async (req, res, next) => {
     try {
         const tasks = await Task
             .find({ project: req.params.projectId })
+            .populate("creator")
+            // .populate("comments")
+            .sort({ priority: -1 })
+        return res.json(tasks)
+    }
+    catch (_err) {
+        const err = new Error(_err.message);
+        err.statusCode = 404;
+        return next(err);
+    }
+})
+
+//get all user tasks
+router.get("/user/:userId", async (req, res, next) => {
+    try {
+        const tasks = await Task
+            .find({ creator: req.params.userId })
             .populate("creator")
             // .populate("comments")
             .sort({ priority: -1 })

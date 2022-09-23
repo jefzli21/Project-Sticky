@@ -54,9 +54,22 @@ export const clearTaskErrors = errors => ({
 
 //fetches
 
-export const fetchTasks = () => async dispatch => {
+export const fetchProjectTasks = (projectId) => async dispatch => {
     try{
-        const res = await jwtFetch(`/api/tasks`);
+        const res = await jwtFetch(`/api/tasks/project/${projectId}`);
+        const tasks = await res.json();
+        dispatch(receiveTasks(tasks));
+    }catch(err){
+        const resBody = await err.json();
+        if(resBody.statusCode === 400 || resBody.statusCode === 404){
+            return dispatch(receiveErrors(resBody.errors))
+        }
+    }
+};
+
+export const fetchUserTasks = (userId) => async dispatch => {
+    try{
+        const res = await jwtFetch(`/api/tasks/user/${userId}`);
         const tasks = await res.json();
         dispatch(receiveTasks(tasks));
     }catch(err){
