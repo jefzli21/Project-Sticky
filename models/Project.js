@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const projectSchema = new Schema(
+const projectSchema = Schema(
     {
+        creator: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
         title: {
             type: String,
             required: [true, 'Please add a title']
@@ -12,26 +17,23 @@ const projectSchema = new Schema(
         },
         deadline: {
             type: Date,
-            require: [true, 'Please add a deadline']
+            // required: true
         },
-        members: [
-            {
+        members: [{
             type: Schema.Types.ObjectId,
-            ref: "User"
-            }
-        ],
-        tasks: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Task',
-            }
-        ]
-    }, 
+            ref: 'User'
+        }],
+        tasks: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Task'
+        }]
+
+    },
     {
         timestamps: true
     }
 )
 
-projectSchema.index({name: 1, title: 1}) //mongoose 
+// projectSchema.index({name: 1, title: 1}) //mongoose 
 
 module.export = mongoose.model("Project", projectSchema);

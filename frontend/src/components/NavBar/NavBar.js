@@ -14,7 +14,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state=> state.session.user);
 
-
   const StyledToolbar = styled(Toolbar)({
     display:"flex",
     justifyContent:"space-between"
@@ -69,12 +68,13 @@ const NavBar = () => {
 
   return (
     <>
-        <AppBar position='sticky'>
-          <StyledToolbar>
+        <AppBar position='sticky' >
+          <StyledToolbar >
             <div className='nav-left'>
-              <img alt='sticky-logo' style={{height:'30px', width:'30px'}} src={logo}></img>
+            <Link to={'/home'}><img alt='sticky-logo' style={{height:'30px', width:'30px'}} src={logo}></img></Link>
               <Typography variant='h6' sx={{display:{xs:'none', sm:"block"}}}>Sticky
               </Typography>
+            
             </div>
             <Search>
               <InputBase placeholder='search'/>

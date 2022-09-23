@@ -7,15 +7,13 @@ const taskSchema = new Schema(
             type: String,
             require: [true, 'Please add a title']
         },
-        body: {
+        description: {
             type: String,
+            require: true
         },
-        userId: {
-            type: String,
-            required: true
-        },
-        projectId: {
-            type: String,
+        worker: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
             required: true
         },
         deadline: {
@@ -29,11 +27,15 @@ const taskSchema = new Schema(
         completed: {
             type: Boolean,
             default: false
-        }
-    }, 
+        },
+        comments: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Comment'
+        }]
+    },
     {
         timestamps: true
-    }   
+    }
 )
 
 module.export = mongoose.model("Task", taskSchema);

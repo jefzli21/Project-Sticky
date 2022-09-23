@@ -77,11 +77,38 @@ router.get('/current', restoreUser, (req, res) => {
     res.cookie("CSRF-TOKEN", csrfToken);
   }
   if (!req.user) return res.json(null);
+
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
   });
 })
+
+router.get('/:userId', async(req, res) => {
+  const user = await User.findById(req.params.userId).populate("projects")
+  return res.json(user)
+})
+
+router.put('/:userId', async (req, res) => {
+  const { userId } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(404).json({ error: "No such user" })
+  }
+
+  const user = await User.findOneAndUpdate({ _id: userId }, {
+    ...req.body
+  }, { returnDocument: "after" })
+
+  if (!user) {
+    return res.status(400).json({ error: "No such user" })
+  }
+
+  res.status(200).json(user)
+})
+
+
+
 
 module.exports = router;

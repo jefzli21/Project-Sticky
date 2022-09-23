@@ -10,7 +10,9 @@ import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
 
 import { getCurrentUser } from './store/session';
-import Project from './components/Projects/Project';
+import { SideBar } from './components/MainPage/SideBar';
+import Projects from './components/Projects/Projects';
+import Project from './components/Project/Project'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,8 +28,10 @@ function App() {
     <>
       <NavBar/>
       <Switch>
+        <AuthRoute exact path='/' component={LoginForm} />
         <ProtectedRoute exact path='/home' component={MainPage} />
-        <ProtectedRoute exact path='/projects' component={Project} />
+        <ProtectedRoute exact path='/projects/:projectId' component={Project} />
+        <ProtectedRoute exact path='/projects' component={Projects} />
         <AuthRoute exact path='/login' component={LoginForm} />
         <AuthRoute exact path='/signup' component={SignupForm} />
         <Redirect to='/home' />

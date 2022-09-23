@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState} from 'react';
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import './SessionForm.css';
 import './LoginForm.css';
 import wallpaper from '../../assets/log-in.jpg'
 
@@ -11,6 +11,7 @@ function LoginForm() {
     const [password, setPassword] = useState('');
     const errors = useSelector(state => state.errors.session);
     const dispatch = useDispatch();
+    const history = useHistory();
 
 
     useEffect(()=> {
@@ -32,7 +33,7 @@ function LoginForm() {
     return (
             <div className='body'>
                     <div className='form-container'>
-                        <form className='register-form' onSubmit={handleSubmit}>
+                        <form className='register-form-1' onSubmit={handleSubmit}>
                             <h2 className='form-title'>Log In</h2>
                             <div className='errors'>{errors?.email}</div>
                             <label for='chk' aria-hidden="true">
@@ -59,7 +60,7 @@ function LoginForm() {
                             disabled= {!email || !password}
                             >Log In</button>
 
-
+                            <span>Don't have account? <button className='form-button' onClick={()=> history.push('/signup')}>Sign Up</button></span>
                         </form>
                     </div>
             </div>

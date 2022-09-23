@@ -9,10 +9,14 @@ const csurf = require('csurf');
 
 require('./models/User')
 require('./models/Project')
+require('./models/Task')
+require('./models/Comment')
 
 const usersRouter = require('./routes/api/users'); // update the import file path
 const csrfRouter = require('./routes/api/csrf');
 const projectRouter = require('./routes/api/projects')
+const taskRouter = require('./routes/api/tasks')
+const commentRouter = require('./routes/api/comments')
 
 const app = express();
 
@@ -49,6 +53,8 @@ app.use(
 app.use('/api/users', usersRouter); // update the path
 app.use('/api/csrf', csrfRouter);
 app.use('/api/projects', projectRouter )
+app.use('/api/tasks', taskRouter)
+app.use('/api/comments', commentRouter)
 
 
 // Serve static React build files statically in production

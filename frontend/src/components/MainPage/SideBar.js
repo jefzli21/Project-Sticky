@@ -10,13 +10,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import HomeIcon from '@mui/icons-material/Home';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import TaskIcon from '@mui/icons-material/Task';
 import InboxIcon from '@mui/icons-material/Inbox';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
-import { Switch } from '@mui/material';
+import { Button, Switch } from '@mui/material';
 
 
 
@@ -26,6 +26,8 @@ import { Switch } from '@mui/material';
 
 
 export const SideBar = ({mode, setMode}) => {
+  const history = useHistory();
+
   const data = [
     { icon: <People />, label: 'Feature1'},
     { icon: <Dns/>, label: 'Feature2'},
@@ -50,12 +52,12 @@ export const SideBar = ({mode, setMode}) => {
           </Link>
         </ListItem>
         <ListItem disablePadding>
-          <Link to={'/home'} style={{color: 'inherit', textDecoration:'none'}}>
+          <Link to={'/projects'} style={{color: 'inherit', textDecoration:'none'}}>
             <ListItemButton>
               <ListItemIcon>
                 <TaskIcon/>
               </ListItemIcon>
-              <ListItemText primary="My Tasks" />
+                <ListItemText primary="My Tasks" />
             </ListItemButton>
           </Link>
         </ListItem>

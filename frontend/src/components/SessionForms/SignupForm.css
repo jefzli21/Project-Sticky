@@ -30,12 +30,12 @@
     padding: 12px;
 }
 
-.register-form-1 {
+.register-form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    padding: 20px;
-    height: 50vh;
+    padding-bottom: 40px;
+    height: 65vh;
     width: 50wh;
 }
 
@@ -59,13 +59,25 @@ input {
     width: 85%;
 }
 
-.log-in-button{
+.sign-up-button{
+    transform: translateY(15%);
     background: green;
-    height: 45px;
+    height: 65px;
     color: white;
     cursor:pointer;
 }
 
-.form-button{
+.text-nav{
+    transform: translateY(60%);
+}
 
+.form-button{
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font:inherit;
+    cursor: pointer;
+    outline:inherit;
+    color: rgb(58, 96, 24);
 }
