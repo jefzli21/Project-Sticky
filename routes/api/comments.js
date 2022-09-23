@@ -5,16 +5,19 @@ const router = express.Router()
 
 const validateCommentInput = require('../../validation/comment')
 // get task's comments
-router.get('/', async (req, res, next) => {
+router.get("/task/:taskId", async (req, res, next) => {
     try {
-        const comments = await Comment.find().populate("creator").sort({ createdAt: -1 })
+        const comments = await Comment
+            .find({ task: req.params.taskId })
+            .populate("creator")
+            .populate("task")
+            .sort({ createdAt: -1 })
         return res.json(comments)
     }
     catch (_err) {
-        const err = new Error("There is no task")
+        const err = new Error(_err.message);
         err.statusCode = 404;
-        err.erros = { message: "There is no task" }
-        return next(err)
+        return next(err);
     }
 })
 
@@ -24,7 +27,8 @@ router.post('/', validateCommentInput, async (req, res, next) => {
     try {
         const newComment = new Comment({
             body: req.body.body,
-            creator: req.body.creator
+            creator: req.body.creator,
+            task: req.body.task
         })
         let comment = await newComment.save()
         return res.json(comment)
@@ -44,7 +48,7 @@ router.delete('/:id', async (req, res) => {
         return res.json(task)
     }
     catch (err) {
-        res.status(404).json({ noprojectfound: "No projct found with that ID" })
+        res.status(404).json({ nocommentfound: "No comment found with that ID" })
     }
 
 })
@@ -52,11 +56,11 @@ router.delete('/:id', async (req, res) => {
 
 // update a comment
 
-router.put('/:id', validateCommentInput, async (req, res) => {
+router.patch('/:id', validateCommentInput, async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: "No such project" })
+        return res.status(404).json({ error: "Invalid Id" })
     }
 
     const comment = await Comment.findOneAndUpdate({ _id: id }, {
@@ -64,7 +68,7 @@ router.put('/:id', validateCommentInput, async (req, res) => {
     }, { returnDocument: "after" })
 
     if (!comment) {
-        return res.status(400).json({ error: "No such project" })
+        return res.status(400).json({ error: "Failed to update, comment does not exist" })
     }
 
     res.status(200).json(comment)
