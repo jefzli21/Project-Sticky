@@ -14,13 +14,7 @@ const userSchema = new Schema({
   hashedPassword: {
     type: String,
     required: true
-  },
-  projects: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Project'
-    }
-  ]
+  }
 }, {
   timestamps: true
 });

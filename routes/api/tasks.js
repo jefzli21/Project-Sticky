@@ -7,20 +7,19 @@ const validateTaskInput = require('../../validation/task')
 
 
 //get all tasks
-router.get('/', async (req, res, next) => {
+router.get("/project/:projectId", async (req, res, next) => {
     try {
         const tasks = await Task
-        .find()
-        .populate("worker")
-        .populate("comments")
-        .sort({ priority: -1 })
+            .find({ project: req.params.projectId })
+            .populate("creator")
+            // .populate("comments")
+            .sort({ priority: -1 })
         return res.json(tasks)
     }
     catch (_err) {
-        const err = new Error("There is no task")
+        const err = new Error(_err.message);
         err.statusCode = 404;
-        err.errors = { message: "There is no task" }
-        return next(err)
+        return next(err);
     }
 })
 
@@ -31,7 +30,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res) => {
     Task.findById(req.params.id)
         .then(task => res.json(task))
-        .catch(err => res.status(404).json({ noprojectfound: "No task found with that ID" }))
+        .catch(err => res.status(404).json({ err }))
 })
 
 
@@ -43,11 +42,11 @@ router.post('/', validateTaskInput, async (req, res, next) => {
         const newTask = new Task({
             title: req.body.title,
             description: req.body.description,
-            worker: req.body.worker,
+            creator: req.body.worker,
             deadline: req.body.deadline,
             priority: req.body.priority,
             completed: req.body.completed,
-            comments: req.body.comments
+            // comments: req.body.comments
         })
         let task = await newTask.save()
         return res.json(task)
@@ -66,7 +65,7 @@ router.delete('/:id', async (req, res) => {
         return res.json(task)
     }
     catch (err) {
-        res.status(404).json({ noprojectfound: "No projct found with that ID" })
+        res.status(404).json({ notaskfound: "No task found with that ID" })
     }
 
 })
@@ -74,11 +73,11 @@ router.delete('/:id', async (req, res) => {
 
 //update a task
 
-router.put('/:id', validateTaskInput, async (req, res) => {
+router.patch('/:id', validateTaskInput, async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: "No such project" })
+        return res.status(404).json({ error: "Invalid Id" })
     }
 
     const task = await Task.findOneAndUpdate({ _id: id }, {
@@ -86,7 +85,7 @@ router.put('/:id', validateTaskInput, async (req, res) => {
     }, { returnDocument: "after" })
 
     if (!task) {
-        return res.status(400).json({ error: "No such project" })
+        return res.status(400).json({ error: "Failed to update, task does not exist" })
     }
 
     res.status(200).json(task)
