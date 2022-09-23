@@ -1,7 +1,7 @@
-const path = require('path');
 const express = require("express");
-const cookieParser = require('cookie-parser');
+const path = require('path');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const debug = require('debug');
 const cors = require('cors');
@@ -23,7 +23,7 @@ app.use(logger('dev')); // log request components (URL/method) to terminal
 app.use(express.json()); // parse JSON request body
 app.use(express.urlencoded({ extended: false })); // parse urlencoded request body
 app.use(cookieParser()); // parse cookies as an object on req.cookies
-app.use(express.static(path.join(__dirname, 'public'))); // serve the static files in the public folder
+// app.use(express.static(path.join(__dirname, 'public'))); // serve the static files in the public folder
 
 require('./config/passport');
 const passport = require('passport')
