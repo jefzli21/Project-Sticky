@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar'
@@ -15,13 +15,14 @@ import Project from './components/Projects/Project';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(()=> {
     dispatch(getCurrentUser()).then(()=> setLoaded(true))
   },[dispatch]);
 
 
 
-  return loaded && (
+  return (
     <>
       <NavBar/>
       <Switch>
@@ -29,6 +30,7 @@ function App() {
         <ProtectedRoute exact path='/projects' component={Project} />
         <AuthRoute exact path='/login' component={LoginForm} />
         <AuthRoute exact path='/signup' component={SignupForm} />
+        <Redirect to='/home' />
       </Switch>
     </>
   );

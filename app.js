@@ -10,9 +10,6 @@ const csurf = require('csurf');
 require('./models/User')
 require('./models/Project')
 
-
-
-
 const usersRouter = require('./routes/api/users'); // update the import file path
 const csrfRouter = require('./routes/api/csrf');
 const projectRouter = require('./routes/api/projects')
@@ -56,6 +53,7 @@ app.use('/api/projects', projectRouter )
 
 // Serve static React build files statically in production
 if (isProduction) {
+  console.log('production')
   const path = require('path');
   // Serve the frontend's index.html file at the root route
   app.get('/', (req, res) => {

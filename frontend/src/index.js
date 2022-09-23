@@ -6,13 +6,12 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store/store';
 
+console.log('hello world');
 let store = configureStore({});
 
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
 }
-
-
 
 function Root() {
   return (
