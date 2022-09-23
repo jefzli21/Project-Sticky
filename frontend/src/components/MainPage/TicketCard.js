@@ -67,12 +67,11 @@ const TicketCard = () => {
                 <Link to={`/projects/${project._id}`}>
                   <div className="card-top">
                     <div className="card-top-decor">
-                      <PushPinIcon className="pushPin" />
-                      <CircularProgress value={40} color="green">
+                      <CircularProgress fontSize='small' value={40} color="green">
                         <CircularProgressLabel>40%</CircularProgressLabel>
                       </CircularProgress>
                     </div>
-                    <h4>{project.title}</h4>
+                    <h4 className="project-title">{project.title}</h4>
                   </div>
                 </Link>
               </div>
@@ -81,7 +80,7 @@ const TicketCard = () => {
               </div>
 
               <div className="project-bot">
-                <p className="deadline">Deadline: {project.deadline}</p>
+                {/* <p className="deadline">Deadline: {project.deadline}</p> */}
                 <div className="card-functions">
                   <Button>
                     <EditIcon />

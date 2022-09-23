@@ -3,14 +3,24 @@
     grid-template-columns: repeat(3,1fr);
 }
 
-
+.project-title{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
 
 .card-top{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateY(20%);
+    transform: translateY(42%);
+}
+
+
+.description{
+    text-align: center;
+    overflow: hidden;
+    width: 100;
+    /* transform: translateX(-7%); */
 }
 
 .pushPin{
@@ -31,6 +41,11 @@
     align-items: center;
 }
 
+.card-title a{
+    text-decoration: none;
+    color: rgb(28, 26, 26);
+}
+
 .card-icons{
     display: flex;
     width: 30px;
@@ -44,16 +59,19 @@
 }
 
 .project-content p {
+    font-family:monospace;
     display: block;
-    padding: 20px;
+    padding-left: 3px;
+    padding-top: 25px;
     height: 100px;
     align-items:center;
     justify-content: center;
+    transform: translateY(20%);
 }
 
 .project-bot{
     padding-top: 5px;
-    transform: translateX(5%);
+    /* transform: translateX(5%); */
     align-items: center;
     justify-content: center;
     padding: 5px;
@@ -61,7 +79,8 @@
 
 
 .card{
-    background-color: bisque;
+    background-image: url('../../assets/notepad.png');
+    background-size: 200px;
     margin: 20px;
     border-radius: 10px;
     overflow: hidden;
@@ -73,11 +92,18 @@
     width: 10rem;
 }
 
-.card-info{
-    /* background-color: bisque; */
+
+.card-info:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 
+
+
 .card:hover{
-    transform: scale(1.03);
+    transform: scale(1.05);
+}
+
+.card:hover{
+    box-shadow: 0 0 25px rgb(47, 43, 20);
 }

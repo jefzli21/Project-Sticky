@@ -68,13 +68,13 @@ const NavBar = () => {
 
   return (
     <>
-        <AppBar position='sticky' >
-          <StyledToolbar >
+        <AppBar position='sticky'>
+          <StyledToolbar className='toolbar'>
             <div className='nav-left'>
             <Link to={'/home'}><img alt='sticky-logo' style={{height:'30px', width:'30px'}} src={logo}></img></Link>
               <Typography variant='h6' sx={{display:{xs:'none', sm:"block"}}}>Sticky
               </Typography>
-            
+
             </div>
             <Search>
               <InputBase placeholder='search'/>

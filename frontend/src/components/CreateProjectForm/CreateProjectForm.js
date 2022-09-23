@@ -3,7 +3,9 @@ import { useState } from "react";
 import {useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { createProject, selectProjects } from "../../store/projects";
-import { Pane, Dialog, Button } from 'evergreen-ui'
+import { Pane, Dialog, Button, PlusIcon } from 'evergreen-ui';
+import './CreateProjectForm.css'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 export default function CreateProjectForm() {
@@ -14,7 +16,7 @@ export default function CreateProjectForm() {
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date());
   const [isShown, setIsShown] = useState(false);
-  
+
 
   const handleSubmit = (e) => {
     // e.preventDefault();
@@ -27,18 +29,20 @@ export default function CreateProjectForm() {
     dispatch(createProject(proj));
   };
   return (
-    <div>
+    <div >
+
       <Pane>
       <Dialog
         isShown={isShown}
-        title="Dialog title"
+        title="Create a Project"
         onCloseComplete={() => setIsShown(false)}
         preventBodyScrolling
-        confirmLabel="Custom Label"
+        confirmLabel="Create Project"
         onConfirm= {handleSubmit}
       >
-        <form onSubmit={handleSubmit}>
+        <form className="create-project-form" onSubmit={handleSubmit}>
           <input
+            className="form-field"
             type="text"
             placeholder="title"
             value={title}
@@ -46,23 +50,24 @@ export default function CreateProjectForm() {
             required
           />
           <input
+            className="form-field"
             type="text"
             placeholder="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
           <input
+            className="form-field"
             type="date"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
           />
-          <input onClick={()=>setIsShown(false)} type="submit" value="Create Project" />
+
         </form>
       </Dialog>
 
-      <Button onClick={() => setIsShown(true)}>Show Dialog</Button>
+      <PlusIcon className="btn"  onClick={() => setIsShown(true)}></PlusIcon>
     </Pane>
     </div>
-
   );
 }
