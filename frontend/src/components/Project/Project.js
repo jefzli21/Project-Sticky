@@ -13,8 +13,7 @@ const Project = () => {
 
   return (
     <div>
-        <SideBar/>
-        
+      {project.title}
     </div>
   )
 }
