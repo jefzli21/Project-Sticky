@@ -1,10 +1,12 @@
-.card-container{
+
+.cards{
     display: grid;
     grid-template-columns: repeat(3,1fr);
 }
 
 .project-title{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
 }
 
 .card-top{
@@ -90,6 +92,8 @@
     align-items: center;
     justify-content: center;
     width: 10rem;
+    position: relative;
+
 }
 
 
