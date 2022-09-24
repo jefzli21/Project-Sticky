@@ -8,8 +8,7 @@ import logo from '../../assets/demo-user.png'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import { fetchUserTasks, selectUserTasks } from '../../store/tasks';
-import { selectProjects, fetchProjects } from '../../store/projects';
-
+import { deleteTask } from '../../store/tasks';
 
 
 const Tasks = ({id, title, description, deadline}) => {
@@ -67,7 +66,7 @@ const Tasks = ({id, title, description, deadline}) => {
                         <Button>
                             <EditIcon/>
                         </Button>
-                        <Button>
+                        <Button onClick={()=> dispatch(deleteTask(task._id))}>
                             <DeleteForeverIcon/>
                         </Button>
                         </div>
