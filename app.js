@@ -1,7 +1,7 @@
-const path = require('path');
 const express = require("express");
-const cookieParser = require('cookie-parser');
+const path = require('path');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const debug = require('debug');
 const cors = require('cors');
@@ -12,10 +12,6 @@ require('./models/Project')
 require('./models/Task')
 require('./models/Comment')
 
-
-
-
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/api/users'); // update the import file path
 const csrfRouter = require('./routes/api/csrf');
 const projectRouter = require('./routes/api/projects')
@@ -28,12 +24,14 @@ app.use(logger('dev')); // log request components (URL/method) to terminal
 app.use(express.json()); // parse JSON request body
 app.use(express.urlencoded({ extended: false })); // parse urlencoded request body
 app.use(cookieParser()); // parse cookies as an object on req.cookies
-app.use(express.static(path.join(__dirname, 'public'))); // serve the static files in the public folder
+// app.use(express.static(path.join(__dirname, 'public'))); // serve the static files in the public folder
 
 require('./config/passport');
 const passport = require('passport')
 app.use(passport.initialize());
 const { isProduction } = require('./config/keys');
+
+
 
 // Security Middleware
 if (!isProduction) {
@@ -52,18 +50,45 @@ app.use(
     }
   })
 );
-app.use('/', indexRouter);
 app.use('/api/users', usersRouter); // update the path
 app.use('/api/csrf', csrfRouter);
 app.use('/api/projects', projectRouter )
 app.use('/api/tasks', taskRouter)
 app.use('/api/comments', commentRouter)
 
+
+// Serve static React build files statically in production
+if (isProduction) {
+  console.log('production')
+  const path = require('path');
+  // Serve the frontend's index.html file at the root route
+  app.get('/', (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, './frontend', 'build', 'index.html')
+    );
+  });
+
+  // Serve the static assets in the frontend's build folder
+  app.use(express.static(path.resolve("./frontend/build")));
+
+  // Serve the frontend's index.html file at all other routes NOT starting with /api
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, './frontend', 'build', 'index.html')
+    );
+  });
+}
+//
+
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.statusCode = 404;
   next(err);
 });
+
+
 
 const serverErrorLogger = debug('backend:error');
 // Express custom error handler that will be called whenever a route handler or

@@ -8,6 +8,7 @@ import configureStore from './store/store';
 import * as projectActions from './store/projects'
 import * as taskActions from './store/tasks'
 
+console.log('hello world');
 let store = configureStore({});
 
 if (process.env.NODE_ENV !== "production") {
@@ -15,8 +16,6 @@ if (process.env.NODE_ENV !== "production") {
   window.projectActions = projectActions;
   window.taskActions = taskActions;
 }
-
-
 
 function Root() {
   return (

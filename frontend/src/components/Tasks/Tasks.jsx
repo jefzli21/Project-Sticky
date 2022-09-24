@@ -3,48 +3,41 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom';
 import { SideBar } from '../MainPage/SideBar';
-import './Projects.css';
+import './Tasks.css';
 import logo from '../../assets/demo-user.png'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
-import { fetchTasks, selectUserTasks } from '../../store/tasks';
+import { fetchUserTasks, selectUserTasks } from '../../store/tasks';
 import { selectProjects, fetchProjects } from '../../store/projects';
 
 
 
-const Projects = ({id, title, description, deadline}) => {
+const Tasks = ({id, title, description, deadline}) => {
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const tasks = useSelector(selectUserTasks())
 
-  const projects = useSelector(selectProjects()) //selected projects filtered by sessionUserId
-
-  if(projects.length){
-    projects.filter((project)=> project.creator._id === sessionUser._id );
-    projects.filter((project)=> project.tasks.length > 1)
-  }
 
 
 
 
-  if(tasks.length){
-      tasks.filter((task)=> task.worker._id === sessionUser._id)
-    }
 
-//   console.log(projects)
-//   console.log(tasks)
+  // if(tasks.length){
+  //     tasks.filter((task)=> task.worker._id === sessionUser._id)
+  //   }
+
+  console.log(tasks)
+// console.log(sessionUser)
 
 
 
-    useEffect(()=>{
-      dispatch(fetchProjects())
-    },[]);
+
 
   useEffect(()=>{
-    dispatch(fetchTasks())
-  },[])
+    dispatch(fetchUserTasks(sessionUser._id))
+  },[sessionUser._id])
 
   //needs to have project belongs to from tasks
 
@@ -87,4 +80,4 @@ const Projects = ({id, title, description, deadline}) => {
   )
 }
 
-export default Projects
+export default Tasks;
