@@ -50,7 +50,7 @@ export const receiveTasks = tasks => ({
     tasks
 });
 
-export const removeProject = taskId => ({
+export const removeTask = taskId => ({
     type: REMOVE_TASK,
     taskId
 });
@@ -145,6 +145,7 @@ export const deleteTask = taskId => async dispatch =>{
         const res = await jwtFetch(`/api/tasks/${taskId}`,{
             method: 'DELETE'
         })
+        return dispatch(removeTask(taskId))
     }catch(err){
         const resBody = await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){
