@@ -52,7 +52,7 @@ export const SideBar = ({mode, setMode}) => {
           </Link>
         </ListItem>
         <ListItem disablePadding>
-          <Link to={'/projects'} style={{color: 'inherit', textDecoration:'none'}}>
+          <Link to={'/tasks'} style={{color: 'inherit', textDecoration:'none'}}>
             <ListItemButton>
               <ListItemIcon>
                 <TaskIcon/>

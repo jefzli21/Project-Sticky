@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
-import { createTask, fetchTasks, selectUserTasks } from "../../store/tasks";
+import { createTask, fetchUserTasks, selectUserTasks } from "../../store/tasks";
 
 
 
@@ -15,23 +15,26 @@ const CreateTask = () =>{
     const [priority, setPriority] = useState(1);
     const { projectId } = useParams();
 
+    console.log(sessionUser._id)
+
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        const task ={
+        const taskData ={
             title,
             description,
             deadline,
             priority,
             project: projectId,
-            worker: sessionUser._id
+            creator: sessionUser._id
         }
-        dispatch(createTask(task))
+        console.log(taskData)
+        dispatch(createTask(taskData))
     }
 
-    useEffect(()=>{
-        dispatch(fetchTasks())
-    },[])
+    // useEffect(()=>{
+    //     dispatch(fetchUserTasks())
+    // },[])
     
 
     return(
