@@ -15,6 +15,7 @@ import Tasks from './components/Tasks/Tasks';
 import Project from './components/Project/Project'
 import CreateTask from './components/TaskForms/CreateTask';
 import EditTask from './components/TaskForms/EditTask';
+import EditProjectForm from './components/CreateProjectForm/EditProjectForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +36,7 @@ function App() {
         <ProtectedRoute exact path='/projects/:projectId' component={Project} />
         <ProtectedRoute exact path='/tasks' component={Tasks} />
         <ProtectedRoute exact path='/projects/:projectId/createtask' component={CreateTask} />
+        <ProtectedRoute exact path='/projects/:projectId/edit' component={EditProjectForm} />
 
         <AuthRoute exact path='/login' component={LoginForm} />
         <AuthRoute exact path='/signup' component={SignupForm} />

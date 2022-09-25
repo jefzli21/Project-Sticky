@@ -48,10 +48,11 @@ export const selectProjects = (authorId) => (state) => {
     // console.log(ov)
     return ov;
   }
-};
+}
 
 export const selectProject = (projectId) => (state) => {
   return state.projects ? state.projects[projectId] : null;
+  
 };
 
 // fetches
@@ -101,13 +102,14 @@ export const createProject = (projectData) => async (dispatch) => {
 
 export const updateProject = (projectData) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`api/projects/${projectData.id}`, {
+    const res = await jwtFetch(`api/projects/${projectData._id}`, {
       method: "PUT",
       body: JSON.stringify(projectData),
     });
     const project = await res.json();
     dispatch(receiveProject(project));
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
     const resBody = await err.json();
     if (resBody.statusCode === 400 || resBody.statusCode === 404) {
