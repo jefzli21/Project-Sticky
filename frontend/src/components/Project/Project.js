@@ -54,7 +54,6 @@ const Project = () => {
 
 
           <div className='project-bottom'>
-                <h2 className='Card'>To-Do</h2>
                 <h2 className='Card'>In Progress</h2>
                 <h2 className='Card'>Done</h2>
         </div>
