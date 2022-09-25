@@ -5,74 +5,61 @@ import { selectProject, selectProjects } from '../../store/projects'
 import { SideBar } from '../MainPage/SideBar'
 import './Project.css'
 import Tasks from '../Tasks/Tasks'
-import CreateTask from '../TaskForms/CreateTaskForm'
-import { fetchProjectTasks, selectProjectTasks, deleteTask, updateTask } from '../../store/tasks'
-import { Button, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
-import { check } from 'express-validator'
+import CreateTask from '../TaskForms/CreateTask'
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
+import { Button } from "@mui/material"
 
 
 const Project = () => {
-    const sessionUser = useSelector(state => state.session.user)
-    const { projectId } = useParams();
-    const project = useSelector(selectProject(projectId))
+  const sessionUser = useSelector(state=> state.session.user)
+  const { projectId }  = useParams();
+  const project = useSelector(selectProject(projectId))
 
-    const history = useHistory();
-    const dispatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-    const tasks = useSelector(selectProjectTasks())
-
-    console.log(tasks)
-
-    useEffect(() => {
-        dispatch(fetchProjectTasks(projectId))
-    }, [projectId])
+  const tasks = useSelector(selectProjectTasks())
 
 
-    function handleTaskCheckboxClick(task) {
-        const isChecked = document.getElementById(`checkbox_${task._id}`).checked
-        const newTask = { ...task };
-        newTask.completed = isChecked;
-        dispatch(updateTask(newTask))
-    }
+  console.log(tasks)
 
-    return (
-        <div className='main-container'>
-            <div className='task-container'>
-                {tasks.map((task, i) => {
-                    return (
-                        <Card className='task-top' key={i}>
-                            <CardActionArea>
-                                <CardContent>
-                                    <div className='top-left'>
-                                        <Typography gutterBottom variant='h5' component='div'>
-                                            Task: {task.title}
-                                        </Typography>
-                                        <Typography className='top-text' variant="body2" color="text.secondary" component="span">
-                                            Details: {task.description}
-                                        </Typography>
-                                        {/* <Typography>{task.comments.map((comment)=> comment.body)}</Typography> */}
-                                    </div>
-                                    <div className='top-right'>
-                                        <div>
-                                            <input type="checkbox" defaultChecked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} />
-                                        </div>
-                                        <Button onClick={() => history.push(`/projects/${projectId}/${task._id}`)}>
-                                            <EditIcon />
-                                        </Button>
-                                        <Button onClick={() => dispatch(deleteTask(task._id))}>
-                                            <DeleteForeverIcon />
-                                        </Button>
-                                    </div>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    )
-                })}
+  useEffect(()=>{
+    dispatch(fetchProjectTasks(projectId))
+  },[projectId])
+
+
+
+  return (
+    <div className='projectPage-container'>
+        <SideBar/>
+        <div className='project-right-container'>
+          <div className='project-top'>
+            <div className='project-title'>
+              <h1>Project: graduation party - Lets go !!!</h1> 
+            </div>  
+            <div className='function-icons'>
+              <div className='edit-icon'>
+              <Button>
+              <EditIcon fontSize='large'/>Edit Project
+              </Button>
+              </div>
+              <div className='delete-icon'>
+              <Button>
+              <DeleteForeverIcon fontSize='large'/>Delete Project
+              </Button> 
+              </div>
             </div>
+          </div>
+
+
+          <div className='project-bottom'>
+                <h2 className='Card'>In Progress</h2>
+                <h2 className='Card'>Done</h2>
         </div>
-    )
+        </div>
+    </div>
+  )
 }
 
 export default Project
