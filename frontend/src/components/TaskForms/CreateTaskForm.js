@@ -7,7 +7,7 @@ import { Pane, Dialog, Button, PlusIcon } from 'evergreen-ui';
 
 
 
-const CreateTask = () =>{
+const CreateTaskForm = () =>{
     const dispatch = useDispatch();
     const sessionUser = useSelector((state)=> state.session.user);
     const tasks = useSelector(selectUserTasks())
@@ -85,4 +85,4 @@ const CreateTask = () =>{
     
 }
 
-export default CreateTask;
+export default CreateTaskForm;

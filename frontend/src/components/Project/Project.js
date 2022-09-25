@@ -5,10 +5,11 @@ import { selectProject, selectProjects } from '../../store/projects'
 import { SideBar } from '../MainPage/SideBar'
 import './Project.css'
 import Tasks from '../Tasks/Tasks'
-import CreateTask from '../TaskForms/CreateTask'
+import CreateTaskForm from '../TaskForms/CreateTaskForm'
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { Button } from "@mui/material"
+import { fetchProjectTasks, selectProjectTasks } from '../../store/tasks'
 
 
 const Project = () => {
