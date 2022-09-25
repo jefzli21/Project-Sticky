@@ -134,7 +134,6 @@ export const updateTask = taskData => async dispatch =>{
             body: JSON.stringify(taskData)
         });
         const task = await res.json();
-        console.log(task)
         dispatch(receiveTask(task));
     }catch(err){
         const resBody = await err.json();
