@@ -38,6 +38,10 @@ export const selectProjectTasks = ProjectId => state =>{
     }
 }
 
+export const selectTask = (taskId) => (state) => {
+    return state.tasks ? state.tasks[taskId] : null;
+}
+
 //Action Creators//
 
 export const receiveTask = task => ({
@@ -182,8 +186,8 @@ const tasksReducer = (state = {}, action) =>{
             // return {...action.tasks}
             action.tasks.forEach((task) => {
                 nextState[task._id] = task;
-              });
-              return nextState;
+                });
+                return nextState;
         case REMOVE_TASK:
             delete nextState[action.taskId];
             return nextState;

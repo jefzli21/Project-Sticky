@@ -3,18 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { selectProject, fetchProject, updateProject} from '../../store/projects'
 
-
-
-
-
 export default function EditProjectForm() {
     const dispatch = useDispatch();
     const {projectId} = useParams();
     const history = useHistory();
     let projectData = useSelector(selectProject(projectId))
     const [project, setProject] = useState(projectData)
-
-    
 
     useEffect(
         () => { setProject(projectData) },
