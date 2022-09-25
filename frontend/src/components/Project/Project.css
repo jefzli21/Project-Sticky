@@ -1,0 +1,71 @@
+.projectPage-container{
+    display: flex;
+    /* width: fit-content; */
+}
+
+
+.project-top{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    transform: translate(1%,23%);
+    border-bottom: 1px ridge;
+    padding-bottom: 2.5em
+}
+
+.function-icons{
+    display: flex;
+    padding: 10px;
+}
+
+
+.edit-icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+}
+
+
+.delete-icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+}
+
+
+.project-bottom{
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    display: flex;
+    /* justify-content:space-evenly; */
+    transform: translateY(2%);
+}
+
+/* .project-cards{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    top: 50px;
+} */
+
+
+
+
+.Card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color:azure;
+    width:  33.33%;
+    height: 60em;
+}
+
+
+@media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
