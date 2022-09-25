@@ -48,10 +48,11 @@ export const selectProjects = (authorId) => (state) => {
     // console.log(ov)
     return ov;
   }
-};
+}
 
 export const selectProject = (projectId) => (state) => {
   return state.projects ? state.projects[projectId] : null;
+  
 };
 
 // fetches
@@ -84,7 +85,7 @@ export const fetchProject = (projectId) => async (dispatch) => {
 
 export const createProject = (projectData) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`api/projects/`, {
+    const res = await jwtFetch(`/api/projects/`, {
       method: "POST",
       body: JSON.stringify(projectData),
     });
@@ -101,13 +102,14 @@ export const createProject = (projectData) => async (dispatch) => {
 
 export const updateProject = (projectData) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`api/projects/${projectData.id}`, {
+    const res = await jwtFetch(`/api/projects/${projectData._id}`, {
       method: "PUT",
       body: JSON.stringify(projectData),
     });
     const project = await res.json();
     dispatch(receiveProject(project));
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
     const resBody = await err.json();
     if (resBody.statusCode === 400 || resBody.statusCode === 404) {
@@ -118,7 +120,7 @@ export const updateProject = (projectData) => async (dispatch) => {
 
 export const deleteProject = (projectId) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`api/projects/${projectId}`, {
+    const res = await jwtFetch(`/api/projects/${projectId}`, {
       method: "DELETE",
     });
     return dispatch(removeProject(projectId))

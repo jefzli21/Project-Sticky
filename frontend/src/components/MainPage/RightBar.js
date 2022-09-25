@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createProject, selectProjects } from "../../store/projects";
 import { Modal } from "../../context/Modal";
 import "./RightBar.css";
-import CreateProjectModal from "../CreateProjectForm/CreateProjectModal";
-import CreateProjectForm from "../CreateProjectForm/CreateProjectForm";
+import CreateProjectModal from "../ProjectForm/CreateProjectModal";
+import CreateProjectForm from "../ProjectForm/CreateProjectForm";
 import Calendar from 'react-calendar'
 
 const RightBar = () => {

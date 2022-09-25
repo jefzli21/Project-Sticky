@@ -20,19 +20,6 @@ const Tasks = ({id, title, description, deadline}) => {
 
 
 
-
-
-
-  // if(tasks.length){
-  //     tasks.filter((task)=> task.worker._id === sessionUser._id)
-  //   }
-
-// console.log(sessionUser)
-
-
-
-
-
   useEffect(()=>{
     dispatch(fetchUserTasks(sessionUser._id))
   },[sessionUser._id])
@@ -46,10 +33,10 @@ const Tasks = ({id, title, description, deadline}) => {
   return (
     <div className='main-container'>
         <SideBar/>
-        <div className='project-container'>
+        <div className='task-container'>
             {tasks.map((task,i)=>{
                 return (
-            <Card className='project-top' key={i}>
+            <Card className='task-top' key={i}>
                 <CardActionArea>
                     <CardContent>
                         <div className='top-left'>
@@ -62,7 +49,7 @@ const Tasks = ({id, title, description, deadline}) => {
                         <Typography>{task.comments.map((comment)=> comment.body)}</Typography>
                         </div>
                         <div className='top-right'>
-                        <Button>
+                        <Button onClick={()=> history.push(`/projects/${task.project}/${task._id}`)}>
                             <EditIcon/>
                         </Button>
                         <Button onClick={()=> dispatch(deleteTask(task._id))}>

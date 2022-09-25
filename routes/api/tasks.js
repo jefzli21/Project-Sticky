@@ -94,7 +94,7 @@ router.delete('/:id', async (req, res) => {
 
 //update a task
 
-router.patch('/:id', validateTaskInput, async (req, res) => {
+router.put('/:id', validateTaskInput, async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {

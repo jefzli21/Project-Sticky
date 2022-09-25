@@ -38,6 +38,10 @@ export const selectProjectTasks = ProjectId => state =>{
     }
 }
 
+export const selectTask = (taskId) => (state) => {
+    return state.tasks ? state.tasks[taskId] : null;
+}
+
 //Action Creators//
 
 export const receiveTask = task => ({
@@ -125,11 +129,12 @@ export const createTask = (taskData) => async dispatch =>{
 
 export const updateTask = taskData => async dispatch =>{
     try{
-        const res = await jwtFetch(`/api/tasks/${taskData.id}`,{
+        const res = await jwtFetch(`/api/tasks/${taskData._id}`,{
             method: 'PUT',
             body: JSON.stringify(taskData)
         });
         const task = await res.json();
+        console.log(task)
         dispatch(receiveTask(task));
     }catch(err){
         const resBody = await err.json();
@@ -182,8 +187,8 @@ const tasksReducer = (state = {}, action) =>{
             // return {...action.tasks}
             action.tasks.forEach((task) => {
                 nextState[task._id] = task;
-              });
-              return nextState;
+                });
+                return nextState;
         case REMOVE_TASK:
             delete nextState[action.taskId];
             return nextState;
