@@ -13,8 +13,23 @@ import {
   createProject,
   selectProject,
 } from "../../store/projects";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTransition, animated, useSpring, config } from "react-spring";
+import { useControls } from "leva";
+
+
+
+
+const calc = (x, y, rect) => [
+  -(y - rect.top - rect.height / 2) / 5,
+  (x - rect.left - rect.width / 2) / 5,
+  1.4
+];
+const trans = (x, y, s) =>
+  `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
+
+
 
 const TicketCard = () => {
   const dispatch = useDispatch();
@@ -28,6 +43,8 @@ const TicketCard = () => {
 
 
   //using react spring
+  
+
   const props = useSpring({ 
     to: { opacity: 1, x: 0 }, 
     from: { opacity: 0, x: -100 },
@@ -87,7 +104,12 @@ const TicketCard = () => {
         <div className="cards">
 
           {projects.map(( project, i )=>(
-            <animated.div className='card' style={props} key={i}>
+            <animated.div 
+            className='card' 
+            style={props} 
+            key={i}
+     
+            >
               <div className="card-info">
                 <div className="card-title">
                   <Link to={`/projects/${project._id}`}>
