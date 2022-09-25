@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
 import { createTask, fetchUserTasks, selectUserTasks } from "../../store/tasks";
+import { Pane, Dialog, Button, PlusIcon } from 'evergreen-ui';
+
 
 
 
@@ -14,12 +16,12 @@ const CreateTask = () =>{
     const [deadline, setDeadline] = useState('');
     const [priority, setPriority] = useState(1);
     const { projectId } = useParams();
-
-    console.log(sessionUser._id)
+    const [isShown, setIsShown] = useState(false);
 
 
     const handleSubmit = (e) =>{
         e.preventDefault();
+        setIsShown(false)
         const taskData ={
             title,
             description,
@@ -28,7 +30,6 @@ const CreateTask = () =>{
             project: projectId,
             creator: sessionUser._id
         }
-        console.log(taskData)
         dispatch(createTask(taskData))
     }
 
@@ -38,24 +39,46 @@ const CreateTask = () =>{
     
 
     return(
-        <>
+        <div>
+            <Pane>
+            <Dialog
+            isShown={isShown}
+            title="Create a Project"
+            onCloseComplete={() => setIsShown(false)}
+            preventBodyScrolling
+            confirmLabel="Create Project"
+            onConfirm= {handleSubmit}
+        >   
         <h1>Create Task</h1>
-        <form onSubmit={handleSubmit}>
-            <input type="text" value={title} onChange={(e)=> setTitle(e.target.value)}/>
-            <input type="text" value={description} onChange={(e)=> setDescription(e.target.value)}/>
-            <input type="date" value={deadline} onChange={(e)=> setDeadline(e.target.value)}/>
-            
-            <label>Choose a priority level:</label>
-            <select value={priority} onChange={(e)=> setPriority(e.target.value)}>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-            </select>
-            <input type="submit" value="Create Task"/>
-        </form>
-        
-        </>
+            <form className="create-task-form" onSubmit={handleSubmit}>
+                <input
+                placeholder="title"
+                className="form-field"
+                type="text" 
+                value={title} 
+                onChange={(e)=> setTitle(e.target.value)}
+                />
+                <input 
+                placeholder="description"
+                className="form-field"
+                type="text" 
+                value={description} 
+                onChange={(e)=> setDescription(e.target.value)}/>
+                <input className="form-field" type="date" value={deadline} onChange={(e)=> setDeadline(e.target.value)}/>
+                
+                <label>Choose a priority level:</label>
+                <select className="form-field" value={priority} onChange={(e)=> setPriority(e.target.value)}>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                </select>
+                <input className="form-field" type="submit" value="Create Task"/>
+            </form>
+        </Dialog>
+            <PlusIcon className="btn" onClick={()=> setIsShown(true)}></PlusIcon>
+        </Pane>
+        </div>
     )
     
     

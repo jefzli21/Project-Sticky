@@ -6,6 +6,7 @@ import { Modal } from "../../context/Modal";
 import "./RightBar.css";
 import CreateProjectModal from "../CreateProjectForm/CreateProjectModal";
 import CreateProjectForm from "../CreateProjectForm/CreateProjectForm";
+import Calendar from 'react-calendar'
 
 const RightBar = () => {
   const [show, setShow] = useState(false);
@@ -16,6 +17,9 @@ const RightBar = () => {
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date());
   const [isShown, setIsShown] = useState(false);
+
+  ////calendar////
+  const [value, onChange] = useState(new Date());
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,37 +33,9 @@ const RightBar = () => {
   };
 
   return (
-    <CreateProjectForm/>
-    // <div className="project-container">
-    //   <div className="right-tab">
-    //     <div onClick={() => setShow(true)}> Create a Project</div>
-    //     {show && (
-    //       <Modal>
-    //         <form onSubmit={handleSubmit}>
-    //           <input
-    //             type="text"
-    //             placeholder="title"
-    //             value={title}
-    //             onChange={(e) => setTitle(e.target.value)}
-    //             required
-    //           />
-    //           <input
-    //             type="text"
-    //             placeholder="description"
-    //             value={description}
-    //             onChange={(e) => setDescription(e.target.value)}
-    //           />
-    //           <input
-    //             type="date"
-    //             value={deadline}
-    //             onChange={(e) => setDeadline(e.target.value)}
-    //           />
-    //           <input type="submit" value="Create Project" />
-    //         </form>
-    //       </Modal>
-    //     )}
-    //   </div>
-    // </div>
+    <>
+      <CreateProjectForm/>
+    </>
   );
 };
 

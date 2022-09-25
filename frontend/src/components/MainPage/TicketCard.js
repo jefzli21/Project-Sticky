@@ -15,18 +15,8 @@ import {
 } from "../../store/projects";
 import { useEffect, useRef, useState } from "react";
 import { useTransition, animated, useSpring, config } from "react-spring";
-import { useControls } from "leva";
 
 
-
-
-const calc = (x, y, rect) => [
-  -(y - rect.top - rect.height / 2) / 5,
-  (x - rect.left - rect.width / 2) / 5,
-  1.4
-];
-const trans = (x, y, s) =>
-  `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
 
 

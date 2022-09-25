@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import { selectProject, selectProjects } from '../../store/projects'
 import { SideBar } from '../MainPage/SideBar'
 import './Project.css'
+import Tasks from '../Tasks/Tasks'
+import CreateTask from '../TaskForms/CreateTask'
 
 const Project = () => {
   const sessionUser = useSelector(state=> state.session.user)
@@ -13,7 +15,7 @@ const Project = () => {
 
   return (
     <div>
-      {project.title}
+        <CreateTask/>
     </div>
   )
 }

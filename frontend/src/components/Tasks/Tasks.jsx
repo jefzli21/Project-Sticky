@@ -27,7 +27,6 @@ const Tasks = ({id, title, description, deadline}) => {
   //     tasks.filter((task)=> task.worker._id === sessionUser._id)
   //   }
 
-  console.log(tasks)
 // console.log(sessionUser)
 
 
