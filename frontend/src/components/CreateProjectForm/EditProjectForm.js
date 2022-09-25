@@ -12,7 +12,6 @@ export default function EditProjectForm() {
     const {projectId} = useParams();
     const history = useHistory();
     let projectData = useSelector(selectProject(projectId))
-    console.log(projectData)
     const [project, setProject] = useState(projectData)
 
     
@@ -31,7 +30,7 @@ export default function EditProjectForm() {
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(updateProject(project))
-        history.use('/home')
+        history.push('/home')
     }
     console.log("debug",project)
     return (

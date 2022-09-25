@@ -85,7 +85,7 @@ export const fetchProject = (projectId) => async (dispatch) => {
 
 export const createProject = (projectData) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`api/projects/`, {
+    const res = await jwtFetch(`/api/projects/`, {
       method: "POST",
       body: JSON.stringify(projectData),
     });
@@ -102,7 +102,7 @@ export const createProject = (projectData) => async (dispatch) => {
 
 export const updateProject = (projectData) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`api/projects/${projectData._id}`, {
+    const res = await jwtFetch(`/api/projects/${projectData._id}`, {
       method: "PUT",
       body: JSON.stringify(projectData),
     });
@@ -120,7 +120,7 @@ export const updateProject = (projectData) => async (dispatch) => {
 
 export const deleteProject = (projectId) => async (dispatch) => {
   try {
-    const res = await jwtFetch(`api/projects/${projectId}`, {
+    const res = await jwtFetch(`/api/projects/${projectId}`, {
       method: "DELETE",
     });
     return dispatch(removeProject(projectId))
