@@ -20,32 +20,32 @@ const Project = () => {
   const sessionUser = useSelector(state=> state.session.user)
   const { projectId }  = useParams();
 
-  
+
   const history = useHistory();
   const dispatch = useDispatch();
   const tasks = useSelector(selectProjectTasks(projectId))
   const project = useSelector(selectProject(projectId))
   ///react spring implmentation again
-  const props = useSpring({ 
-    to: { opacity: 1, y: 0 }, 
+  const props = useSpring({
+    to: { opacity: 1, y: 0 },
     from: { opacity: 0, y: 100 },
     reset: true,
     config: config.slow
   })
 
-  
-  
-  
+
+
+
   useEffect(()=>{
     dispatch(fetchProjectTasks(projectId))
   },[projectId])
-  
+
   useEffect(()=>{
     dispatch(fetchProject(projectId))
   },[projectId])
-  
-  
-  
+
+
+
   function handleTaskCheckboxClick(task) {
     const isChecked = document.getElementById(`checkbox_${task._id}`).checked
     const newTask = { ...task };
@@ -56,15 +56,15 @@ const Project = () => {
   if(!project){
     return null
   }
-  
+
   if(!tasks){
     return null
   }
 
   // let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
 
-  
-  
+
+
   return tasks && (
     <div className='projectPage-container'>
         <SideBar/>
@@ -72,7 +72,7 @@ const Project = () => {
           <div className='project-top'>
             <div className='project-title'>
               <h1>Project: <span>{project.title}</span></h1>
-            </div>  
+            </div>
             <div className='function-icons'>
               <div className='edit-icon'>
               <Button onClick={() => history.push(`/projects/${project._id}/edit`)}>
@@ -82,7 +82,7 @@ const Project = () => {
               <div className='delete-icon'>
               <Button onClick={() => dispatch(deleteProject(project._id))}>
               <DeleteForeverIcon fontSize='large'/>Delete Project
-              </Button> 
+              </Button>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ const Project = () => {
 
           <div className='project-bottom'>
               <div className='Card'>
-                <h2>In Progress</h2>
+                <h3>In Progress</h3>
                 <CreateTaskForm className='create-task-button'/>
                 <div className='task-Cards'>
                   {tasks.map((task, i)=> (
@@ -121,8 +121,8 @@ const Project = () => {
 
               </div>
               <div className='Card'>
-                <h2>Done</h2>
-                
+                <h3>Done</h3>
+
                 <div className='task-Cards'>
                   {tasks.map((task, i)=> (
                     task.completed && (
@@ -131,7 +131,7 @@ const Project = () => {
                     style={props}
                     key={i}>
                       <div className='taskCard-info'>
-                        <h2 className='taskCard-title'>{task.title}</h2>
+                        <h4 className='taskCard-title'>{task.title}</h4>
                       </div>
                       <div className='taskCard-content'>
                         <p className='taskCard-description'>{task.description}</p>
