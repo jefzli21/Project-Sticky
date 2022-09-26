@@ -30,6 +30,7 @@ router.get("/user/:userId", async (req, res, next) => {
         const tasks = await Task
             .find({ creator: req.params.userId })
             .populate("creator")
+            .populate("project")
             .sort({ priority: -1 })
         return res.json(tasks)
     }

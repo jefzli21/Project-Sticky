@@ -67,11 +67,11 @@ export const SideBar = ({mode, setMode}) => {
               <ListItemIcon>
                 <InboxIcon/>
               </ListItemIcon>
-              <ListItemText primary="Inbox" />
+              <ListItemText primary="Completed Projects" />
             </ListItemButton>
           </Link>
         </ListItem>
-        <ListItem disablePadding>
+        {/* <ListItem disablePadding>
           <Link to={'/home'} style={{color: 'inherit', textDecoration:'none'}}>
             <ListItemButton>
               <ListItemIcon>
@@ -80,8 +80,8 @@ export const SideBar = ({mode, setMode}) => {
               <ListItemText primary="Reporting" />
             </ListItemButton>
           </Link>
-        </ListItem>
-        <ListItem disablePadding>
+        </ListItem> */}
+        {/* <ListItem disablePadding>
           <Link to={'/home'} style={{color: 'inherit', textDecoration:'none'}}>
             <ListItemButton>
               <ListItemIcon>
@@ -90,15 +90,15 @@ export const SideBar = ({mode, setMode}) => {
               <ListItemText primary="Goals" />
             </ListItemButton>
           </Link>
-        </ListItem>
-        <ListItem disablePadding>
+        </ListItem> */}
+        {/* <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <ModeNightIcon />
               </ListItemIcon>
               <Switch onChange={e=>setMode(mode ==='light' ? 'dark' : 'light')}/>
             </ListItemButton>
-        </ListItem>
+        </ListItem> */}
       </List>
     </div>
   )

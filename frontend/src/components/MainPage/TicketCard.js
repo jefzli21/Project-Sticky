@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import "./TicketCard.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
@@ -23,6 +23,7 @@ import {format} from 'date-fns';
 
 
 const TicketCard = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user); //grabbing sessionUser from session state
   const projects = useSelector(selectProjects(sessionUser._id));
@@ -63,9 +64,7 @@ const TicketCard = () => {
     return null;
   }
 
-  // if(projects.length){
-  //   projects.filter((project)=> project.creator._id ? project.creator._id === sessionUser._id : null)
-  // }
+  console.log(projects)
 
   // project create
 
@@ -85,7 +84,6 @@ const TicketCard = () => {
     dispatch(createProject(proj));
   };
 
-  console.log(projects)
 
   ///
 
@@ -117,11 +115,10 @@ const TicketCard = () => {
                 <div className="project-content">
                   <p className="description">{project.description}</p>
                 </div>
-
                 <div className="project-bot">
                   <p className="deadline">{project.deadline}</p>
                   <div className="card-functions">
-                    <Button>
+                    <Button onClick={() => history.push(`/projects/${project._id}/edit`)}>
                       <EditIcon />
                     </Button>
                     <Button onClick={() => dispatch(deleteProject(project._id))}>

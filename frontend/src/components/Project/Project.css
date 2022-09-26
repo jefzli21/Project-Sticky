@@ -4,7 +4,7 @@
 }
 
 .project-right-container{
-    width: 100%;
+    /* width: 100%; */
 }
 
 .project-title{
@@ -68,7 +68,7 @@
     text-align: center;
     background-color:white;
     width:  50%;
-    height: 78em;
+    /* height: 78em; */
 }
 
 

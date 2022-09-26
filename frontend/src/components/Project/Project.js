@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { selectProject, selectProjects } from '../../store/projects'
+import projectsReducer, { deleteProject, fetchProject, selectProject, selectProjects } from '../../store/projects'
 import { SideBar } from '../MainPage/SideBar'
 import './Project.css'
 import Tasks from '../Tasks/Tasks'
@@ -19,36 +19,33 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 const Project = () => {
   const sessionUser = useSelector(state=> state.session.user)
   const { projectId }  = useParams();
-  const project = useSelector(selectProject(projectId))
 
+  
   const history = useHistory();
   const dispatch = useDispatch();
-
   const tasks = useSelector(selectProjectTasks(projectId))
+  const project = useSelector(selectProject(projectId))
+  ///react spring implmentation again
+  const props = useSpring({ 
+    to: { opacity: 1, y: 0 }, 
+    from: { opacity: 0, y: 100 },
+    reset: true,
+    config: config.slow
+  })
+
   
-    ///react spring implmentation again
-    const props = useSpring({ 
-      to: { opacity: 1, y: 0 }, 
-      from: { opacity: 0, y: 100 },
-      reset: true,
-      config: config.slow
-    })
-
-
-  console.log(tasks)
-
+  
+  
   useEffect(()=>{
     dispatch(fetchProjectTasks(projectId))
   },[projectId])
-
-
-  const completedTasks = [];
-
-
-  // if(!tasks.length){
-  //   return null;
-  // }
-
+  
+  useEffect(()=>{
+    dispatch(fetchProject(projectId))
+  },[projectId])
+  
+  
+  
   function handleTaskCheckboxClick(task) {
     const isChecked = document.getElementById(`checkbox_${task._id}`).checked
     const newTask = { ...task };
@@ -56,12 +53,19 @@ const Project = () => {
     dispatch(updateTask(newTask))
   }
 
+  if(!project){
+    return null
+  }
+  
+  if(!tasks){
+    return null
+  }
 
+  // let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
 
-
-
-
-  return (
+  
+  
+  return tasks && (
     <div className='projectPage-container'>
         <SideBar/>
         <div className='project-right-container'>
@@ -71,12 +75,12 @@ const Project = () => {
             </div>  
             <div className='function-icons'>
               <div className='edit-icon'>
-              <Button>
+              <Button onClick={() => history.push(`/projects/${project._id}/edit`)}>
               <EditIcon fontSize='large'/>Edit Project
               </Button>
               </div>
               <div className='delete-icon'>
-              <Button>
+              <Button onClick={() => dispatch(deleteProject(project._id))}>
               <DeleteForeverIcon fontSize='large'/>Delete Project
               </Button> 
               </div>

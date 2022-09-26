@@ -16,7 +16,7 @@ const projectSchema = Schema(
             type: String
         },
         deadline: {
-            type: Date,
+            type: Date
             // required: true
         },
         members: [{

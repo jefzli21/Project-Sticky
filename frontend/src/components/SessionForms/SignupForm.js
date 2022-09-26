@@ -59,7 +59,7 @@ function SignForm () {
             <form className='register-form' onSubmit={usernameSubmit}>
                 <h2 className='form-title'>Sign Up Form</h2>
                 <div className='errors'>{errors?.email}</div>
-                <label for='chk' aria-hidden="true">
+                <label htmlFor='chk' aria-hidden="true">
                     <span className='form-span'>Email</span>
                     <input type='email'
                         value={email}

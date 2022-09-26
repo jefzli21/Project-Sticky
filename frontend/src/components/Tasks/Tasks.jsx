@@ -17,6 +17,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import UpcomingUserTasks from './UpcomingUserTask';
 
 
 
@@ -39,6 +40,13 @@ const Tasks = ({ id, title, description, deadline }) => {
         dispatch(updateTask(newTask))
     }
 
+    // if(!tasks.project.title){
+    //     return null
+    // }
+    console.log(tasks)
+
+ 
+
     return (
         <div className='main-container'>
             <SideBar />
@@ -48,7 +56,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                         <TableHead>
                             <TableRow>
                                 {/* <TableCell align="center"> Project </TableCell> */}
-                                <TableCell align="center">task</TableCell>
+                                <TableCell align="center">Task</TableCell>
                                 <TableCell align="center">Description</TableCell>
                                 <TableCell align="center">Deadline</TableCell>
                                 <TableCell align="center">Completed</TableCell>
@@ -84,6 +92,8 @@ const Tasks = ({ id, title, description, deadline }) => {
                     </Table>
                 </TableContainer>
             </div>
+            <UpcomingUserTasks/>
+
         </div>
     )
 }

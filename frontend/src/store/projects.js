@@ -92,7 +92,7 @@ export const createProject = (projectData) => async (dispatch) => {
     const project = await res.json();
     dispatch(receiveProject(project));
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     const resBody = await err.json();
     if (resBody.statusCode === 400 || resBody.statusCode === 404) {
       return dispatch(receiveErrors(resBody.errors));

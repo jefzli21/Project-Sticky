@@ -23,7 +23,7 @@ const RightBar = () => {
 
   const tasks = useSelector(selectProjectTasks());
 
-  console.log(tasks)
+  // console.log(tasks)
   
 
   useEffect(() => {
