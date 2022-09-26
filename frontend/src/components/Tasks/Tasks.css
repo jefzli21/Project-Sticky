@@ -2,7 +2,7 @@
     display: flex;
 }
 
-.project-top{
+.task-top{
     display: flex !important;
     width: 90vw !important;
 }
@@ -15,4 +15,9 @@
 
 .top-right{
     text-align: right;
+}
+
+
+.task-table{
+    width: 100vw !important; 
 }

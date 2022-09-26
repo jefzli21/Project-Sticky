@@ -21,12 +21,12 @@ router.get("/users/:userId", async (req, res, next) => {
     });
 
 //get a single project
-router.get("/:id", async (req, res) => {
-    Project.findById(req.params.id)
-        .populate("creator")
-        .then((project) => res.json(project))
-        .catch(err => res.status(404).json({ err }))
-});
+router.get('/:id', async (req, res) => {
+    Project.findById(req.params.id).populate("creator")
+        .then(project => res.json(project))
+        .catch(err => res.status(404).json({ noprojectfound: "No projct found with that ID" }))
+})
+
 
 //create a new project
 router.post("/", validateProjectInput, async (req, res, next) => {

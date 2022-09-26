@@ -1,0 +1,16 @@
+.create-task-form > input{
+    background: #f9f3f3;
+    width: 85%;
+    
+}
+
+
+
+.button{
+    background-color: rgb(72, 175, 212);
+}
+
+.button:hover{
+    cursor: pointer;
+    scale: 1.08;
+}

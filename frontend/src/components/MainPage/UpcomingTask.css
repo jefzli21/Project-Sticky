@@ -1,0 +1,34 @@
+.class-divider{
+    padding: 10px;
+}
+
+.class-divider > div{
+    padding-bottom: 5px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+}
+
+
+.p-low{
+    color: green;
+}
+
+
+.p-medium{ 
+    color: rgb(152, 152, 23);
+}
+
+.p-high{
+    color: orange;
+}
+
+.p-highplus{
+    color: orangered;
+}
+
+
+.colla-top-right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

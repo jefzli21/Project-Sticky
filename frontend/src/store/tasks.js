@@ -20,8 +20,26 @@ export const selectUserTasks = userId => state =>{
             let ov = Object.values(state.tasks)
             // .filter((project)=> project.creator._id === userId)
             // console.log(ov)
+            console.log(ov)
             return ov
     }
+}
+
+export const selectProjectTasks = ProjectId => state =>{
+    if(!state || !state.tasks){
+        return [];
+    }else{
+        
+            let ov = Object.values(state.tasks)
+            // .filter((project)=> project.creator._id === userId)
+            // console.log(ov)
+            console.log(ov)
+            return ov
+    }
+}
+
+export const selectTask = (taskId) => (state) => {
+    return state.tasks ? state.tasks[taskId] : null;
 }
 
 //Action Creators//
@@ -36,7 +54,7 @@ export const receiveTasks = tasks => ({
     tasks
 });
 
-export const removeProject = taskId => ({
+export const removeTask = taskId => ({
     type: REMOVE_TASK,
     taskId
 });
@@ -54,9 +72,22 @@ export const clearTaskErrors = errors => ({
 
 //fetches
 
-export const fetchTasks = () => async dispatch => {
+export const fetchProjectTasks = (projectId) => async dispatch => {
     try{
-        const res = await jwtFetch(`/api/tasks`);
+        const res = await jwtFetch(`/api/tasks/project/${projectId}`);
+        const tasks = await res.json();
+        dispatch(receiveTasks(tasks));
+    }catch(err){
+        const resBody = await err.json();
+        if(resBody.statusCode === 400 || resBody.statusCode === 404){
+            return dispatch(receiveErrors(resBody.errors))
+        }
+    }
+};
+
+export const fetchUserTasks = (userId) => async dispatch => {
+    try{
+        const res = await jwtFetch(`/api/tasks/user/${userId}`);
         const tasks = await res.json();
         dispatch(receiveTasks(tasks));
     }catch(err){
@@ -80,9 +111,9 @@ export const fetchTask = taskId => async dispatch =>{
     }
 }
 
-export const createTask = taskData => async dispatch =>{
+export const createTask = (taskData) => async dispatch =>{
     try{
-        const res = await jwtFetch(`api/tasks/`,{
+        const res = await jwtFetch(`/api/tasks`,{
             method: 'POST',
             body: JSON.stringify(taskData)
         });
@@ -98,7 +129,7 @@ export const createTask = taskData => async dispatch =>{
 
 export const updateTask = taskData => async dispatch =>{
     try{
-        const res = await jwtFetch(`api/tasks/${taskData.id}`,{
+        const res = await jwtFetch(`/api/tasks/${taskData._id}`,{
             method: 'PUT',
             body: JSON.stringify(taskData)
         });
@@ -115,9 +146,10 @@ export const updateTask = taskData => async dispatch =>{
 
 export const deleteTask = taskId => async dispatch =>{
     try{
-        const res = await jwtFetch(`api/tasks/${taskId}`,{
+        const res = await jwtFetch(`/api/tasks/${taskId}`,{
             method: 'DELETE'
         })
+        return dispatch(removeTask(taskId))
     }catch(err){
         const resBody = await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){
@@ -148,10 +180,14 @@ const tasksReducer = (state = {}, action) =>{
     const nextState = {...state};
     switch(action.type){
         case RECEIVE_TASK:
-            nextState[action.task.id] = action.task;
+            nextState[action.task._id] = action.task;
             return nextState ;
         case RECEIVE_TASKS:
-            return {...action.tasks}
+            // return {...action.tasks}
+            action.tasks.forEach((task) => {
+                nextState[task._id] = task;
+                });
+                return nextState;
         case REMOVE_TASK:
             delete nextState[action.taskId];
             return nextState;

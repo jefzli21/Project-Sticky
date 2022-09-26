@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createProject, selectProjects } from "../../store/projects";
+import { createProject, selectProject, selectProjects } from "../../store/projects";
 import { Modal } from "../../context/Modal";
 import "./RightBar.css";
-import CreateProjectModal from "../CreateProjectForm/CreateProjectModal";
-import CreateProjectForm from "../CreateProjectForm/CreateProjectForm";
+import CreateProjectModal from "../ProjectForm/CreateProjectModal";
+import CreateProjectForm from "../ProjectForm/CreateProjectForm";
+import Calendar from 'react-calendar'
+import UpcomingTasks from "./UpcomingTasks";
+import { fetchUserTasks, selectProjectTasks } from "../../store/tasks";
+
 
 const RightBar = () => {
   const [show, setShow] = useState(false);
@@ -16,6 +20,19 @@ const RightBar = () => {
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date());
   const [isShown, setIsShown] = useState(false);
+
+  const tasks = useSelector(selectProjectTasks());
+
+  console.log(tasks)
+  
+
+  useEffect(() => {
+    dispatch(fetchUserTasks(sessionUser._id))
+  }, [sessionUser._id])
+
+
+  ////calendar////
+  const [value, onChange] = useState(new Date());
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,37 +46,12 @@ const RightBar = () => {
   };
 
   return (
-    <CreateProjectForm/>
-    // <div className="project-container">
-    //   <div className="right-tab">
-    //     <div onClick={() => setShow(true)}> Create a Project</div>
-    //     {show && (
-    //       <Modal>
-    //         <form onSubmit={handleSubmit}>
-    //           <input
-    //             type="text"
-    //             placeholder="title"
-    //             value={title}
-    //             onChange={(e) => setTitle(e.target.value)}
-    //             required
-    //           />
-    //           <input
-    //             type="text"
-    //             placeholder="description"
-    //             value={description}
-    //             onChange={(e) => setDescription(e.target.value)}
-    //           />
-    //           <input
-    //             type="date"
-    //             value={deadline}
-    //             onChange={(e) => setDeadline(e.target.value)}
-    //           />
-    //           <input type="submit" value="Create Project" />
-    //         </form>
-    //       </Modal>
-    //     )}
-    //   </div>
-    // </div>
+    <div className="rightBar-container">
+      <div className="task-box">
+      <UpcomingTasks/>
+      </div>
+      <CreateProjectForm/>
+    </div>
   );
 };
 

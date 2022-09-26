@@ -6,13 +6,30 @@ const router = express.Router()
 const validateTaskInput = require('../../validation/task')
 
 
-//get all tasks
+//get all project tasks
 router.get("/project/:projectId", async (req, res, next) => {
     try {
         const tasks = await Task
             .find({ project: req.params.projectId })
             .populate("creator")
+            .populate("project")
             // .populate("comments")
+            .sort({ priority: -1 })
+        return res.json(tasks)
+    }
+    catch (_err) {
+        const err = new Error(_err.message);
+        err.statusCode = 404;
+        return next(err);
+    }
+})
+
+//get all user tasks
+router.get("/user/:userId", async (req, res, next) => {
+    try {
+        const tasks = await Task
+            .find({ creator: req.params.userId })
+            .populate("creator")
             .sort({ priority: -1 })
         return res.json(tasks)
     }
@@ -29,6 +46,9 @@ router.get("/project/:projectId", async (req, res, next) => {
 //get single task
 router.get('/:id', async (req, res) => {
     Task.findById(req.params.id)
+        .populate("project")
+        .populate("creator")
+        .populate("comments")
         .then(task => res.json(task))
         .catch(err => res.status(404).json({ err }))
 })
@@ -41,8 +61,9 @@ router.post('/', validateTaskInput, async (req, res, next) => {
     try {
         const newTask = new Task({
             title: req.body.title,
+            project: req.body.project,
             description: req.body.description,
-            creator: req.body.worker,
+            creator: req.body.creator,
             deadline: req.body.deadline,
             priority: req.body.priority,
             completed: req.body.completed,
@@ -73,7 +94,7 @@ router.delete('/:id', async (req, res) => {
 
 //update a task
 
-router.patch('/:id', validateTaskInput, async (req, res) => {
+router.put('/:id', validateTaskInput, async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {

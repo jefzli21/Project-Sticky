@@ -7,6 +7,10 @@
 
 }
 
+.toolbar{
+    background-color:rgb(68, 142, 172)
+}
+
 .nav-left{
     display: flex;
     justify-content: center;

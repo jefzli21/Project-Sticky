@@ -26,11 +26,6 @@ const Feed = () => {
             </h4>
             <h3 className="feed-header">Welcome, {sessionUser.username}</h3>
             <Box sx={{borderRadius: 5, borderColor:'background.paper'}}>
-              <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="My Projects"/>
-                <Tab label="tasks completed"/>
-                <Tab label="collaborators"/>
-              </Tabs>
             </Box>
             <TicketCard/>
         </div>

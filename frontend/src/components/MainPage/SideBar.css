@@ -1,4 +1,6 @@
 .sideBar-container{
-    transform: translateY(10%);
-
+    transform: translateY(5%);
+    height: 100vh;
+    border-right: 1px ridge;
+    padding-right: 5px;
 }

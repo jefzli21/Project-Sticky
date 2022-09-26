@@ -17,6 +17,11 @@ const taskSchema = new Schema(
             type: String,
             require: [true, 'Please add a title']
         },
+        project: {
+            type: Schema.Types.ObjectId,
+            ref: "Project",
+            required: true
+        },
         description: {
             type: String,
             require: [true, 'Please add a description']

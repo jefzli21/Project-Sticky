@@ -13,7 +13,14 @@ import {
   createProject,
   selectProject,
 } from "../../store/projects";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useTransition, animated, useSpring, config } from "react-spring";
+import {format} from 'date-fns';
+
+
+
+
+
 
 const TicketCard = () => {
   const dispatch = useDispatch();
@@ -24,6 +31,29 @@ const TicketCard = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(null);
+
+
+  //using react spring
+  
+
+  const props = useSpring({ 
+    to: { opacity: 1, x: 0 }, 
+    from: { opacity: 0, x: -100 },
+    reset: true,
+    config: config.slow
+  })
+
+
+
+
+
+  const transition = useTransition(projects, {
+    to: { opacity: 1 }, 
+    from: { opacity: 0 }
+  });
+
+  
+  ////react spring
 
   useEffect(() => {
     dispatch(fetchProjects(sessionUser._id));
@@ -55,45 +85,90 @@ const TicketCard = () => {
     dispatch(createProject(proj));
   };
 
+  console.log(projects)
+
   ///
 
   return (
     <>
       <div className="card-container">
-        {projects.map((project, i) => (
-          <div className="card" key={i}>
-            <div className="card-info">
-              <div className="card-title">
-                <Link to={`/projects/${project._id}`}>
-                  <div className="card-top">
-                    <div className="card-top-decor">
-                      <PushPinIcon className="pushPin" />
-                      <CircularProgress value={40} color="green">
-                        <CircularProgressLabel>40%</CircularProgressLabel>
-                      </CircularProgress>
-                    </div>
-                    <h4>{project.title}</h4>
-                  </div>
-                </Link>
-              </div>
-              <div className="project-content">
-                <p className="description">{project.description}</p>
-              </div>
+        <div className="cards">
 
-              <div className="project-bot">
-                <p className="deadline">Deadline: {project.deadline}</p>
-                <div className="card-functions">
-                  <Button>
-                    <EditIcon />
-                  </Button>
-                  <Button onClick={() => dispatch(deleteProject(project._id))}>
-                    <DeleteForeverIcon />
-                  </Button>
+          {projects.map(( project, i )=>(
+            <animated.div 
+            className='card' 
+            style={props} 
+            key={i}
+     
+            >
+              <div className="card-info">
+                <div className="card-title">
+                  <Link to={`/projects/${project._id}`}>
+                    <div className="card-top">
+                      <div className="card-top-decor">
+                        <CircularProgress fontSize='small' value={40} color="green">
+                          <CircularProgressLabel>40%</CircularProgressLabel>
+                        </CircularProgress>
+                      </div>
+                      <h4 className="project-title">{project.title}</h4>
+                    </div>
+                  </Link>
+                </div>
+                <div className="project-content">
+                  <p className="description">{project.description}</p>
+                </div>
+
+                <div className="project-bot">
+                  <p className="deadline">{project.deadline}</p>
+                  <div className="card-functions">
+                    <Button>
+                      <EditIcon />
+                    </Button>
+                    <Button onClick={() => dispatch(deleteProject(project._id))}>
+                      <DeleteForeverIcon />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </animated.div>
+          ))}
+
+          {/* {projects.map((project, i) => (
+            <div className="card" key={i}>
+              <div className="card-info">
+                <div className="card-title">
+                  <Link to={`/projects/${project._id}`}>
+                    <div className="card-top">
+                      <div className="card-top-decor">
+                        <CircularProgress fontSize='small' value={40} color="green">
+                          <CircularProgressLabel>40%</CircularProgressLabel>
+                        </CircularProgress>
+                      </div>
+                      <h4 className="project-title">{project.title}</h4>
+                    </div>
+                  </Link>
+                </div>
+                <div className="project-content">
+                  <p className="description">{project.description}</p>
+                </div>
+
+                <div className="project-bot">
+                  <div className="card-functions">
+                    <Button>
+                      <EditIcon />
+                    </Button>
+                    <Button onClick={() => dispatch(deleteProject(project._id))}>
+                      <DeleteForeverIcon />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))} */}
+        </div>
+        
+        
+
       </div>
     </>
   );
