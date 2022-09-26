@@ -4,7 +4,7 @@
 }
 
 .project-right-container{
-    /* width: 100%; */
+    /* width: 90%; */
 }
 
 .project-title{
@@ -20,7 +20,8 @@
     align-items: center;
     transform: translate(1%,10%);
     border-bottom: 1px ridge;
-    padding-bottom: 2.5em
+    padding-bottom: 0.8em;
+    width: 83vw
 }
 
 .function-icons{
@@ -51,6 +52,7 @@
     display: flex;
     /* justify-content:space-evenly; */
     transform: translate(1%,2%);
+
 }
 
 /* .project-cards{
@@ -66,7 +68,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
     padding: 16px;
     text-align: center;
-    background-color:white;
+    background-color:aliceblue;
     width:  50%;
     /* height: 78em; */
 }

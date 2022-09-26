@@ -45,7 +45,7 @@ const Tasks = ({ id, title, description, deadline }) => {
     // }
     console.log(tasks)
 
- 
+
 
     return (
         <div className='main-container'>
@@ -92,7 +92,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                     </Table>
                 </TableContainer>
             </div>
-            <UpcomingUserTasks/>
+            {/* <UpcomingUserTasks/> */}
 
         </div>
     )

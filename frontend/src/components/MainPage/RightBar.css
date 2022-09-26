@@ -1,8 +1,9 @@
 .rightBar-container{
-    display: flex;
+    display: relative;
     flex-direction: column;
 }
 
 .task-box{
-    transform: translate(-30% ,20%);
+    transform: translate(-5% ,20%);
+    right: 0;
 }
