@@ -48,8 +48,9 @@
 
 .project-bottom{
     box-sizing: border-box;
-    flex: 0 0 auto;
+    flex: auto;
     display: flex;
+    height: 100%;
     /* justify-content:space-evenly; */
     transform: translate(1%,2%);
 
