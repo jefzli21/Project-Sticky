@@ -16,7 +16,14 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux'
-import { selectProjectTasks } from '../../store/tasks';
+import { deleteTask, selectProjectTasks, updateTask } from '../../store/tasks';
+import { Button, CardActionArea} from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
+
+
 
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -27,7 +34,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
   })(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(160deg)',
+    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
@@ -43,6 +50,8 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const UpcomingTasks = () => {
   const [expanded, setExpanded] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -68,6 +77,13 @@ const UpcomingTasks = () => {
       highPlus +=1;
     }
   })
+
+  function handleTaskCheckboxClick(task) {
+    const isChecked = document.getElementById(`checkbox_${task._id}`).checked
+    const newTask = { ...task };
+    newTask.completed = isChecked;
+    dispatch(updateTask(newTask))
+}
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -102,30 +118,34 @@ const UpcomingTasks = () => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-            aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-             deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-            occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-            large plate and set aside, leaving chicken and chorizo in the pan. Add
-            pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-            stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is absorbed,
-            15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and
-            mussels, tucking them down into the rice, and cook again without
-            stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
+          {tasks.map((task, i) => (
+            <Card className='task-top' key={i}>
+              <CardActionArea>
+                  <CardContent>
+                      <div className='top-left'>
+                          <Typography gutterBottom variant='h5' component='div'>
+                              Task: {task.title}
+                          </Typography>
+                          <Typography className='top-text' variant="body2" color="text.secondary" component="span">
+                              Details: {task.description}
+                          </Typography>
+                          <Typography>{task.comments.map((comment) => comment.body)}</Typography>
+                      </div>
+                      <div className='top-right'>
+                          <div>
+                              <input type="checkbox" defaultChecked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} />
+                          </div>
+                          <Button onClick={() => history.push(`/projects/${task.project}/${task._id}`)}>
+                              <EditIcon />
+                          </Button>
+                          <Button onClick={() => dispatch(deleteTask(task._id))}>
+                              <DeleteForeverIcon />
+                          </Button>
+                      </div>
+                  </CardContent>
+              </CardActionArea>
+          </Card>
+))}
         </CardContent>
       </Collapse>
     </Card>

@@ -19,7 +19,6 @@ const CreateTaskForm = () =>{
     const { projectId } = useParams();
     const [isShown, setIsShown] = useState(false);
 
-
     const handleSubmit = (e) =>{
         setIsShown(false)
         const taskData ={
@@ -52,19 +51,19 @@ const CreateTaskForm = () =>{
         <h1>Create Task</h1>
             <form className="create-task-form" onSubmit={handleSubmit}>
                 <input
-                placeholder="title"
+                                placeholder="title"
                 className="form-field"
                 type="text" 
                 value={title} 
                 onChange={(e)=> setTitle(e.target.value)}
                 />
-                <input 
-                placeholder="description"
+                <input
+                                placeholder="description"
                 className="form-field"
                 type="text" 
                 value={description} 
                 onChange={(e)=> setDescription(e.target.value)}/>
-                <input className="form-field" type="date" value={deadline} onChange={(e)=> setDeadline(e.target.value)}/>
+                <input className="form-field" type="date" value={deadline} onChange={(e)=> setDeadline(e.target.value)} />
                 
                 <label>Choose a priority level:</label>
                 <select className="form-field" value={priority} onChange={(e)=> setPriority(e.target.value)}>
