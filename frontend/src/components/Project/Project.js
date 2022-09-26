@@ -9,8 +9,9 @@ import CreateTaskForm from '../TaskForms/CreateTaskForm'
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { Button } from "@mui/material"
-import { deleteTask, fetchProjectTasks, selectProjectTasks } from '../../store/tasks';
+import { deleteTask, fetchProjectTasks, selectProjectTasks, updateTask } from '../../store/tasks';
 import { useTransition, animated, useSpring, config } from "react-spring";
+import Checkbox from '@mui/material/Checkbox';
 
 
 
@@ -44,6 +45,13 @@ const Project = () => {
   // if(!tasks.length){
   //   return null;
   // }
+
+  function handleTaskCheckboxClick(task) {
+    const isChecked = document.getElementById(`checkbox_${task._id}`).checked
+    const newTask = { ...task };
+    newTask.completed = isChecked;
+    dispatch(updateTask(newTask))
+  }
 
 
 
@@ -93,6 +101,7 @@ const Project = () => {
                         <Button onClick={() => history.push(`/projects/${task.project}/${task._id}`)}>Edit Task
                           <EditIcon />
                         </Button>
+                        <Checkbox checked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} color="success" />
                         <Button onClick={() => dispatch(deleteTask(task._id))}>Delete Task
                           <DeleteForeverIcon />
                         </Button>
