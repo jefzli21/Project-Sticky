@@ -62,7 +62,9 @@ input {
 .sign-up-button{
     transform: translateY(15%);
     background: green;
-    height: 65px;
+    /* height: 65px; */
+    padding: 10px;
+    width: 338px;
     color: white;
     cursor:pointer;
 }

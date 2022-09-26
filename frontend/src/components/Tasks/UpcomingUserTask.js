@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import './UpcomingTask.css'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,12 +15,11 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteTask, selectProjectTasks, updateTask } from '../../store/tasks';
+import { deleteTask, selectProjectTasks, selectUserTasks, updateTask } from '../../store/tasks';
 import { Button, CardActionArea, Checkbox} from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import './UpcomingTask.css';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 
 
@@ -49,7 +47,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 
 
-const UpcomingTasks = () => {
+const UpcomingUserTasks = () => {
   const [expanded, setExpanded] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -58,7 +56,7 @@ const UpcomingTasks = () => {
     setExpanded(!expanded);
   }
 
-  const tasks = useSelector(selectProjectTasks())
+  const tasks = useSelector(selectUserTasks())
 
   const count = 0;
 
@@ -161,4 +159,4 @@ const UpcomingTasks = () => {
   )
 }
 
-export default UpcomingTasks
+export default UpcomingUserTasks

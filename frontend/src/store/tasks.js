@@ -20,21 +20,26 @@ export const selectUserTasks = userId => state =>{
             let ov = Object.values(state.tasks)
             // .filter((project)=> project.creator._id === userId)
             // console.log(ov)
-            console.log(ov)
+            // console.log(ov)
             return ov
     }
 }
 
-export const selectProjectTasks = ProjectId => state =>{
+export const selectProjectTasks = projectId => state =>{
     if(!state || !state.tasks){
         return [];
     }else{
         
             let ov = Object.values(state.tasks)
-            // .filter((project)=> project.creator._id === userId)
+            let filtered
+            if(ov.project){
+                filtered = ov.filter((task)=> task.project._id === projectId || task.project === projectId)
+                return filtered
+            }else{
+                return ov
+            }
+            // .filter((task)=> task.project._id === projectId)
             // console.log(ov)
-            console.log(ov)
-            return ov
     }
 }
 
