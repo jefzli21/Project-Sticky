@@ -9,7 +9,10 @@ import CreateTaskForm from '../TaskForms/CreateTaskForm'
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { Button } from "@mui/material"
-import { fetchProjectTasks, selectProjectTasks } from '../../store/tasks'
+import { deleteTask, fetchProjectTasks, selectProjectTasks } from '../../store/tasks';
+import { useTransition, animated, useSpring, config } from "react-spring";
+
+
 
 
 const Project = () => {
@@ -22,12 +25,28 @@ const Project = () => {
 
   const tasks = useSelector(selectProjectTasks())
 
+    ///react spring implmentation again
+    const props = useSpring({ 
+      to: { opacity: 1, y: 0 }, 
+      from: { opacity: 0, y: 100 },
+      reset: true,
+      config: config.slow
+    })
+
 
   console.log(tasks)
 
   useEffect(()=>{
     dispatch(fetchProjectTasks(projectId))
   },[projectId])
+
+
+  // if(!tasks.length){
+  //   return null;
+  // }
+
+
+
 
 
 
@@ -37,7 +56,7 @@ const Project = () => {
         <div className='project-right-container'>
           <div className='project-top'>
             <div className='project-title'>
-              <h1>Project: graduation party - Lets go !!!</h1> 
+              <h1>Project: <span>{project.title}</span></h1>
             </div>  
             <div className='function-icons'>
               <div className='edit-icon'>
@@ -55,8 +74,38 @@ const Project = () => {
 
 
           <div className='project-bottom'>
-                <h2 className='Card'>In Progress</h2>
-                <h2 className='Card'>Done</h2>
+                <div className='Card'>
+                <h2>In Progress</h2>
+                <CreateTaskForm className='create-task-button'/>
+                <div className='task-Cards'>
+                  {tasks.map((task, i)=> (
+                    <animated.div
+                    className='task-card'
+                    style={props}
+                    key={i}>
+                      <div className='taskCard-info'>
+                        <h2 className='taskCard-title'>{task.title}</h2>
+                      </div>
+                      <div className='taskCard-content'>
+                        <p className='taskCard-description'>{task.description}</p>
+                      </div>
+                      <div className="taskCard-functions">
+                        <Button >Edit Task
+                          <EditIcon />
+                        </Button>
+                        <Button onClick={() => dispatch(deleteTask(task._id))}>Delete Task
+                          <DeleteForeverIcon />
+                        </Button>
+                      </div>
+                    </animated.div>
+                  ))}
+                </div>
+
+
+                </div>
+                <div className='Card'>
+                <h2>Done</h2>
+                </div>
         </div>
         </div>
     </div>

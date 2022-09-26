@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
 import { createTask, fetchUserTasks, selectUserTasks } from "../../store/tasks";
 import { Pane, Dialog, Button, PlusIcon } from 'evergreen-ui';
+import './CreateTask.css'
 
 
 
@@ -20,7 +21,6 @@ const CreateTaskForm = () =>{
 
 
     const handleSubmit = (e) =>{
-        e.preventDefault();
         setIsShown(false)
         const taskData ={
             title,
@@ -43,10 +43,10 @@ const CreateTaskForm = () =>{
             <Pane>
             <Dialog
             isShown={isShown}
-            title="Create a Project"
+            title="Task Form"
             onCloseComplete={() => setIsShown(false)}
             preventBodyScrolling
-            confirmLabel="Create Project"
+            confirmLabel="Create Task"
             onConfirm= {handleSubmit}
         >   
         <h1>Create Task</h1>
@@ -73,10 +73,12 @@ const CreateTaskForm = () =>{
                     <option value={3}>3</option>
                     <option value={4}>4</option>
                 </select>
-                <input className="form-field" type="submit" value="Create Task"/>
+                {/* <input className="form-field" type="submit" value="Create Task"/> */}
             </form>
         </Dialog>
-            <PlusIcon className="btn" onClick={()=> setIsShown(true)}></PlusIcon>
+            <Button className="button" onClick={()=> setIsShown(true)}>
+                Add a New Task
+            </Button>
         </Pane>
         </div>
     )

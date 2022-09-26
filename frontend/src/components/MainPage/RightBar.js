@@ -7,6 +7,8 @@ import "./RightBar.css";
 import CreateProjectModal from "../ProjectForm/CreateProjectModal";
 import CreateProjectForm from "../ProjectForm/CreateProjectForm";
 import Calendar from 'react-calendar'
+import UpcomingTasks from "./UpcomingTasks";
+
 
 const RightBar = () => {
   const [show, setShow] = useState(false);
@@ -33,9 +35,12 @@ const RightBar = () => {
   };
 
   return (
-    <>
+    <div className="rightBar-container">
+      <div className="task-box">
+      <UpcomingTasks/>
+      </div>
       <CreateProjectForm/>
-    </>
+    </div>
   );
 };
 

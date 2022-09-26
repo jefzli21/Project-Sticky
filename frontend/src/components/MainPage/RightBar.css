@@ -1,8 +1,8 @@
-.project-container{
-    margin: 0;
-    padding: 0;
+.rightBar-container{
+    display: flex;
+    flex-direction: column;
 }
 
-.form-content{
-    top: 20px;
+.task-box{
+    transform: translate(-30% ,20%);
 }

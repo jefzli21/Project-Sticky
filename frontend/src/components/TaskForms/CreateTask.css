@@ -6,23 +6,11 @@
 
 
 
-/* .btn{
-    display:block;
-    text-decoration: none;
-    background: rgb(68, 142, 172);
-    color: #fff;
-    width: 60px;
-    height: 60px;
-    line-height: 120px;
-    border-radius: 60%;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    right: 15px;
-    bottom: 5px;
-} */
+.button{
+    background-color: rgb(72, 175, 212);
+}
 
-.btn:hover{
+.button:hover{
     cursor: pointer;
     scale: 1.08;
 }

@@ -55,9 +55,12 @@
 }
 
 .card-functions{
+    padding-left: 8px;
     display: flex;
-    justify-content: space-between;
-
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
 }
 
 .project-content p {
@@ -92,22 +95,25 @@
     align-items: center;
     justify-content: center;
     width: 10rem;
-    position: relative;
+}
 
+.card-info{
+    height: 100%;
+    position: relative;
 }
 
 
 .card-info:hover{
+    position: relative;
     box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 
 
 
-.card:hover{
-    transform: scale(1.05);
-}
 
 .card:hover{
     box-shadow: 0 0 25px rgb(47, 43, 20);
+    transform: scale(1.05);
+
 }
