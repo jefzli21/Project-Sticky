@@ -29,7 +29,8 @@ const CreateTaskForm = () =>{
             project: projectId,
             creator: sessionUser._id
         }
-        dispatch(createTask(taskData))
+        dispatch(createTask(taskData));
+        
     }
 
     // useEffect(()=>{

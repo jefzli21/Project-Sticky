@@ -17,11 +17,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTask, selectProjectTasks, updateTask } from '../../store/tasks';
-import { Button, CardActionArea} from '@mui/material';
+import { Button, CardActionArea, Checkbox} from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
+import './UpcomingTask.css';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 
 
 
@@ -119,25 +120,20 @@ const UpcomingTasks = () => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           {tasks.map((task, i) => (
-            <Card className='task-top' key={i}>
+            !task.completed && <Card className='collap-top' key={i}>
               <CardActionArea>
                   <CardContent>
-                      <div className='top-left'>
+                      <div className='collap-top-left'>
                           <Typography gutterBottom variant='h5' component='div'>
                               Task: {task.title}
                           </Typography>
-                          <Typography className='top-text' variant="body2" color="text.secondary" component="span">
-                              Details: {task.description}
-                          </Typography>
                           <Typography>{task.comments.map((comment) => comment.body)}</Typography>
                       </div>
-                      <div className='top-right'>
-                          <div>
-                              <input type="checkbox" defaultChecked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} />
-                          </div>
+                      <div className='colla-top-right'>
                           <Button onClick={() => history.push(`/projects/${task.project}/${task._id}`)}>
                               <EditIcon />
                           </Button>
+                          <Checkbox type="checkbox" defaultChecked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} />
                           <Button onClick={() => dispatch(deleteTask(task._id))}>
                               <DeleteForeverIcon />
                           </Button>

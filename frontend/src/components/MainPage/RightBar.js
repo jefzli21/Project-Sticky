@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProject, selectProject, selectProjects } from "../../store/projects";
@@ -8,7 +8,7 @@ import CreateProjectModal from "../ProjectForm/CreateProjectModal";
 import CreateProjectForm from "../ProjectForm/CreateProjectForm";
 import Calendar from 'react-calendar'
 import UpcomingTasks from "./UpcomingTasks";
-import { selectProjectTasks } from "../../store/tasks";
+import { fetchUserTasks, selectProjectTasks } from "../../store/tasks";
 
 
 const RightBar = () => {
@@ -24,6 +24,11 @@ const RightBar = () => {
   const tasks = useSelector(selectProjectTasks());
 
   console.log(tasks)
+  
+
+  useEffect(() => {
+    dispatch(fetchUserTasks(sessionUser._id))
+  }, [sessionUser._id])
 
 
   ////calendar////

@@ -25,3 +25,10 @@
 .p-highplus{
     color: orangered;
 }
+
+
+.colla-top-right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

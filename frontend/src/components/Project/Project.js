@@ -12,7 +12,7 @@ import { Button } from "@mui/material"
 import { deleteTask, fetchProjectTasks, selectProjectTasks, updateTask } from '../../store/tasks';
 import { useTransition, animated, useSpring, config } from "react-spring";
 import Checkbox from '@mui/material/Checkbox';
-
+import AddTaskIcon from '@mui/icons-material/AddTask';
 
 
 
@@ -24,8 +24,8 @@ const Project = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const tasks = useSelector(selectProjectTasks())
-
+  const tasks = useSelector(selectProjectTasks(projectId))
+  
     ///react spring implmentation again
     const props = useSpring({ 
       to: { opacity: 1, y: 0 }, 
@@ -40,6 +40,9 @@ const Project = () => {
   useEffect(()=>{
     dispatch(fetchProjectTasks(projectId))
   },[projectId])
+
+
+  const completedTasks = [];
 
 
   // if(!tasks.length){
@@ -82,11 +85,12 @@ const Project = () => {
 
 
           <div className='project-bottom'>
-                <div className='Card'>
+              <div className='Card'>
                 <h2>In Progress</h2>
                 <CreateTaskForm className='create-task-button'/>
                 <div className='task-Cards'>
                   {tasks.map((task, i)=> (
+                    !task.completed && (
                     <animated.div
                     className='task-card'
                     style={props}
@@ -106,15 +110,41 @@ const Project = () => {
                           <DeleteForeverIcon />
                         </Button>
                       </div>
-                    </animated.div>
+                    </animated.div>)
                   ))}
                 </div>
 
 
-                </div>
-                <div className='Card'>
+              </div>
+              <div className='Card'>
                 <h2>Done</h2>
+                
+                <div className='task-Cards'>
+                  {tasks.map((task, i)=> (
+                    task.completed && (
+                    <animated.div
+                    className='task-card'
+                    style={props}
+                    key={i}>
+                      <div className='taskCard-info'>
+                        <h2 className='taskCard-title'>{task.title}</h2>
+                      </div>
+                      <div className='taskCard-content'>
+                        <p className='taskCard-description'>{task.description}</p>
+                      </div>
+                      <div className="taskCard-functions">
+                        <Button onClick={() => history.push(`/projects/${task.project}/${task._id}`)}>Edit Task
+                          <EditIcon />
+                        </Button>
+                        <Checkbox checked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} color="success" />
+                        <Button onClick={() => dispatch(deleteTask(task._id))}>Delete Task
+                          <DeleteForeverIcon />
+                        </Button>
+                      </div>
+                    </animated.div>)
+                  ))}
                 </div>
+              </div>
         </div>
         </div>
     </div>

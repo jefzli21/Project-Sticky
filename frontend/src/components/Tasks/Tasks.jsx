@@ -44,10 +44,10 @@ const Tasks = ({ id, title, description, deadline }) => {
             <SideBar />
             <div className='task-container'>
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Table className='task-table' aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center"> Project </TableCell>
+                                {/* <TableCell align="center"> Project </TableCell> */}
                                 <TableCell align="center">task</TableCell>
                                 <TableCell align="center">Description</TableCell>
                                 <TableCell align="center">Deadline</TableCell>
@@ -61,12 +61,12 @@ const Tasks = ({ id, title, description, deadline }) => {
                                     key={task.title}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center">
+                                    {/* <TableCell align="center">
                                         {task.project.title}
-                                    </TableCell>
+                                    </TableCell> */}
                                     <TableCell align="center">{task.title}</TableCell>
                                     <TableCell align="center">{task.description}</TableCell>
-                                    <TableCell align="center">{task.deadline}</TableCell>
+                                    <TableCell align="center">{task.deadline.slice(0,10)}</TableCell>
                                     <TableCell align='center'>
                                         <Checkbox checked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} color="success" />
                                     </TableCell>

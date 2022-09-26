@@ -16,3 +16,8 @@
 .top-right{
     text-align: right;
 }
+
+
+.task-table{
+    width: 100vw !important; 
+}

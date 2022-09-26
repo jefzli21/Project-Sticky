@@ -15,6 +15,7 @@ import {
 } from "../../store/projects";
 import { useEffect, useRef, useState } from "react";
 import { useTransition, animated, useSpring, config } from "react-spring";
+import {format} from 'date-fns';
 
 
 
@@ -118,7 +119,7 @@ const TicketCard = () => {
                 </div>
 
                 <div className="project-bot">
-                  {/* <p className="deadline">Deadline: {project.deadline}</p> */}
+                  <p className="deadline">{project.deadline}</p>
                   <div className="card-functions">
                     <Button>
                       <EditIcon />
