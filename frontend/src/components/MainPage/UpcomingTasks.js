@@ -34,6 +34,8 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
   }));
 
+  
+
 
 
 
@@ -48,20 +50,39 @@ const UpcomingTasks = () => {
 
   const tasks = useSelector(selectProjectTasks())
 
+  const count = 0;
+
+  let low = 0; 
+  let medium = 0; 
+  let high = 0;
+  let highPlus = 0;
+
+  tasks.forEach(task => {
+    if (task.priority === 1) {
+      low += 1;
+    } else if (task.priority === 2) {
+      medium += 1;
+    } else if (task.priority === 3) {
+      high += 1;
+    } else {
+      highPlus +=1;
+    }
+  })
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         title={`You currently have ${tasks.length} tasks`}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary">
             <div className='class-divider'>
-            <div className='p-low'>Priority Low: 5 </div>
-            <div className='p-medium'>Priority Medium: 6</div>
-            <div className='p-high'>Priority High: 2</div>
-            <div className='p-highplus'>Priority Very High: 3</div>
+            <div className='p-low'>Priority Low: {low} </div>
+            <div className='p-medium'>Priority Medium: {medium}</div>
+            <div className='p-high'>Priority High: {high}</div>
+            <div className='p-highplus'>Priority Very High: {highPlus}</div>
             </div>
-        </Typography>
+          </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">

@@ -90,7 +90,7 @@ const Project = () => {
                         <p className='taskCard-description'>{task.description}</p>
                       </div>
                       <div className="taskCard-functions">
-                        <Button >Edit Task
+                        <Button onClick={() => history.push(`/projects/${task.project}/${task._id}`)}>Edit Task
                           <EditIcon />
                         </Button>
                         <Button onClick={() => dispatch(deleteTask(task._id))}>Delete Task
