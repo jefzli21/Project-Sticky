@@ -79,6 +79,18 @@ const UpcomingTasks = () => {
     }
   })
 
+  tasks.forEach(task => {
+    if (task.completed && task.priority === 1){
+      low -= 1;
+    } else if (task.completed && task.priority === 2){
+      medium -=1;
+    } else if (task.completed && task.priority === 3){
+      high -= 1;
+    } else if (task.completed && task.priority === 4){
+      highPlus -=1;
+    }
+  })
+
   function handleTaskCheckboxClick(task) {
     const isChecked = document.getElementById(`checkbox_${task._id}`).checked
     const newTask = { ...task };
