@@ -42,7 +42,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
   }));
 
-  
+
 
 
 
@@ -60,10 +60,10 @@ const UpcomingTasks = () => {
 
   const tasks = useSelector(selectProjectTasks())
 
-  const count = 0;
+  // const count = 0;
 
-  let low = 0; 
-  let medium = 0; 
+  let low = 0;
+  let medium = 0;
   let high = 0;
   let highPlus = 0;
 
@@ -91,6 +91,14 @@ const UpcomingTasks = () => {
     }
   })
 
+  // tasks.forEach(task => {
+  //   if (!task.completed) {
+  //     count += 1
+  //   }
+  // })
+
+  const count = low + medium + high + highPlus
+
   function handleTaskCheckboxClick(task) {
     const isChecked = document.getElementById(`checkbox_${task._id}`).checked
     const newTask = { ...task };
@@ -101,7 +109,7 @@ const UpcomingTasks = () => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
-        title={`You currently have ${tasks.length} tasks`}
+        title={`You currently have ${count} tasks`}
       />
       <CardContent>
           <Typography variant="body2" color="text.secondary">
