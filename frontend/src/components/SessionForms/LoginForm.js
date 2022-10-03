@@ -40,7 +40,7 @@ function LoginForm() {
                         <form className='register-form-1' onSubmit={handleSubmit}>
                             <h2 className='form-title'>Log In</h2>
                             <div className='errors'>{errors?.email}</div>
-                            <label for='chk' aria-hidden="true">
+                            <label htmlFor='chk' aria-hidden="true">
                                 <span className='form-span'>Email </span>
                                 <input type='email'
                                     value={email}
