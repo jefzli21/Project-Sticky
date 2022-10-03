@@ -29,6 +29,11 @@ function LoginForm() {
         dispatch(login({ email, password }));
     }
 
+    const handleDemoUserClick = (e) => {
+        e.preventDefault();
+        dispatch(login({ email: "demo@123.com", password: "123456" }))
+    }
+
     return (
             <div className='body'>
                     <div className='form-container'>
