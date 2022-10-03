@@ -13,7 +13,6 @@ function LoginForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-
     useEffect(()=> {
         return ()=> {
             dispatch(clearSessionErrors());
@@ -60,7 +59,10 @@ function LoginForm() {
                             disabled= {!email || !password}
                             >Log In</button>
 
+                            <div className="signUp-demoUser">
                             <span>Don't have account? <button className='form-button' onClick={()=> history.push('/signup')}>Sign Up</button></span>
+                            <span><button id="demo-user" onClick={handleDemoUserClick}>/ DemoUser</button></span>
+                            </div>
                         </form>
                     </div>
             </div>
