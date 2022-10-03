@@ -13,7 +13,6 @@ function LoginForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-
     useEffect(()=> {
         return ()=> {
             dispatch(clearSessionErrors());
@@ -30,13 +29,18 @@ function LoginForm() {
         dispatch(login({ email, password }));
     }
 
+    const handleDemoUserClick = (e) => {
+        e.preventDefault();
+        dispatch(login({ email: "demo@123.com", password: "123456" }))
+    }
+
     return (
             <div className='body'>
                     <div className='form-container'>
                         <form className='register-form-1' onSubmit={handleSubmit}>
                             <h2 className='form-title'>Log In</h2>
                             <div className='errors'>{errors?.email}</div>
-                            <label for='chk' aria-hidden="true">
+                            <label htmlFor='chk' aria-hidden="true">
                                 <span className='form-span'>Email </span>
                                 <input type='email'
                                     value={email}
@@ -60,7 +64,10 @@ function LoginForm() {
                             disabled= {!email || !password}
                             >Log In</button>
 
+                            <div className="signUp-demoUser">
                             <span>Don't have account? <button className='form-button' onClick={()=> history.push('/signup')}>Sign Up</button></span>
+                            <span><button id="demo-user" onClick={handleDemoUserClick}>/ DemoUser</button></span>
+                            </div>
                         </form>
                     </div>
             </div>
