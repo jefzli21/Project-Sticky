@@ -17,6 +17,8 @@ import CreateTask from './components/TaskForms/CreateTaskForm';
 import EditTask from './components/TaskForms/EditTaskForm';
 import EditProjectForm from './components/ProjectForm/EditProjectForm';
 import EditTaskForm from './components/TaskForms/EditTaskForm';
+import UserProfile from './components/UserProfile';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,6 +36,7 @@ function App() {
       <Switch>
         <AuthRoute exact path='/' component={LoginForm} />
         <ProtectedRoute exact path='/home' component={MainPage} />
+        <ProtectedRoute exact path='/home/:userId' component={UserProfile} />
         <ProtectedRoute exact path='/projects/:projectId' component={Project} />
         <ProtectedRoute exact path='/tasks' component={Tasks} />
         <ProtectedRoute exact path='/projects/:projectId/createtask' component={CreateTask} />
