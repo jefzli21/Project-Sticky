@@ -32,7 +32,6 @@ const Tasks = ({ id, title, description, deadline }) => {
         dispatch(fetchUserTasks(sessionUser._id))
     }, [sessionUser._id])
 
-
     function handleTaskCheckboxClick(task) {
         const isChecked = document.getElementById(`checkbox_${task._id}`).checked
         const newTask = { ...task };
@@ -43,9 +42,7 @@ const Tasks = ({ id, title, description, deadline }) => {
     // if(!tasks.project.title){
     //     return null
     // }
-    console.log(tasks)
-
-
+  
 
     return (
         <div className='main-container'>
@@ -55,7 +52,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                     <Table className='task-table' aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                {/* <TableCell align="center"> Project </TableCell> */}
+                                <TableCell align="center">Project</TableCell>
                                 <TableCell align="center">Task</TableCell>
                                 <TableCell align="center">Description</TableCell>
                                 <TableCell align="center">Deadline</TableCell>
@@ -69,9 +66,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                                     key={task.title}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    {/* <TableCell align="center">
-                                        {task.project.title}
-                                    </TableCell> */}
+                                    <TableCell align="center">{task.project.title}</TableCell>
                                     <TableCell align="center">{task.title}</TableCell>
                                     <TableCell align="center">{task.description}</TableCell>
                                     <TableCell align="center">{task.deadline.slice(0,10)}</TableCell>
