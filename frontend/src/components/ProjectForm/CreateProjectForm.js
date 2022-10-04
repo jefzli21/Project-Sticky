@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import {useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { createProject, selectProjects } from "../../store/projects";
+import { clearProjectErrors, createProject, selectProjects } from "../../store/projects";
 import { Pane, Dialog, Button, PlusIcon } from 'evergreen-ui';
 import './CreateProjectForm.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -17,17 +17,24 @@ export default function CreateProjectForm() {
   const [deadline, setDeadline] = useState(new Date());
   const [isShown, setIsShown] = useState(false);
   const errors = useSelector(state => state.errors.project);
-  console.log(errors)
+  // console.log(errors)
+
+
 
 
   const handleSubmit = (e) => {
-    if(errors === null){setIsShown(false)}
+   
     const proj = {
       title,
       description,
       creator: sessionUser._id,
     };
-    dispatch(createProject(proj));
+    dispatch(createProject(proj))
+    .then(dispatch(clearProjectErrors()))
+    if(proj.title){
+      setIsShown(false)
+      window.location.reload(false);
+    }
   };
   return (
     <div >
