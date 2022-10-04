@@ -45,7 +45,7 @@ function App() {
         <ProtectedRoute exact path='/projects/:projectId/:taskId' component={EditTaskForm} />
         <AuthRoute exact path='/login' component={LoginForm} />
         <AuthRoute exact path='/signup' component={SignupForm} />
-        {/* <Redirect to='/home' /> */}
+        <Redirect to='/' />
       </Switch>
     </>
   );
