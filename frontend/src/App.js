@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Switch, Redirect } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar'
@@ -18,6 +18,7 @@ import EditTask from './components/TaskForms/EditTaskForm';
 import EditProjectForm from './components/ProjectForm/EditProjectForm';
 import EditTaskForm from './components/TaskForms/EditTaskForm';
 import UserProfile from './components/UserProfile';
+import Splash from './components/Splash/Splash';
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
     <>
       <NavBar/>
       <Switch>
-        <AuthRoute exact path='/' component={LoginForm} />
+        <AuthRoute exact path='/' component={Splash} />
         <ProtectedRoute exact path='/home' component={MainPage} />
         <ProtectedRoute exact path='/home/:userId' component={UserProfile} />
         <ProtectedRoute exact path='/projects/:projectId' component={Project} />
@@ -44,7 +45,7 @@ function App() {
         <ProtectedRoute exact path='/projects/:projectId/:taskId' component={EditTaskForm} />
         <AuthRoute exact path='/login' component={LoginForm} />
         <AuthRoute exact path='/signup' component={SignupForm} />
-        {/* <Redirect to='/home' /> */}
+        <Redirect to='/' />
       </Switch>
     </>
   );
