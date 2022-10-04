@@ -104,7 +104,7 @@ router.put('/:id', validateTaskInput, async (req, res) => {
 
     const task = await Task.findOneAndUpdate({ _id: id }, {
         ...req.body
-    }, { returnDocument: "after" })
+    }, { returnDocument: "after" }).populate("project")
 
     if (!task) {
         return res.status(400).json({ error: "Failed to update, task does not exist" })
