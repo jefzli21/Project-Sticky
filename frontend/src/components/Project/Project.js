@@ -19,11 +19,9 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 const Project = () => {
   const sessionUser = useSelector(state=> state.session.user)
   const { projectId }  = useParams();
-
-
   const history = useHistory();
   const dispatch = useDispatch();
-  const tasks = useSelector(selectProjectTasks(projectId))
+  const tasksData = useSelector(selectProjectTasks(projectId))
   const project = useSelector(selectProject(projectId))
   ///react spring implmentation again
   const props = useSpring({
@@ -56,11 +54,11 @@ const Project = () => {
     return null
   }
 
-  if(!tasks){
+  if(!tasksData){
     return null
   }
 
-  // let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
+   let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
 
 
 
