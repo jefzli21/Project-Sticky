@@ -34,11 +34,12 @@ const Tasks = ({ id, title, description, deadline }) => {
         const isChecked = document.getElementById(`checkbox_${task._id}`).checked
         const newTask = { ...task };
         newTask.completed = isChecked;
-        dispatch(updateTask(newTask))
+        dispatch(updateTask(newTask));
     }
 
     function taskComparetor(t1, t2){
-        if (t1.project.title > t2.project.title){
+        console.log("DEBUG   AAAAA", t1)
+        if (t1.project.title.toLowerCase() > t2.project.title?.toLowerCase()){
             return 1;
         } 
         if (t1.project.title === t2.project.title) {
