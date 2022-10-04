@@ -20,7 +20,6 @@ export const selectUserTasks = userId => state =>{
             let ov = Object.values(state.tasks)
             // .filter((project)=> project.creator._id === userId)
             // console.log(ov)
-            // console.log(ov)
             return ov
     }
 }
@@ -82,6 +81,7 @@ export const fetchProjectTasks = (projectId) => async dispatch => {
         const res = await jwtFetch(`/api/tasks/project/${projectId}`);
         const tasks = await res.json();
         dispatch(receiveTasks(tasks));
+        return tasks
     }catch(err){
         const resBody = await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){
@@ -95,6 +95,7 @@ export const fetchUserTasks = (userId) => async dispatch => {
         const res = await jwtFetch(`/api/tasks/user/${userId}`);
         const tasks = await res.json();
         dispatch(receiveTasks(tasks));
+        return tasks
     }catch(err){
         const resBody = await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){
@@ -108,6 +109,7 @@ export const fetchTask = taskId => async dispatch =>{
         const res = await jwtFetch(`/api/tasks/${taskId}`);
         const task = await res.json();
         dispatch(receiveTask(task));
+        return task
     }catch(err){
         const resBody = await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){
@@ -124,6 +126,7 @@ export const createTask = (taskData) => async dispatch =>{
         });
         const task = await res.json();
         dispatch(receiveTask(task));
+        return task
     } catch(err){
         const resBody =  await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){
@@ -140,6 +143,7 @@ export const updateTask = taskData => async dispatch =>{
         });
         const task = await res.json();
         dispatch(receiveTask(task));
+        return task
     }catch(err){
         const resBody = await err.json();
         if(resBody.statusCode === 400 || resBody.statusCode === 404){

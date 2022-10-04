@@ -62,6 +62,7 @@ export const fetchProjects = (userId) => async (dispatch) => {
     const res = await jwtFetch(`/api/projects/users/${userId}`);
     const projects = await res.json();
     dispatch(receiveProjects(projects));
+    return projects
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400 || resBody.statusCode === 404) {
@@ -75,6 +76,7 @@ export const fetchProject = (projectId) => async (dispatch) => {
     const res = await jwtFetch(`/api/projects/${projectId}`);
     const project = await res.json();
     dispatch(receiveProject(project));
+    return project
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400 || resBody.statusCode === 404) {
@@ -91,6 +93,7 @@ export const createProject = (projectData) => async (dispatch) => {
     });
     const project = await res.json();
     dispatch(receiveProject(project));
+    return project
   } catch (err) {
     // console.log(err);
     const resBody = await err.json();
@@ -108,6 +111,7 @@ export const updateProject = (projectData) => async (dispatch) => {
     });
     const project = await res.json();
     dispatch(receiveProject(project));
+    return project
   }
   catch (err) {
     console.log(err);
