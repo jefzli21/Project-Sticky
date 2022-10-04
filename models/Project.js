@@ -22,12 +22,7 @@ const projectSchema = Schema(
         members: [{
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }],
-        tasks: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Task'
         }]
-
     },
     {
         timestamps: true
