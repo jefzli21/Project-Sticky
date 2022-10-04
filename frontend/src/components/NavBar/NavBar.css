@@ -36,3 +36,8 @@
     width: 70px;
     height: 70px;
 }
+
+.user-account-link {
+    text-decoration: none;
+    color:black;
+}

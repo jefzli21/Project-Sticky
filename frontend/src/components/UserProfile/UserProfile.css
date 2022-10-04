@@ -1,0 +1,111 @@
+#user-profile-page {
+    color: #2d333f;
+    display: flex;
+    margin: auto;
+    max-width: 50rem;
+    /* padding: 0 1.5rem 64px; */
+    width: 100%;
+    justify-content: center;
+}
+
+#user-profile-wrapper {
+    margin-top: 50px;
+    min-height: 32rem;
+    min-width: 50rem;
+    width: calc(100% - 0rem);
+}
+
+#user-profile-container {
+    background: #fff;
+    border-bottom: 0.0625rem solid #d8d9db;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    text-size-adjust: 100%;
+}
+
+#user-profile-detail {
+    display: block;
+    margin-top: 0;
+    margin-left: 80px;
+}
+
+#user-header {
+    color: #2d333f;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 58px;
+    margin: 32px 0 16px;
+}
+
+#user-name-wrapper {
+    display: block;
+}
+
+#user-name-container {
+    flex-basis: 100%;
+    margin-right: 8px;
+}
+
+#user-name-title {
+    color: #2d333f;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 8px;
+}
+
+#user-name-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-name {
+    border: 0.0625rem solid #d8d9db;
+    border-radius: 4px;
+    color: #2d333f;
+    flex-basis: auto;
+    font-size: 100%;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 20px;
+    padding: 0.75rem;
+}
+
+#email-wrapper {
+    display: block;
+}
+
+#email-container {
+    flex-basis: 100%;
+    margin-right: 8px;
+}
+
+#email-title {
+    color: #2d333f;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 8px;
+}
+
+#email-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#email {
+    border: 0.0625rem solid #d8d9db;
+    border-radius: 4px;
+    color: #2d333f;
+    flex-basis: auto;
+    font-size: 100%;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 16px;
+    padding: 0.75rem;
+}
