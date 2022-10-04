@@ -31,7 +31,7 @@ const TicketCard = () => {
   //for create a project
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [deadline, setDeadline] = useState(null);
+  // const [deadline, setDeadline] = useState("");
 
 
   //using react spring
