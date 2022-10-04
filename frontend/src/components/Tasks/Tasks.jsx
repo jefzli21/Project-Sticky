@@ -7,7 +7,7 @@ import './Tasks.css';
 import logo from '../../assets/demo-user.png'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
-import { fetchUserTasks, selectUserTasks, updateTask } from '../../store/tasks';
+import { fetchUserTasks, selectUserOpenTasks, updateTask } from '../../store/tasks';
 import { deleteTask } from '../../store/tasks';
 import Checkbox from '@mui/material/Checkbox';
 import Table from '@mui/material/Table';
@@ -23,8 +23,7 @@ const Tasks = ({ id, title, description, deadline }) => {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
     const dispatch = useDispatch();
-
-    const tasks = useSelector(selectUserTasks())
+    const tasks = useSelector(selectUserOpenTasks());
 
     useEffect(() => {
         dispatch(fetchUserTasks(sessionUser._id))

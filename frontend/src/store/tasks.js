@@ -17,22 +17,21 @@ export const selectUserTasks = userId => state =>{
         return [];
     }else{
         
-            let ov = Object.values(state.tasks)
+            let ov = Object.values(state.tasks);
             // .filter((project)=> project.creator._id === userId)
             // console.log(ov)
-            return ov
+            return ov;
     }
 }
 
-export const selectUseOpenTasks = userId => state => {
+export const selectUserOpenTasks = userId => state => {
     if (!state || !state.tasks) {
         return [];
     } else {
-        let ov = Object.values(state.tasks).filter(t => !t.completed)
-        return ov
+        let ov = Object.values(state.tasks).filter(t => !t.completed);
+        return ov;
     }
 }
-
 
 export const selectProjectTasks = projectId => state =>{
     if(!state || !state.tasks){
