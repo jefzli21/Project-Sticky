@@ -36,13 +36,14 @@ const Tasks = ({ id, title, description, deadline }) => {
         newTask.completed = isChecked;
         dispatch(updateTask(newTask));
     }
+    
 
     function taskComparetor(t1, t2){
-        // console.log("DEBUG   AAAAA", t1)
-        if (t1.project.title?.toLowerCase() > t2.project.title?.toLowerCase()){
+        console.log("DEBUG   AAAAA", t1)
+        if (t1.project?.title?.toLowerCase() > t2.project?.title?.toLowerCase()){
             return 1;
         } 
-        if (t1.project.title === t2.project.title) {
+        if (t1.project?.title === t2.project?.title) {
             return (t1.deadline >= t2.deadline) ? 1 : -1;
         } 
         return -1;
@@ -70,7 +71,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                                     key={task.title}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center">{task.project.title}</TableCell>
+                                    <TableCell align="center">{task.project?.title}</TableCell>
                                     <TableCell align="center">{task.title}</TableCell>
                                     <TableCell align="center">{task.description}</TableCell>
                                     <TableCell align="center">{task.deadline.slice(0,10)}</TableCell>
