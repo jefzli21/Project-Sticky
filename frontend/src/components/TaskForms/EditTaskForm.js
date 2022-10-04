@@ -6,13 +6,11 @@ import {selectTask, fetchTask, updateTask} from '../../store/tasks'
 export default function EditTaskForm() {
     const dispatch = useDispatch();
     const {taskId} = useParams();
+    const {projectId} = useParams();
     const history = useHistory();
     let taskData = useSelector(selectTask(taskId))
     const [task, setTask] = useState(taskData)
 
-    // console.log(taskData)
-
-    // console.log(taskId)
 
     useEffect(() => {
         setTask(taskData)
@@ -27,7 +25,7 @@ export default function EditTaskForm() {
     function handleSubmit(e){
         e.preventDefault();
         dispatch(updateTask(task));
-        history.push(`/projects/${taskData.project}`)
+        history.push(`/projects/${projectId}`)
     }
 
 

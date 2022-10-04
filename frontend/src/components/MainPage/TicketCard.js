@@ -64,7 +64,7 @@ const TicketCard = () => {
     return null;
   }
 
-  console.log(projects)
+  // console.log(projects)
 
   // project create
 
