@@ -44,7 +44,6 @@ const Project = () => {
     dispatch(fetchProject(projectId))
   },[projectId])
 
-console.log(projectId)
 
   function handleTaskCheckboxClick(task) {
     const isChecked = document.getElementById(`checkbox_${task._id}`).checked
