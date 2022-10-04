@@ -19,8 +19,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import UpcomingUserTasks from './UpcomingUserTask';
 
-
-
 const Tasks = ({ id, title, description, deadline }) => {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
@@ -39,11 +37,6 @@ const Tasks = ({ id, title, description, deadline }) => {
         dispatch(updateTask(newTask))
     }
 
-    // if(!tasks.project.title){
-    //     return null
-    // }
-  
-
     return (
         <div className='main-container'>
             <SideBar />
@@ -61,7 +54,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tasks.map((task) => (
+                            {tasks.sort((a,b) => (a.project.title > b.project.title) ? 1 : -1).map((task) => (
                                 <TableRow
                                     key={task.title}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -88,7 +81,6 @@ const Tasks = ({ id, title, description, deadline }) => {
                 </TableContainer>
             </div>
             {/* <UpcomingUserTasks/> */}
-
         </div>
     )
 }
