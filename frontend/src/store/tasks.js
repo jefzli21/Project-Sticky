@@ -17,10 +17,19 @@ export const selectUserTasks = userId => state =>{
         return [];
     }else{
         
-            let ov = Object.values(state.tasks)
+            let ov = Object.values(state.tasks);
             // .filter((project)=> project.creator._id === userId)
             // console.log(ov)
-            return ov
+            return ov;
+    }
+}
+
+export const selectUserOpenTasks = userId => state => {
+    if (!state || !state.tasks) {
+        return [];
+    } else {
+        let ov = Object.values(state.tasks).filter(t => !t.completed);
+        return ov;
     }
 }
 
@@ -102,6 +111,7 @@ export const fetchUserTasks = (userId) => async dispatch => {
         }
     }
 };
+
 
 export const fetchTask = taskId => async dispatch =>{
     try{
