@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import './Splash.css'
-import video from '../../assets/videoBg.mp4'
+import video from '../../assets/notepad.mp4'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const styles = {
@@ -29,18 +30,18 @@ const Splash = () => {
   return (
     <>
       <div className='splash-container'>
-        <section className={`${styles.showcase1} ${changed ? styles.showcase2: ''} `} onClick={openMenu}>
+        <section className={`${styles.showcase1} ${changed ? styles.showcase2: ''} `}>
           <header>
             <h2 className='logo'>Project Sticky</h2>
-            <div   className='toggle active'></div>
+            <div className={``}></div>
           </header>
           <video src={video} muted loop autoPlay></video>
             <div className='overlay'></div>
             <div className='text'>
-              <h2>Never Stop To</h2>
-              <h3>Exploring The World</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-              <a href='#'>Explore</a>
+              <h2>Stay organized</h2>
+              <h3>and connected</h3>
+              <p>Bring your team’s work together in one shared space. Choose the project view that suits your style, and collaborate no matter where you are.</p>
+              <Link onClick={openMenu}><a href='#'>Explore</a></Link>
             </div>
             <ul className='social'>
               <li><a href='#'><img src="https://i.ibb.co/x7P24fL/facebook.png"/></a></li>
@@ -50,10 +51,10 @@ const Splash = () => {
         </section>
         <div className='menu'>
           <ul>
-            <li><a href='#'>Home</a></li>
-            <li><a href='#'>Sign Up</a></li>
-            <li><a href='#'>Sign In</a></li>
-            <li><a href='#'>Project Sticky?</a></li>
+            <Link to='/home'  style={{textDecoration:'none'}}><li><a href='#'>Home</a></li></Link>
+            <Link to='/signup' style={{textDecoration:'none'}}><li><a href='#'>Sign Up</a></li></Link>
+            <Link to='/login' style={{textDecoration:'none'}}><li><a href='#'>Sign In</a></li></Link>
+            <Link to='/home' style={{textDecoration:'none'}}><li><a href='#'>Project Sticky?</a></li></Link>
           </ul>
         </div>
       </div>
