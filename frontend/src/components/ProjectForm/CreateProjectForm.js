@@ -16,11 +16,12 @@ export default function CreateProjectForm() {
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date());
   const [isShown, setIsShown] = useState(false);
+  const errors = useSelector(state => state.errors.project);
+  console.log(errors)
 
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    setIsShown(false)
+    if(errors === null){setIsShown(false)}
     const proj = {
       title,
       description,
@@ -41,6 +42,10 @@ export default function CreateProjectForm() {
         onConfirm= {handleSubmit}
       >
         <form className="create-project-form" onSubmit={handleSubmit}>
+        <div className='errors'>{errors?.title}</div>
+
+        <label>
+            Project Title:
           <input
             className="form-field"
             type="text"
@@ -48,20 +53,29 @@ export default function CreateProjectForm() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-          />
+            />
+            </label>
+
+          <label>
+            Description:
           <input
             className="form-field"
             type="text"
             placeholder="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          />
+            />
+            </label>
+          
+          <label>
+          Deadline:
           <input
             className="form-field"
             type="date"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
-          />
+            />
+          </label>
 
         </form>
       </Dialog>
