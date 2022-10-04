@@ -54,7 +54,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                     <Table className='task-table' aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">Project</TableCell>
+                                <TableCell size="medium" variant="body" align="center">Project</TableCell>
                                 <TableCell align="center">Task</TableCell>
                                 <TableCell align="center">Description</TableCell>
                                 <TableCell align="center">Deadline</TableCell>
