@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import {useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { createProject, selectProjects } from "../../store/projects";
+import { clearProjectErrors, createProject, selectProjects } from "../../store/projects";
 import { Pane, Dialog, Button, PlusIcon } from 'evergreen-ui';
 import './CreateProjectForm.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -16,17 +16,25 @@ export default function CreateProjectForm() {
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date());
   const [isShown, setIsShown] = useState(false);
+  const errors = useSelector(state => state.errors.project);
+  // console.log(errors)
+
+
 
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    setIsShown(false)
+   
     const proj = {
       title,
       description,
       creator: sessionUser._id,
     };
-    dispatch(createProject(proj));
+    dispatch(createProject(proj))
+    .then(dispatch(clearProjectErrors()))
+    if(proj.title){
+      setIsShown(false)
+      window.location.reload(false);
+    }
   };
   return (
     <div >
@@ -41,6 +49,10 @@ export default function CreateProjectForm() {
         onConfirm= {handleSubmit}
       >
         <form className="create-project-form" onSubmit={handleSubmit}>
+        <div className='errors'>{errors?.title}</div>
+
+        <label>
+            Project Title:
           <input
             className="form-field"
             type="text"
@@ -48,20 +60,29 @@ export default function CreateProjectForm() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-          />
+            />
+            </label>
+
+          <label>
+            Description:
           <input
             className="form-field"
             type="text"
             placeholder="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          />
+            />
+            </label>
+          
+          <label>
+          Deadline:
           <input
             className="form-field"
             type="date"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
-          />
+            />
+          </label>
 
         </form>
       </Dialog>
