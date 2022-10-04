@@ -24,6 +24,16 @@ export const selectUserTasks = userId => state =>{
     }
 }
 
+export const selectUseOpenTasks = userId => state => {
+    if (!state || !state.tasks) {
+        return [];
+    } else {
+        let ov = Object.values(state.tasks).filter(t => !t.completed)
+        return ov
+    }
+}
+
+
 export const selectProjectTasks = projectId => state =>{
     if(!state || !state.tasks){
         return [];
@@ -102,6 +112,7 @@ export const fetchUserTasks = (userId) => async dispatch => {
         }
     }
 };
+
 
 export const fetchTask = taskId => async dispatch =>{
     try{
