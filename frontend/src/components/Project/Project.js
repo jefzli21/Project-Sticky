@@ -19,11 +19,9 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 const Project = () => {
   const sessionUser = useSelector(state=> state.session.user)
   const { projectId }  = useParams();
-
-
   const history = useHistory();
   const dispatch = useDispatch();
-  const tasks = useSelector(selectProjectTasks(projectId))
+  const tasksData = useSelector(selectProjectTasks(projectId))
   const project = useSelector(selectProject(projectId))
   ///react spring implmentation again
   const props = useSpring({
@@ -45,7 +43,6 @@ const Project = () => {
   },[projectId])
 
 
-
   function handleTaskCheckboxClick(task) {
     const isChecked = document.getElementById(`checkbox_${task._id}`).checked
     const newTask = { ...task };
@@ -57,11 +54,11 @@ const Project = () => {
     return null
   }
 
-  if(!tasks){
+  if(!tasksData){
     return null
   }
 
-  // let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
+   let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
 
 
 
@@ -75,12 +72,12 @@ const Project = () => {
             </div>
             <div className='function-icons'>
               <div className='edit-icon'>
-              <Button onClick={() => history.push(`/projects/${project._id}/edit`)}>
+              <Button onClick={() => history.push(`/projects/${projectId}/edit`)}>
               <EditIcon fontSize='large'/>Edit Project
               </Button>
               </div>
               <div className='delete-icon'>
-              <Button onClick={() => dispatch(deleteProject(project._id))}>
+              <Button onClick={() => dispatch(deleteProject(projectId))}>
               <DeleteForeverIcon fontSize='large'/>Delete Project
               </Button>
               </div>
@@ -106,7 +103,7 @@ const Project = () => {
                         <p className='taskCard-description'>{task.description}</p>
                       </div>
                       <div className="taskCard-functions">
-                        <Button onClick={() => history.push(`/projects/${task.project}/${task._id}`)}>Edit Task
+                        <Button onClick={() => history.push(`/projects/${projectId}/${task._id}`)}>Edit Task
                           <EditIcon />
                         </Button>
                         <Checkbox checked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} color="success" />

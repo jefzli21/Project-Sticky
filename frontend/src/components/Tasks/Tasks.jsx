@@ -19,8 +19,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import UpcomingUserTasks from './UpcomingUserTask';
 
-
-
 const Tasks = ({ id, title, description, deadline }) => {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
@@ -32,20 +30,24 @@ const Tasks = ({ id, title, description, deadline }) => {
         dispatch(fetchUserTasks(sessionUser._id))
     }, [sessionUser._id])
 
-
     function handleTaskCheckboxClick(task) {
         const isChecked = document.getElementById(`checkbox_${task._id}`).checked
         const newTask = { ...task };
         newTask.completed = isChecked;
-        dispatch(updateTask(newTask))
+        dispatch(updateTask(newTask));
     }
+    
 
-    // if(!tasks.project.title){
-    //     return null
-    // }
-    console.log(tasks)
-
-
+    function taskComparetor(t1, t2){
+        console.log("DEBUG   AAAAA", t1)
+        if (t1.project?.title?.toLowerCase() > t2.project?.title?.toLowerCase()){
+            return 1;
+        } 
+        if (t1.project?.title === t2.project?.title) {
+            return (t1.deadline >= t2.deadline) ? 1 : -1;
+        } 
+        return -1;
+    }
 
     return (
         <div className='main-container'>
@@ -55,7 +57,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                     <Table className='task-table' aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                {/* <TableCell align="center"> Project </TableCell> */}
+                                <TableCell align="center">Project</TableCell>
                                 <TableCell align="center">Task</TableCell>
                                 <TableCell align="center">Description</TableCell>
                                 <TableCell align="center">Deadline</TableCell>
@@ -64,14 +66,12 @@ const Tasks = ({ id, title, description, deadline }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tasks.map((task) => (
+                            {tasks.sort(taskComparetor).map((task) => (
                                 <TableRow
                                     key={task.title}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    {/* <TableCell align="center">
-                                        {task.project.title}
-                                    </TableCell> */}
+                                    <TableCell align="center">{task.project?.title}</TableCell>
                                     <TableCell align="center">{task.title}</TableCell>
                                     <TableCell align="center">{task.description}</TableCell>
                                     <TableCell align="center">{task.deadline.slice(0,10)}</TableCell>
@@ -93,7 +93,6 @@ const Tasks = ({ id, title, description, deadline }) => {
                 </TableContainer>
             </div>
             {/* <UpcomingUserTasks/> */}
-
         </div>
     )
 }
