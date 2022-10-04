@@ -37,6 +37,16 @@ const Tasks = ({ id, title, description, deadline }) => {
         dispatch(updateTask(newTask))
     }
 
+    function taskComparetor(t1, t2){
+        if (t1.project.title > t2.project.title){
+            return 1;
+        } 
+        if (t1.project.title === t2.project.title) {
+            return (t1.deadline >= t2.deadline) ? 1 : -1;
+        } 
+        return -1;
+    }
+
     return (
         <div className='main-container'>
             <SideBar />
@@ -54,7 +64,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tasks.sort((a,b) => (a.project.title > b.project.title) ? 1 : -1).map((task) => (
+                            {tasks.sort(taskComparetor).map((task) => (
                                 <TableRow
                                     key={task.title}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
