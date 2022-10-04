@@ -7,25 +7,32 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import { useRef, useEffect } from 'react';
 
 
-
+const styles = {
+  toggle1: 'toggle',
+  toggle2: 'toggle active',
+  showcase1: 'showcase',
+  showcase2: 'showcase active',
+};
 
 
 
 
 const Splash = () => {
-  const [isActive, setActive] = useState('false');
-  const handleToggle = () => {
-    setActive(!isActive)
-  }
+  const[changed,setChange] = useState(false);
+
+  const openMenu = (open) => {
+    setChange(c => !c);
+  } 
+  
 
   
   return (
     <>
       <div className='splash-container'>
-        <section className='showcase active'>
+        <section className={`${styles.showcase1} ${changed ? styles.showcase2: ''} `} onClick={openMenu}>
           <header>
             <h2 className='logo'>Project Sticky</h2>
-            <div className='toggle active'></div>
+            <div   className='toggle active'></div>
           </header>
           <video src={video} muted loop autoPlay></video>
             <div className='overlay'></div>
