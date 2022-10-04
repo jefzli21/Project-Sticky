@@ -31,7 +31,7 @@ const TicketCard = () => {
   //for create a project
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  // const [deadline, setDeadline] = useState("");
+  const [deadline, setDeadline] = useState(new Date().toISOString());
 
 
   //using react spring
@@ -64,13 +64,8 @@ const TicketCard = () => {
     return null;
   }
 
-  // console.log(projects)
 
-  // project create
-
-  // console.log(today)
-
-  let today = new Date().toISOString();
+  // let today = new Date().toISOString();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,7 +74,7 @@ const TicketCard = () => {
       title,
       description,
       creator: sessionUser._id,
-      deadline: today,
+      deadline: deadline,
     };
     dispatch(createProject(proj));
   };
