@@ -39,7 +39,7 @@ const Tasks = ({ id, title, description, deadline }) => {
 
     function taskComparetor(t1, t2){
         console.log("DEBUG   AAAAA", t1)
-        if (t1.project.title.toLowerCase() > t2.project.title?.toLowerCase()){
+        if (t1.project.title?.toLowerCase() > t2.project.title?.toLowerCase()){
             return 1;
         } 
         if (t1.project.title === t2.project.title) {
