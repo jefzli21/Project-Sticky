@@ -44,7 +44,7 @@ const Project = () => {
     dispatch(fetchProject(projectId))
   },[projectId])
 
-
+console.log(projectId)
 
   function handleTaskCheckboxClick(task) {
     const isChecked = document.getElementById(`checkbox_${task._id}`).checked
@@ -75,12 +75,12 @@ const Project = () => {
             </div>
             <div className='function-icons'>
               <div className='edit-icon'>
-              <Button onClick={() => history.push(`/projects/${project._id}/edit`)}>
+              <Button onClick={() => history.push(`/projects/${projectId}/edit`)}>
               <EditIcon fontSize='large'/>Edit Project
               </Button>
               </div>
               <div className='delete-icon'>
-              <Button onClick={() => dispatch(deleteProject(project._id))}>
+              <Button onClick={() => dispatch(deleteProject(projectId))}>
               <DeleteForeverIcon fontSize='large'/>Delete Project
               </Button>
               </div>
@@ -106,7 +106,7 @@ const Project = () => {
                         <p className='taskCard-description'>{task.description}</p>
                       </div>
                       <div className="taskCard-functions">
-                        <Button onClick={() => history.push(`/projects/${task.project}/${task._id}`)}>Edit Task
+                        <Button onClick={() => history.push(`/projects/${projectId}/${task._id}`)}>Edit Task
                           <EditIcon />
                         </Button>
                         <Checkbox checked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} color="success" />
