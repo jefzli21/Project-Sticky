@@ -3,22 +3,32 @@ const { mongoose } = require("mongoose");
 const Project = mongoose.model("Project");
 const router = express.Router();
 const validateProjectInput = require("../../validation/project");
+const Task = mongoose.model("Task");
+
 //get all projects
 router.get("/users/:userId", async (req, res, next) => {
     try {
-        const projects = await Project.find({creator: req.params.userId})
-        // const projects = await Project.find({creator: req.params.userId})
-            .populate("creator")
-            // .populate("members")
-            .populate("tasks")
-            .sort({ deadline: -1 });
+        // let projects = await Project.find({ creator: req.params.userId })
+        let userId = new mongoose.Types.ObjectId(req.params.userId);
+        let projects = await Project.aggregate()
+            .match({ "creator": userId })
+            .lookup(
+                {
+                    from: Task.collection.name,
+                    localField: "_id",
+                    foreignField: "project",
+                    as: "tasks"
+                }
+            );
+        projects = await Project.populate(projects, "creator");
+        projects = projects.sort((a, b) => a.deadline >= b.deadline ? 1 : -1);
         return res.json(projects);
     } catch (_err) {
         const err = new Error(_err.message);
         err.statusCode = 404;
         return next(err);
     }
-    });
+});
 
 //get a single project
 router.get('/:id', async (req, res) => {
@@ -67,7 +77,7 @@ router.put("/:id", validateProjectInput, async (req, res) => {
     const project = await Project.findOneAndUpdate(
         { _id: id },
         {
-        ...req.body,
+            ...req.body,
         },
         { returnDocument: "after" }
     );

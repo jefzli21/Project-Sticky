@@ -17,11 +17,6 @@ import { useEffect, useRef, useState } from "react";
 import { useTransition, animated, useSpring, config } from "react-spring";
 import {format} from 'date-fns';
 
-
-
-
-
-
 const TicketCard = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,10 +28,7 @@ const TicketCard = () => {
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date().toISOString());
 
-
   //using react spring
-  
-
   const props = useSpring({ 
     to: { opacity: 1, x: 0 }, 
     from: { opacity: 0, x: -100 },
@@ -44,18 +36,12 @@ const TicketCard = () => {
     config: config.slow
   })
 
-
-
-
-
   const transition = useTransition(projects, {
     to: { opacity: 1 }, 
     from: { opacity: 0 }
   });
 
-  
   ////react spring
-
   useEffect(() => {
     dispatch(fetchProjects(sessionUser._id));
   }, [sessionUser]);
@@ -64,9 +50,7 @@ const TicketCard = () => {
     return null;
   }
 
-
   // let today = new Date().toISOString();
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -78,9 +62,6 @@ const TicketCard = () => {
     };
     dispatch(createProject(proj));
   };
-
-
-  ///
 
   return (
     <>
