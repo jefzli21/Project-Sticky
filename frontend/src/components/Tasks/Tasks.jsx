@@ -17,7 +17,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import UpcomingUserTasks from './UpcomingUserTask';
 
 const Tasks = ({ id, title, description, deadline }) => {
     const sessionUser = useSelector(state => state.session.user);
@@ -63,7 +62,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tasks.sort(taskComparetor).map((task) => (
+                            {tasks.sort(taskComparetor).map((task) => (task.project && (
                                 <TableRow
                                     key={task.title}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -84,12 +83,11 @@ const Tasks = ({ id, title, description, deadline }) => {
                                         </Button>
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                            )))}
                         </TableBody>
                     </Table>
                 </TableContainer>
             </div>
-            {/* <UpcomingUserTasks/> */}
         </div>
     )
 }
