@@ -7,6 +7,7 @@ import {
   updateTask,
   clearTaskErrors,
 } from "../../store/tasks";
+import "./EditTask.css";
 
 export default function EditTaskForm() {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ export default function EditTaskForm() {
   return (
     <div>
       {task && (
-        <form className="create-task-form">
+        <form className="edit-task-form">
           <div className="errors">{errors?.title} </div>
           <div className="errors">{errors?.deadline} </div>
 
@@ -82,8 +83,8 @@ export default function EditTaskForm() {
           </label>
 
           <label>
-            priority
-            <select
+            Priority: 
+            <select id="priority"
               value={task.priority}
               onChange={(e) => {
                 setTask({ ...task, priority: e.target.value });
@@ -96,17 +97,8 @@ export default function EditTaskForm() {
             </select>
           </label>
 
-          {/* <label>
-                    completed?
-                    <input
-                        className="form-field"
-                        type="checkbox"
-                        checked={task.completed}
-                        onChange={(e) => { setTask({ ...task, completed: e.target.value }) }}
-                    />
-                    </label> */}
 
-          <button onClick={handleSubmit}>Submit</button>
+          <button id="edit" onClick={handleSubmit}>Submit</button>
         </form>
       )}
     </div>

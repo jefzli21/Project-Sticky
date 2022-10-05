@@ -1,0 +1,17 @@
+.edit-task-form{
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    height: 63vh;
+}
+
+.edit-task-form > label{
+    display: flex;
+    flex-direction: column;
+}
+
+#priority{
+    width: 3rem;
+    padding: 10px;
+    margin-bottom: 10px;
+}
