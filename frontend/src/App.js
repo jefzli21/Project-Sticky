@@ -19,6 +19,8 @@ import EditProjectForm from './components/ProjectForm/EditProjectForm';
 import EditTaskForm from './components/TaskForms/EditTaskForm';
 import UserProfile from './components/UserProfile';
 import Splash from './components/Splash/Splash';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {

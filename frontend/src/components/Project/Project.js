@@ -8,11 +8,24 @@ import Tasks from '../Tasks/Tasks'
 import CreateTaskForm from '../TaskForms/CreateTaskForm'
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
-import { Button } from "@mui/material"
+import { Button} from "@mui/material"
 import { deleteTask, fetchProjectTasks, selectProjectTasks, updateTask } from '../../store/tasks';
 import { useTransition, animated, useSpring, config } from "react-spring";
 import Checkbox from '@mui/material/Checkbox';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+import { LinearProgressProps } from '@mui/material/LinearProgress';
+import PropTypes from 'prop-types';
+import { useState } from 'react'
+import { useRef } from 'react'
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import { Row } from 'antd'
+
+
+
+
+
 
 
 
@@ -30,6 +43,7 @@ const Project = () => {
     reset: true,
     config: config.slow
   })
+
 
 
 
@@ -60,6 +74,31 @@ const Project = () => {
 
    let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
 
+   let total = 0;
+   let complete = 0; 
+
+   tasks.forEach(task => {
+    if(task){
+      total+=1
+    }
+   })
+
+   tasks.forEach(task=>{
+
+    if(task.completed === true){
+      complete += 1 
+    }
+   })
+
+   function percentage(){
+    return complete/total * 100
+   }
+
+
+
+
+
+
 
 
   return tasks && (
@@ -70,6 +109,8 @@ const Project = () => {
             <div className='project-title'>
               <h1>Project: <span>{project.title}</span></h1>
             </div>
+              <ProgressBar className='progressBar'  animated now={percentage()} label={`${percentage()}%`}/>
+
             <div className='function-icons'>
               <div className='edit-icon'>
               <Button onClick={() => history.push(`/projects/${projectId}/edit`)}>

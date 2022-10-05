@@ -111,6 +111,8 @@
 }
 
 
+
+
 @media screen and (max-width: 600px) {
     .column {
       width: 100%;
@@ -118,3 +120,18 @@
       margin-bottom: 20px;
     }
   }
+
+
+.progressBar{
+    width: 50%;
+}
+
+
+.progress{
+    --bs-progress-height: 3rem !important;
+}
+
+.progress-bar{
+    font-size: 30px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
