@@ -63,6 +63,17 @@ const TicketCard = () => {
     dispatch(createProject(proj));
   };
 
+  function percentage (project){
+    const total = project.tasks.length
+    let count = 0
+    project.tasks.forEach(task => {
+      if (task.completed === true){
+        count += 1
+      }
+    })
+    return count / total * 100
+  }
+
   return (
     <>
       <div className="card-container">
@@ -73,15 +84,14 @@ const TicketCard = () => {
             className='card' 
             style={props} 
             key={i}
-     
             >
               <div className="card-info">
                 <div className="card-title">
                   <Link to={`/projects/${project._id}`}>
                     <div className="card-top">
                       <div className="card-top-decor">
-                        <CircularProgress fontSize='small' value={40} color="green">
-                          <CircularProgressLabel>40%</CircularProgressLabel>
+                        <CircularProgress fontSize='small' value={percentage(project)} color="green">
+                          <CircularProgressLabel>{Math.floor(percentage(project))}%</CircularProgressLabel>
                         </CircularProgress>
                       </div>
                       <h4 className="project-title">{project.title}</h4>
