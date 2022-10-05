@@ -6,6 +6,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import git from "./assets/git.png"
+import linked from "./assets/linked.png"
 
 
 const styles = {
@@ -44,9 +46,27 @@ const Splash = () => {
               <Link onClick={openMenu}><a href='#'>Explore</a></Link>
             </div>
             <ul className='social'>
-              <li><a href='#'><img src="https://i.ibb.co/x7P24fL/facebook.png"/></a></li>
-              <li><a href='#'><img src="https://i.ibb.co/Wnxq2Nq/twitter.png"/></a></li>
-              <li><a href='#'><img src="https://i.ibb.co/ySwtH4B/instagram.png"/></a></li>
+              <div>
+
+              <h1>Jeffrey Z. Li</h1>
+              <li><a href='https://github.com/jefzli21'><img src={git}/></a></li>
+              <li><a href='https://www.linkedin.com/in/jefzli21/'><img src={linked}/></a></li>
+              </div>
+              <div>
+              <h1>Bo Zhong</h1>
+              <li><a href='https://github.com/bob-skywalker'><img src={git}/></a></li>
+              <li><a href='https://www.linkedin.com/in/bo-zhong-bb4a4b13a/'><img src={linked}/></a></li>
+              </div>
+              <div>
+              <h1>Taowei Li</h1>
+              <li><a href='https://github.com/TaoweiLi'><img src={git}/></a></li>
+              <li><a href='https://www.linkedin.com/in/taoweili/'><img src={linked}/></a></li>
+              </div>
+              <div>
+              <h1>Tianshu Xiao</h1>
+              <li><a href='https://github.com/Tians97'><img src={git}/></a></li>
+              <li><a href='https://www.linkedin.com/in/tianshuxiao/'><img src={linked}/></a></li>
+              </div>
             </ul>
         </section>
         <div className='menu'>
