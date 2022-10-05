@@ -23,7 +23,6 @@ export default function CreateProjectForm() {
 
 
   const handleSubmit = (e) => {
-   
     const proj = {
       title,
       description,

@@ -71,12 +71,13 @@ const NavBar = () => {
       <AppBar position='sticky'>
         <StyledToolbar className='toolbar'>
           <div className='nav-left'>
-            <Link to={'/home'}><img alt='sticky-logo' style={{ height: '30px', width: '30px' }} src={logo}></img></Link>
-            <Typography variant='h6' sx={{ display: { xs: 'none', sm: "block" } }}>Sticky
-            </Typography>
+            <Link className='logo-name' to={'/home'}>
+              <img alt='sticky-logo' style={{ height: '40px', width: '40px' }} src={logo}></img>
+              <div className='name'>Sticky</div>
+            </Link>
 
           </div>
-          <h1 id='project-sticky'>Project Sticky</h1>
+          {/* <h1 id='project-sticky'>Project Sticky</h1> */}
           {/* <Search>
             <InputBase placeholder='search' />
           </Search> */}

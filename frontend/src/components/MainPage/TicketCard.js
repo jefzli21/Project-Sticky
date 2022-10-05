@@ -88,7 +88,8 @@ const TicketCard = () => {
                     <div className="card-top">
                       <div className="card-top-decor">
                         <CircularProgress
-                          fontSize="small"
+                          size='80px'
+                          fontSize="large"
                           value={percentage(project) ? percentage(project) : 0}
                           color="green"
                         >
