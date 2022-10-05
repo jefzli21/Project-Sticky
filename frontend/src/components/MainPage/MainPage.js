@@ -18,13 +18,13 @@ function MainPage(){
     const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
 
     return(
-        <>
+        
                 <div className='home-container'>
                     <SideBar setMode={setMode} mode={mode}/>
                     <Feed/>
                     <RightBar/>
                 </div>
-        </>
+    
     )
 }
 

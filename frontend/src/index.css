@@ -10,7 +10,8 @@ form > .errors {
 
 
 body{
-    background-color: lightgray;
+    background: linear-gradient(#fffdfd, #6b72c193);
+    margin-bottom: 3rem;
 } 
 
 

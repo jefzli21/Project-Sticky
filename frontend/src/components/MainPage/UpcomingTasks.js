@@ -67,7 +67,7 @@ const UpcomingTasks = () => {
   let high = 0;
   let highPlus = 0;
 
-  tasks.forEach(task => {
+  tasks.forEach(task =>  { 
     if (task.priority === 1) {
       low += 1;
     } else if (task.priority === 2) {
@@ -80,13 +80,13 @@ const UpcomingTasks = () => {
   })
 
   tasks.forEach(task => {
-    if (task.completed && task.priority === 1){
+    if (task.completed && task.priority === 1 || !task.project && task.priority === 1 ){
       low -= 1;
-    } else if (task.completed && task.priority === 2){
+    } else if (task.completed && task.priority === 2 || !task.project && task.priority === 2 ){
       medium -=1;
-    } else if (task.completed && task.priority === 3){
+    } else if (task.completed && task.priority === 3 || !task.project && task.priority === 3){
       high -= 1;
-    } else if (task.completed && task.priority === 4){
+    } else if (task.completed && task.priority === 4 || !task.project && task.priority === 4){
       highPlus -=1;
     }
   })
@@ -136,7 +136,7 @@ const UpcomingTasks = () => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           {tasks.map((task, i) => (
-            !task.completed && <Card className='collap-top' key={i}>
+            !task.completed && task.project && <Card className='collap-top' key={i}>
               <CardActionArea>
                   <CardContent>
                       <div className='collap-top-left'>

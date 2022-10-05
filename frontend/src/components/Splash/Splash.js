@@ -37,7 +37,7 @@ const Splash = () => {
             <h2 className='logo'>Project Sticky</h2>
             <div className={``}></div>
           </header>
-          <video src={video} muted loop autoPlay></video>
+          <video id="vid" src={video} muted loop autoPlay></video>
             <div className='overlay'></div>
             <div className='text'>
               <h2>Stay organized</h2>
