@@ -74,7 +74,7 @@ const Splash = () => {
             <Link to='/home'  style={{textDecoration:'none'}}><li><a href='#'>Home</a></li></Link>
             <Link to='/signup' style={{textDecoration:'none'}}><li><a href='#'>Sign Up</a></li></Link>
             <Link to='/login' style={{textDecoration:'none'}}><li><a href='#'>Sign In</a></li></Link>
-            <Link to='/home' style={{textDecoration:'none'}}><li><a href='#'>Project Sticky?</a></li></Link>
+            <li><a href='https://github.com/Tians97/Project-Sticky'>Project Sticky?</a></li>
           </ul>
         </div>
       </div>

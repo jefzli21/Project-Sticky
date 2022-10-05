@@ -69,7 +69,7 @@ const Tasks = ({ id, title, description, deadline }) => {
                                 >
                                     <TableCell align="center">{task.project?.title}</TableCell>
                                     <TableCell align="center">{task.title}</TableCell>
-                                    <TableCell align="center">{task.description}</TableCell>
+                                    <TableCell align="center"><p className='tasks-description'>{task.description}</p></TableCell>
                                     <TableCell align="center">{task.deadline.slice(0,10)}</TableCell>
                                     <TableCell align='center'>
                                         <Checkbox checked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} color="success" />

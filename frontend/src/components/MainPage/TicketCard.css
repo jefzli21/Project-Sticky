@@ -19,10 +19,9 @@
 
 
 .description{
-    text-align: center !important;
-    overflow: hidden !important;
-    width: 100 !important;
-    /* transform: translateX(-7%); */
+    inline-size: 9rem;
+    overflow-wrap: break-word;
+    padding-bottom: 20px;
 }
 
 .pushPin{

@@ -100,7 +100,11 @@ const TicketCard = () => {
                           </CircularProgressLabel>
                         </CircularProgress>
                       </div>
+                      <div>
+
                       <h4 className="project-title">{project.title}</h4>
+                  <p className="deadline">Due: {project.deadline?.slice(0,10)}</p>
+                      </div>
                     </div>
                   </Link>
                 </div>
@@ -108,7 +112,6 @@ const TicketCard = () => {
                   <p className="description">{project.description}</p>
                 </div>
                 <div className="project-bot">
-                  <p className="deadline">{project.deadline}</p>
                   <div className="card-functions">
                     <Button
                       onClick={() =>

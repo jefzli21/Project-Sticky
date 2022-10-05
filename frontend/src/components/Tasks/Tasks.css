@@ -33,3 +33,9 @@
 /* .MuiTableCell-body{
     
 }  */
+
+.tasks-description{
+    inline-size: 40vw;
+    overflow-wrap: break-word;
+    padding-left: 90px;
+}

@@ -97,6 +97,7 @@
     justify-content: center;
     width: 95%;
     position: relative;
+    
 }
 
 
@@ -108,8 +109,20 @@
 
 .taskCard-info{
     border-bottom: 1px ridge;
+    
 }
 
+.taskCard-content{
+    display: flex;
+    align-items: left;
+    padding: 10px;
+    
+}
+
+.taskCard-description{
+    inline-size: 35vw;
+    overflow-wrap: break-word;
+}
 
 
 

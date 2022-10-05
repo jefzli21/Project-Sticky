@@ -145,11 +145,11 @@ const Project = () => {
                     style={props}
                     key={i}>
                       <div className='taskCard-info'>
-                        <h2 className='taskCard-title'>{task.title}</h2>
+                        <h2 className='taskCard-title'>Task: {task.title}</h2>
                         <h4>deadline: {task.deadline.slice(0,10)}</h4>
                       </div>
                       <div className='taskCard-content'>
-                        <p className='taskCard-description'>{task.description}</p>
+                        <p className='taskCard-description'>Description: {task.description}</p>
                       </div>
                       <div className="taskCard-functions">
                         <Button onClick={() => history.push(`/projects/${projectId}/${task._id}`)}>Edit Task
