@@ -11,7 +11,6 @@ import {
   fetchProjects,
   selectProjects,
   createProject,
-  selectProject,
 } from "../../store/projects";
 import { useEffect, useRef, useState } from "react";
 import { useTransition, animated, useSpring, config } from "react-spring";
@@ -81,7 +80,7 @@ const TicketCard = () => {
     <>
       <div className="card-container">
         <div className="cards">
-          {projects.map((project, i) => (
+          {projects.map((project, i) => ( percentage(project) !== 100 && (
             <animated.div className="card" style={props} key={i}>
               <div className="card-info">
                 <div className="card-title">
@@ -127,7 +126,7 @@ const TicketCard = () => {
                 </div>
               </div>
             </animated.div>
-          ))}
+          )))}
         </div>
       </div>
     </>

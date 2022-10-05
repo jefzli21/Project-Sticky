@@ -62,7 +62,7 @@ export const SideBar = ({mode, setMode}) => {
           </Link>
         </ListItem>
         <ListItem disablePadding>
-          <Link to={'/home'} style={{color: 'inherit', textDecoration:'none'}}>
+          <Link to={'/completed'} style={{color: 'inherit', textDecoration:'none'}}>
             <ListItemButton>
               <ListItemIcon>
                 <InboxIcon/>
@@ -71,34 +71,6 @@ export const SideBar = ({mode, setMode}) => {
             </ListItemButton>
           </Link>
         </ListItem>
-        {/* <ListItem disablePadding>
-          <Link to={'/home'} style={{color: 'inherit', textDecoration:'none'}}>
-            <ListItemButton>
-              <ListItemIcon>
-                <AssessmentIcon/>
-              </ListItemIcon>
-              <ListItemText primary="Reporting" />
-            </ListItemButton>
-          </Link>
-        </ListItem> */}
-        {/* <ListItem disablePadding>
-          <Link to={'/home'} style={{color: 'inherit', textDecoration:'none'}}>
-            <ListItemButton>
-              <ListItemIcon>
-                <FlagCircleIcon/>
-              </ListItemIcon>
-              <ListItemText primary="Goals" />
-            </ListItemButton>
-          </Link>
-        </ListItem> */}
-        {/* <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <ModeNightIcon />
-              </ListItemIcon>
-              <Switch onChange={e=>setMode(mode ==='light' ? 'dark' : 'light')}/>
-            </ListItemButton>
-        </ListItem> */}
       </List>
     </div>
   )

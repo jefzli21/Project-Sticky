@@ -19,6 +19,7 @@ import EditProjectForm from './components/ProjectForm/EditProjectForm';
 import EditTaskForm from './components/TaskForms/EditTaskForm';
 import UserProfile from './components/UserProfile';
 import Splash from './components/Splash/Splash';
+import CompletedProjects from './components/CompletedProjects/CompletedProjects';
 
 
 
@@ -44,6 +45,7 @@ function App() {
         <ProtectedRoute exact path='/projects/:projectId/createtask' component={CreateTask} />
         <ProtectedRoute exact path='/projects/:projectId/edit' component={EditProjectForm} />
         <ProtectedRoute exact path='/projects/:projectId/:taskId' component={EditTaskForm} />
+        <ProtectedRoute exact path='/completed' component={CompletedProjects} />
         <AuthRoute exact path='/login' component={LoginForm} />
         <AuthRoute exact path='/signup' component={SignupForm} />
         <Redirect to='/' />

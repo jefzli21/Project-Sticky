@@ -1,5 +1,6 @@
+import "./CompletedProject.css"
+import { SideBar } from "../MainPage/SideBar";
 import { Link, useHistory, useParams } from "react-router-dom";
-import "./TicketCard.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { Button } from "@mui/material";
@@ -11,15 +12,14 @@ import {
   fetchProjects,
   selectProjects,
   createProject,
-  selectProject,
 } from "../../store/projects";
 import { useEffect, useRef, useState } from "react";
 import { useTransition, animated, useSpring, config } from "react-spring";
 import { format } from "date-fns";
-import TicketCard from "../MainPage/TicketCard";
 
 const CompletedProjects = () => {
-  const history = useHistory();
+
+    const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user); //grabbing sessionUser from session state
   const projects = useSelector(selectProjects(sessionUser._id));
@@ -47,9 +47,9 @@ const CompletedProjects = () => {
     dispatch(fetchProjects(sessionUser._id));
   }, [sessionUser]);
 
-  if (!projects.length) {
-    return null;
-  }
+//   if (!projects.length) {
+//     // return null;
+//   }
 
   // let today = new Date().toISOString();
   const handleSubmit = (e) => {
@@ -78,9 +78,67 @@ const CompletedProjects = () => {
     return (count / total) * 100;
   }
 
+
   return (
     <>
-    <TicketCard/>
+    <div className="completed">
+    <SideBar/>
+    <div className="card-container">
+    <h1 id="completed-title">Completed Projects</h1>
+        <div className="cards">
+          {projects.map((project, i) => ( percentage(project) === 100 && (
+            <animated.div className="card" style={props} key={i}>
+              <div className="card-info">
+                <div className="card-title">
+                  <Link to={`/projects/${project._id}`}>
+                    <div className="card-top">
+                      <div className="card-top-decor">
+                        <CircularProgress
+                          fontSize="small"
+                          value={percentage(project) ? percentage(project) : 0}
+                          color="green"
+                        >
+                          <CircularProgressLabel>
+                            {Math.floor(percentage(project))
+                              ? Math.floor(percentage(project))
+                              : 0}
+                            %
+                          </CircularProgressLabel>
+                        </CircularProgress>
+                      </div>
+                      <h4 className="project-title">{project.title}</h4>
+                    </div>
+                  </Link>
+                </div>
+                <div className="project-content">
+                  <p className="description">{project.description}</p>
+                </div>
+                <div className="project-bot">
+                  <p className="deadline">{project.deadline}</p>
+                  <div className="card-functions">
+                    <Button
+                      onClick={() =>
+                        history.push(`/projects/${project._id}/edit`)
+                      }
+                    >
+                      <EditIcon />
+                    </Button>
+                    <Button
+                      onClick={() => dispatch(deleteProject(project._id))}
+                    >
+                      <DeleteForeverIcon />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </animated.div>
+          )))}
+        </div>
+      </div>
+
+    </div>
+
+
     </>
   )
  
