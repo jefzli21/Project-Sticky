@@ -76,12 +76,13 @@ const NavBar = () => {
             </Typography>
 
           </div>
-          <Search>
+          <h1 id='project-sticky'>Project Sticky</h1>
+          {/* <Search>
             <InputBase placeholder='search' />
-          </Search>
+          </Search> */}
 
           <Avatar
-
+            id="avatar"
             sx={{ width: 30, height: 30 }}
             src={demo}
             onClick={e => setOpen(true)}

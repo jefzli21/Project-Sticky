@@ -41,3 +41,16 @@
     text-decoration: none;
     color:black;
 }
+
+#project-sticky{
+    margin-right: 7rem;
+}
+
+#demo-positioned-menu{
+    margin-top: 3.5rem;
+    margin-left: -3rem;
+}
+
+#avatar{
+    cursor: pointer;
+}
