@@ -91,11 +91,7 @@ const UpcomingTasks = () => {
     }
   })
 
-  // tasks.forEach(task => {
-  //   if (!task.completed) {
-  //     count += 1
-  //   }
-  // })
+
 
   const count = low + medium + high + highPlus
 
