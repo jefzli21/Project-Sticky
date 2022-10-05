@@ -97,8 +97,8 @@ const TicketCard = () => {
                   <Link to={`/projects/${project._id}`}>
                     <div className="card-top">
                       <div className="card-top-decor">
-                        <CircularProgress fontSize='small' value={percentage(project)} color="green">
-                          <CircularProgressLabel>{Math.floor(percentage(project))}%</CircularProgressLabel>
+                        <CircularProgress fontSize='small' value={percentage(project) ? percentage(project) : 0 } color="green">
+                          <CircularProgressLabel>{Math.floor(percentage(project)) ? Math.floor(percentage(project)) : 0 }%</CircularProgressLabel>
                         </CircularProgress>
                       </div>
                       <h4 className="project-title">{project.title}</h4>
