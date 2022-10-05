@@ -28,6 +28,7 @@ const TicketCard = () => {
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date().toISOString());
 
+
   //using react spring
   const props = useSpring({ 
     to: { opacity: 1, x: 0 }, 
@@ -64,6 +65,9 @@ const TicketCard = () => {
   };
 
   function percentage (project){
+    if(!project.tasks){
+      return null
+    }
     const total = project.tasks.length
     let count = 0
     project.tasks.forEach(task => {
@@ -73,6 +77,9 @@ const TicketCard = () => {
     })
     return count / total * 100
   }
+
+  
+  
 
   return (
     <>

@@ -19,8 +19,9 @@ import { useState } from 'react'
 import { useRef } from 'react'
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import ProgressBar from './ProgressBar'
 import { Row } from 'antd'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -72,7 +73,14 @@ const Project = () => {
     return null
   }
 
-   let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
+
+  //  let tasks = tasksData.filter((task)=> task.project === projectId || task.project._id === projectId)
+
+   let tasks = tasksData.filter((task)=> {
+    if(!task.project){
+      return null;
+    } else {return task.project === projectId || task.project._id === projectId}
+   })
 
    let total = 0;
    let complete = 0; 
@@ -95,7 +103,7 @@ const Project = () => {
    }
 
 
-
+   
 
 
 
@@ -109,8 +117,7 @@ const Project = () => {
             <div className='project-title'>
               <h1>Project: <span>{project.title}</span></h1>
             </div>
-              <ProgressBar className='progressBar'  animated now={percentage()} label={`${percentage()}%`}/>
-
+            <ProgressBar percentage={percentage}/>
             <div className='function-icons'>
               <div className='edit-icon'>
               <Button onClick={() => history.push(`/projects/${projectId}/edit`)}>

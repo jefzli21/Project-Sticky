@@ -1,111 +1,112 @@
 
 .cards{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
+    display: grid !important;
+    grid-template-columns: repeat(3,1fr) !important;
 }
 
 .project-title{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif !important;
+    text-align: center !important;
 }
 
 .card-top{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translateY(42%);
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transform: translateY(42%) !important;
 }
 
 
 .description{
-    text-align: center;
-    overflow: hidden;
-    width: 100;
+    text-align: center !important;
+    overflow: hidden !important;
+    width: 100 !important;
     /* transform: translateX(-7%); */
 }
 
 .pushPin{
-    color: crimson;
-    transform: translateY(-100%);
+    color: crimson !important;
+    transform: translateY(-100%) !important;
 }
 
 .card-top-decor{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:flex-end;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content:flex-end !important;
 }
 
 .card-title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 .card-title a{
-    text-decoration: none;
-    color: rgb(28, 26, 26);
+    text-decoration: none !important;
+    color: rgb(28, 26, 26) !important;
 }
 
 .card-icons{
-    display: flex;
-    width: 30px;
-    height: 20px;
+    display: flex !important;
+    width: 30px !important;
+    height: 20px !important;
 }
 
 .card-functions{
-    padding-left: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
+    padding-left: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    bottom: 0 !important;
 }
 
 .project-content p {
-    font-family:monospace;
-    display: block;
-    padding-left: 3px;
-    padding-top: 25px;
-    height: 100px;
-    align-items:center;
-    justify-content: center;
-    transform: translateY(20%);
+    font-family:monospace !important;
+    display: block !important;
+    padding-left: 3px !important;
+    padding-top: 25px !important;
+    height: 100px !important;
+    align-items:center !important;
+    justify-content: center !important;
+    transform: translateY(20%) !important;
 }
 
 .project-bot{
-    padding-top: 5px;
+    padding-top: 5px !important;
     /* transform: translateX(5%); */
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 5px !important;
 }
 
 
 .card{
-    background-image: url('../../assets/notepad.png');
-    background-size: 200px;
-    margin: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 6px 18px -9px rgba(0,0,0,0.75);
-    transition: transform 100ms ease-in;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    width: 10rem;
+    background-image: url('../../assets/notepad.png') !important;
+    background-size: 200px !important;
+    margin: 20px !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    box-shadow: 0px 6px 18px -9px rgba(0,0,0,0.75) !important;
+    transition: transform 100ms ease-in !important;
+    cursor: pointer !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 10rem !important;
 }
 
 .card-info{
-    height: 100%;
-    position: relative;
+    height: 100% !important;
+    position: relative !important;
 }
 
 
 .card-info:hover{
-    position: relative;
-    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    position: relative !important;
+    box-shadow: 0 0 11px rgba(33,33,33,.2) !important;
+    width: 100% !important;
 }
 
 
@@ -113,7 +114,7 @@
 
 
 .card:hover{
-    box-shadow: 0 0 25px rgb(47, 43, 20);
-    transform: scale(1.05);
+    box-shadow: 0 0 25px rgb(47, 43, 20) !important;
+    transform: scale(1.05) !important;
 
 }
