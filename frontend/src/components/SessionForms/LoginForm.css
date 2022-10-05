@@ -64,6 +64,8 @@ input {
     height: 45px;
     color: white;
     cursor: pointer;
+    width: 19rem;
+    
 }
 
 .form-button {}
