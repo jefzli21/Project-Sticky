@@ -114,7 +114,7 @@ export const updateProject = (projectData) => async (dispatch) => {
     return project
   }
   catch (err) {
-    console.log(err);
+    // console.log(err);
     const resBody = await err.json();
     if (resBody.statusCode === 400 || resBody.statusCode === 404) {
       return dispatch(receiveErrors(resBody.errors));

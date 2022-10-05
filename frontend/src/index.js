@@ -9,7 +9,7 @@ import * as projectActions from './store/projects'
 import * as taskActions from './store/tasks'
 
 
-console.log('hello world');
+// console.log('hello world');
 let store = configureStore({});
 
 if (process.env.NODE_ENV !== "production") {

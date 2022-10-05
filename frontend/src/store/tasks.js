@@ -40,13 +40,7 @@ export const selectProjectTasks = projectId => state =>{
         
             let ov = Object.values(state.tasks)
             return ov
-            // let filtered
-            // if(ov.project){
-            //     filtered = ov.filter((task)=> task.project?._id === projectId || task.project === projectId)
-            //     return filtered
-            // }
-            // .filter((task)=> task.project._id === projectId)
-            // console.log(ov)
+    
     }
 }
 

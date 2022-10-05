@@ -59,7 +59,7 @@ app.use('/api/comments', commentRouter)
 
 // Serve static React build files statically in production
 if (isProduction) {
-  console.log('production')
+  // console.log('production')
   const path = require('path');
   // Serve the frontend's index.html file at the root route
   app.get('/', (req, res) => {

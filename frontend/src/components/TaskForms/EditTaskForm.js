@@ -77,7 +77,7 @@ export default function EditTaskForm() {
               type="date"
               value={task.deadline}
               onChange={(e) => {
-                console.log(e.target.value);
+                // console.log(e.target.value);
               }}
             />
           </label>
