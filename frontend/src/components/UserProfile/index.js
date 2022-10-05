@@ -17,7 +17,7 @@ function UserProfile() {
 
                                 <div id="user-name-wrapper">
                                     <div id="user-name-container">
-                                        <label id="user-name-title" htmlFor="user-name">User name</label>
+                                        <label id="user-name-title" htmlFor="user-name">Username</label>
                                         <div id="user-name-form">
                                             <input id="user-name" placeholder="Username" value={sessionUser.username} readOnly></input>
                                         </div>
