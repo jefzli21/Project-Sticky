@@ -114,7 +114,6 @@ const CompletedProjects = () => {
                   <p className="description">{project.description}</p>
                 </div>
                 <div className="project-bot">
-                  <p className="deadline">{project.deadline}</p>
                   <div className="card-functions">
                     <Button
                       onClick={() =>
