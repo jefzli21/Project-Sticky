@@ -21,6 +21,7 @@ import UserProfile from './components/UserProfile';
 import Splash from './components/Splash/Splash';
 
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

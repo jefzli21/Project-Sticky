@@ -5,19 +5,19 @@
 
 
 .btn{
-    display:block;
-    text-decoration: none;
-    background: rgb(68, 142, 172);
-    color: #fff;
-    width: 60px;
-    height: 60px;
-    line-height: 120px;
-    border-radius: 60%;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    right: 15px;
-    bottom: 5px;
+    display:block !important;
+    text-decoration: none !important;
+    background: rgb(68, 142, 172) !important;
+    color: #fff !important;
+    width: 60px !important;
+    height: 60px !important;
+    line-height: 120px !important;
+    border-radius: 60% !important;
+    text-align: center !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    right: 15px !important;
+    bottom: 5px !important;
 }
 
 .btn:hover{

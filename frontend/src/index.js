@@ -8,6 +8,7 @@ import configureStore from './store/store';
 import * as projectActions from './store/projects'
 import * as taskActions from './store/tasks'
 
+
 console.log('hello world');
 let store = configureStore({});
 
