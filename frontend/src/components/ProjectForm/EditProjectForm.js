@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { selectProject, fetchProject, updateProject, clearProjectErrors} from '../../store/projects'
+import "./EditProjectForm.css"
 
 export default function EditProjectForm() {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function EditProjectForm() {
         .then(dispatch(clearProjectErrors()))
         if(project.title){
             
-            history.push('/home')
+            history.push(`/projects/${projectId}`)
         }
     }
     // console.log("debug",project)
@@ -37,7 +38,7 @@ export default function EditProjectForm() {
         <div>
                 {project && (
                     <div>
-                        <form className="create-project-form">
+                        <form className="edit-project-form">
                         <div className='errors'>{errors?.title}</div>
                             <label>
                             Project Title :
@@ -71,7 +72,7 @@ export default function EditProjectForm() {
                                 onChange={(e) => { setProject({ ...project, deadline: e.target.value }) }}
                                 />
                             </label>
-                            <button onClick={handleSubmit}>Submit</button>   
+                            <button id="edit" onClick={handleSubmit}>Submit</button>   
                         </form>
                         
                     </div>

@@ -146,6 +146,7 @@ const Project = () => {
                     key={i}>
                       <div className='taskCard-info'>
                         <h2 className='taskCard-title'>{task.title}</h2>
+                        <h4>deadline: {task.deadline.slice(0,10)}</h4>
                       </div>
                       <div className='taskCard-content'>
                         <p className='taskCard-description'>{task.description}</p>
@@ -154,7 +155,10 @@ const Project = () => {
                         <Button onClick={() => history.push(`/projects/${projectId}/${task._id}`)}>Edit Task
                           <EditIcon />
                         </Button>
+                        <Button>
+                          Completed?
                         <Checkbox checked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} color="success" />
+                        </Button>
                         <Button onClick={() => dispatch(deleteTask(task._id))}>Delete Task
                           <DeleteForeverIcon />
                         </Button>
@@ -185,7 +189,10 @@ const Project = () => {
                         <Button onClick={() => history.push(`/projects/${task.project}/${task._id}`)}>Edit Task
                           <EditIcon />
                         </Button>
+                        <Button>
+                          Completed?
                         <Checkbox checked={task.completed} id={`checkbox_${task._id}`} onChange={() => handleTaskCheckboxClick(task)} color="success" />
+                        </Button>
                         <Button onClick={() => dispatch(deleteTask(task._id))}>Delete Task
                           <DeleteForeverIcon />
                         </Button>
