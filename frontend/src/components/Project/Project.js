@@ -99,7 +99,13 @@ const Project = () => {
    })
 
    function percentage(){
-    return Math.floor(complete/total * 100)
+
+    if(tasks.length === 0){
+      return 0 
+    }else{
+      return Math.floor(complete/total * 100)
+
+    }
    }
 
 

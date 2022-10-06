@@ -60,7 +60,9 @@ export default function EditProjectForm() {
                                 placeholder="description"
                                 value={project.description}
                                 onChange={(e) => { setProject({ ...project, description: e.target.value }) }}
+                                maxLength="80"
                                 />
+
                             </label>
 
                             <label>

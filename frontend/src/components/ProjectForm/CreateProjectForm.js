@@ -70,6 +70,7 @@ export default function CreateProjectForm() {
             placeholder="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            maxLength="80"
             />
             </label>
           

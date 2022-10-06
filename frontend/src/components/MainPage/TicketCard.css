@@ -24,6 +24,7 @@
 
 .description{
     inline-size: 9rem;
+    /* overflow-y: scroll; */
     overflow-wrap: break-word;
     padding-bottom: 20px;
 }
