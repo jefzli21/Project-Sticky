@@ -50,11 +50,11 @@ const Project = () => {
 
 
   useEffect(()=>{
-    dispatch(fetchProjectTasks(projectId))
+    dispatch(fetchProjectTasks(projectId)).catch((e) => history.push("/error"))
   },[projectId])
 
   useEffect(()=>{
-    dispatch(fetchProject(projectId))
+    dispatch(fetchProject(projectId)).catch((e) => history.push("/error"))
   },[projectId])
 
 

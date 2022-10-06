@@ -20,6 +20,7 @@ import EditTaskForm from './components/TaskForms/EditTaskForm';
 import UserProfile from './components/UserProfile';
 import Splash from './components/Splash/Splash';
 import CompletedProjects from './components/CompletedProjects/CompletedProjects';
+import Errors from './components/Errors/Errors';
 
 
 
@@ -48,7 +49,9 @@ function App() {
         <ProtectedRoute exact path='/completed' component={CompletedProjects} />
         <AuthRoute exact path='/login' component={LoginForm} />
         <AuthRoute exact path='/signup' component={SignupForm} />
-        <Redirect to='/' />
+        <Route path='/error'>
+          <Errors/>
+        </Route>
       </Switch>
     </>
   );
