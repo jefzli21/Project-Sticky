@@ -61,7 +61,7 @@ function LoginForm() {
                             <button
                             className='log-in-button'
                             type="submit"
-                            disabled= {!email || !password}
+                            // disabled= {!email || !password}
                             >Log In</button>
 
                             <div className="signUp-demoUser">
