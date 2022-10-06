@@ -104,7 +104,8 @@ function SignForm () {
                     className='sign-up-button'
                     type="submit"
                     value="Sign Up"
-                    disabled={!email || !username || !password || password !== password2}>
+                    // disabled={!email || !username || !password || password !== password2}
+                    >
                         Sign Up
                 </button>
                 <span className='text-nav'>have account? <button className='form-button' onClick={()=> history.push(`/login`)}>Sign In</button></span>
