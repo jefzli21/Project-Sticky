@@ -50,7 +50,9 @@ const RightBar = () => {
       <div className="task-box">
       <UpcomingTasks/>
       </div>
+      <div id="create-button">
       <CreateProjectForm/>
+      </div>
     </div>
   );
 };

@@ -3,3 +3,7 @@
     align-items:flex-start ;
     justify-content: space-between ;
 }
+
+#foot{
+    bottom: 0;
+}

@@ -52,6 +52,7 @@ function App() {
         <Route path='/error'>
           <Errors/>
         </Route>
+        <Redirect to='/error'/>
       </Switch>
     </>
   );

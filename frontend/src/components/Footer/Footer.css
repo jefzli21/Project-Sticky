@@ -1,0 +1,42 @@
+.footer{
+    margin: -0.5rem;
+    margin-bottom: -3rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    
+    color: white;
+    background-color: rgb(85, 97, 165);
+    position: sticky;
+    bottom: -10px;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 10px;
+}
+
+.about-us{
+    list-style: none;
+    display: flex;
+}
+
+.about-us > div{
+    color: white;
+    margin-top: -2rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.logos{
+    display: flex;
+    flex-direction: row;
+}
+
+.logos >li{
+    margin: 10px;
+}

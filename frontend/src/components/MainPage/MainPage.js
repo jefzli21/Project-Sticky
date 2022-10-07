@@ -5,6 +5,7 @@ import Feed from './Feed';
 import RightBar from './RightBar';
 import { useState } from 'react';
 import { Box } from '@mui/system';
+import Footer from '../Footer/Footer';
 
 function MainPage(){
     const [mode, setMode] = useState('light');
@@ -18,12 +19,16 @@ function MainPage(){
     const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
 
     return(
-        
+        <>
                 <div className='home-container'>
                     <SideBar setMode={setMode} mode={mode}/>
                     <Feed/>
                     <RightBar/>
                 </div>
+                <div id='foot'>
+                    <Footer />
+                </div>
+        </>
     
     )
 }
