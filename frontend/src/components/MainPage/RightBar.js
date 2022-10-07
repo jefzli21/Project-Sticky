@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createProject, selectProject, selectProjects } from "../../store/projects";
 import { Modal } from "../../context/Modal";
 import "./RightBar.css";
-import CreateProjectModal from "../ProjectForm/CreateProjectModal";
 import CreateProjectForm from "../ProjectForm/CreateProjectForm";
 import Calendar from 'react-calendar'
 import UpcomingTasks from "./UpcomingTasks";

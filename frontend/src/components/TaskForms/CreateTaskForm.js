@@ -45,7 +45,7 @@ const CreateTaskForm = () => {
           isShown={isShown}
           title="Task Form"
           onCloseComplete={() => setIsShown(false)}
-          preventBodyScrolling
+          // preventBodyScrolling
           confirmLabel="Create Task"
           onConfirm={handleSubmit}
         >

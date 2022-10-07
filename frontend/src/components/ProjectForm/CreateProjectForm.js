@@ -43,7 +43,7 @@ export default function CreateProjectForm() {
         isShown={isShown}
         title="Create a Project"
         onCloseComplete={() => setIsShown(false)}
-        preventBodyScrolling
+        // preventBodyScrolling
         confirmLabel="Create Project"
         onConfirm= {handleSubmit}
       >

@@ -17,6 +17,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Footer from '../Footer/Footer';
 
 const Tasks = ({ id, title, description, deadline }) => {
     const sessionUser = useSelector(state => state.session.user);
@@ -46,6 +47,7 @@ const Tasks = ({ id, title, description, deadline }) => {
     }
 
     return (
+        <>
         <div className='main-container'>
             <SideBar />
             <div className='task-container'>
@@ -89,6 +91,10 @@ const Tasks = ({ id, title, description, deadline }) => {
                 </TableContainer>
             </div>
         </div>
+        <div id='foot'>
+                    <Footer />
+        </div>
+        </>
     )
 }
 

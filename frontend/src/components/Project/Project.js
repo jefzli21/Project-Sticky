@@ -21,6 +21,7 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import ProgressBar from './ProgressBar'
 import { Row } from 'antd'
+import Footer from '../Footer/Footer'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -116,6 +117,7 @@ const Project = () => {
 
 
   return tasks && (
+    <>
     <div className='projectPage-container'>
         <SideBar/>
         <div className='project-right-container'>
@@ -131,7 +133,7 @@ const Project = () => {
               </Button>
               </div>
               <div className='delete-icon'>
-              <Button onClick={() => dispatch(deleteProject(projectId))}>
+              <Button onClick={() => dispatch(deleteProject(projectId)) && history.push(`/home`)}>
               <DeleteForeverIcon fontSize='large'/>Delete Project
               </Button>
               </div>
@@ -146,10 +148,10 @@ const Project = () => {
                 <div className='task-Cards'>
                   {tasks.map((task, i)=> (
                     !task.completed && (
-                    <animated.div
-                    className='task-card'
-                    style={props}
-                    key={i}>
+                      <animated.div
+                      className='task-card'
+                      style={props}
+                      key={i}>
                       <div className='taskCard-info'>
                         <h2 className='taskCard-title'>Task: {task.title}</h2>
                         <h4>deadline: {task.deadline.slice(0,10)}</h4>
@@ -181,10 +183,10 @@ const Project = () => {
                 <div className='task-Cards'>
                   {tasks.map((task, i)=> (
                     task.completed && (
-                    <animated.div
-                    className='task-card'
-                    style={props}
-                    key={i}>
+                      <animated.div
+                      className='task-card'
+                      style={props}
+                      key={i}>
                       <div className='taskCard-info'>
                         <h4 className='taskCard-title'>{task.title}</h4>
                       </div>
@@ -210,6 +212,10 @@ const Project = () => {
         </div>
         </div>
     </div>
+    <div id='foot'>
+                    <Footer />
+                </div>
+    </>
   )
 }
 

@@ -15,9 +15,9 @@
     border-radius: 60% !important;
     text-align: center !important;
     position: fixed !important;
-    bottom: 0 !important;
     right: 15px !important;
-    bottom: 5px !important;
+    bottom: 15px !important;
+    z-index: 10;
 }
 
 .btn:hover{

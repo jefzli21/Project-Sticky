@@ -7,6 +7,7 @@ import {
   updateTask,
   clearTaskErrors,
 } from "../../store/tasks";
+import Footer from "../Footer/Footer";
 import "./EditTask.css";
 
 export default function EditTaskForm() {
@@ -101,6 +102,9 @@ export default function EditTaskForm() {
           <button id="edit" onClick={handleSubmit}>Submit</button>
         </form>
       )}
+        <div id='foot'>
+                    <Footer />
+        </div>
     </div>
   );
 }

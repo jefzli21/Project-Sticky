@@ -11,7 +11,7 @@ function Footer(){
     return(
         <>
         
-        {/* <div className="footer">
+        <div className="footer">
             <h1>About Us</h1>
         <ul className="about-us">
               <div>
@@ -45,8 +45,9 @@ function Footer(){
               </div>
               </div>
             </ul>
+            <p>@Project-Sticky</p>
 
-        </div> */}
+        </div>
         
         </>
     )
