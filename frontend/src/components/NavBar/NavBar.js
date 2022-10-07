@@ -31,7 +31,7 @@ const NavBar = () => {
   if (sessionUser) {
     // console.log("DEBUG  aaaa", sessionUser)
     profileButtons = (<>
-      <MenuItem><a className="user-account-link" href={`/home/${sessionUser._id}`}>My account</a></MenuItem>
+      <MenuItem><a className="user-account-link" href={`/home/user`}>My account</a></MenuItem>
       <MenuItem onClick={logoutUser}>Logout</MenuItem>
     </>)
   } else profileButtons = (<></>)
