@@ -51,5 +51,11 @@ https://project-sticky.herokuapp.com/
 * Tasks - Create, Read, Update, and Delete. Includes sorting upon completion of tasks
 * Organization - shows total tasks and their priority level. Show all projects and their respective deadlines. Move projects to completed pages when progress reaches 100%
 
+## Difficulties
+* Managing git workflow to maintain smooth teamwork. Often run into conflicts that will take large amount of time to debug
 
+
+
+## WorkFlow
+* 
 
