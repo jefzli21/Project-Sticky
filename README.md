@@ -29,6 +29,57 @@ Project Sticky is an app inspired by the need for project management. By the nam
 * Using create button to create a project with title, description, and deadline.
 * Editing and deleting project by edit button and delete button.
 * Clicking on the project card to see all the tasks belong to this project.
+```javascript
+// schema for project
+const projectSchema = Schema(
+    {
+        creator: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        title: {
+            type: String,
+            required: [true, 'Please add a title']
+        },
+        description: {
+            type: String
+        },
+        deadline: {
+            type: Date
+            // required: true
+        }
+    },
+    {
+        timestamps: true
+    }
+)
+```
+```javascript
+// get all the projects belong to session user
+router.get("/users/:userId", async (req, res, next) => {
+    try {
+        let userId = new mongoose.Types.ObjectId(req.params.userId);
+        let projects = await Project.aggregate()
+            .match({ "creator": userId })
+            .lookup(
+                {
+                    from: Task.collection.name,
+                    localField: "_id",
+                    foreignField: "project",
+                    as: "tasks"
+                }
+            );
+        projects = await Project.populate(projects, "creator");
+        projects = projects.sort((a, b) => a.deadline >= b.deadline ? 1 : -1);
+        return res.json(projects);
+    } catch (_err) {
+        const err = new Error(_err.message);
+        err.statusCode = 404;
+        return next(err);
+    }
+});
+```
 ![Screen Shot 2022-10-05 at 3 50 27 AM](https://user-images.githubusercontent.com/107185169/194043635-531158c0-746c-442b-b09d-979979877ee7.png)
 
 ### Tasks (Create, Read, Update, Delete)
