@@ -19,9 +19,6 @@ export default function EditProjectForm() {
   let projectData = useSelector(selectProject(projectId));
   const [project, setProject] = useState(projectData);
   const errors = useSelector((state) => state.errors.project);
-  const [deadline, setDeadline] = useState(project?.deadline);
-
-  console.log("DEBUG   AAAA", projectData)
 
   useEffect(() => {
     setProject(projectData);
@@ -77,21 +74,12 @@ export default function EditProjectForm() {
 
             <label>
               Deadline:
-              {/* <input
-                className="form-field"
-                type="date"
-                value={project.deadline}
-                onChange={(e) => {
-                  setProject({ ...project, deadline: e.target.value });
-                }}
-              /> */}
               <DatePicker
                 className="form-field"
                 dateFormat="yyyy-MM-dd"
                 selected={new Date(project.deadline)}
                 onChange={(date) => setProject({ ...project, deadline: date})}
               />
-              {console.log("DEBUG BBBB", deadline)}
             </label>
             <button id="edit" onClick={handleSubmit}>
               Submit
