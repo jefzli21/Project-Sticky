@@ -9,6 +9,8 @@ import {
 } from "../../store/projects";
 import Footer from "../Footer/Footer";
 import "./EditProjectForm.css";
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function EditProjectForm() {
   const dispatch = useDispatch();
@@ -17,6 +19,9 @@ export default function EditProjectForm() {
   let projectData = useSelector(selectProject(projectId));
   const [project, setProject] = useState(projectData);
   const errors = useSelector((state) => state.errors.project);
+  const [deadline, setDeadline] = useState(project?.deadline);
+
+  console.log("DEBUG   AAAA", projectData)
 
   useEffect(() => {
     setProject(projectData);
@@ -35,7 +40,7 @@ export default function EditProjectForm() {
       history.push(`/projects/${projectId}`);
     }
   }
-  // console.log("debug",project)
+
   return (
     <div>
       {project && (
@@ -72,14 +77,21 @@ export default function EditProjectForm() {
 
             <label>
               Deadline:
-              <input
+              {/* <input
                 className="form-field"
                 type="date"
                 value={project.deadline}
                 onChange={(e) => {
                   setProject({ ...project, deadline: e.target.value });
                 }}
+              /> */}
+              <DatePicker
+                className="form-field"
+                dateFormat="yyyy-MM-dd"
+                selected={new Date(project.deadline)}
+                onChange={(date) => setProject({ ...project, deadline: date})}
               />
+              {console.log("DEBUG BBBB", deadline)}
             </label>
             <button id="edit" onClick={handleSubmit}>
               Submit
