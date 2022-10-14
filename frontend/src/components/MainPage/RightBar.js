@@ -9,7 +9,6 @@ import Calendar from 'react-calendar'
 import UpcomingTasks from "./UpcomingTasks";
 import { fetchUserTasks, selectProjectTasks } from "../../store/tasks";
 
-
 const RightBar = () => {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
@@ -21,9 +20,6 @@ const RightBar = () => {
   const [isShown, setIsShown] = useState(false);
 
   const tasks = useSelector(selectProjectTasks());
-
-  // console.log(tasks)
-  
 
   useEffect(() => {
     dispatch(fetchUserTasks(sessionUser._id))
