@@ -77,15 +77,7 @@ export default function CreateProjectForm() {
 
             <label>
               Deadline:
-              {/* <input
-                className="form-field"
-                id="form-date-field"
-                type="date"
-                value={deadline}
-                onChange={(e) => setDeadline(e.target.value)}
-              /> */}
               <DatePicker
-                id="reserv-datepicker"
                 className="form-field"
                 dateFormat="yyyy-MM-dd"
                 minDate={new Date()}

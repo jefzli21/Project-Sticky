@@ -9,6 +9,8 @@ import {
 } from "../../store/tasks";
 import { Pane, Dialog, Button, PlusIcon } from "evergreen-ui";
 import "./CreateTask.css";
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateTaskForm = () => {
   const dispatch = useDispatch();
@@ -78,11 +80,12 @@ const CreateTaskForm = () => {
 
             <label>
               Deadline:
-              <input
+              <DatePicker
                 className="form-field"
-                type="date"
-                value={deadline}
-                onChange={(e) => setDeadline(e.target.value)}
+                dateFormat="yyyy-MM-dd"
+                minDate={new Date()}
+                selected={deadline}
+                onChange={(date) => setDeadline(date)}
               />
             </label>
 

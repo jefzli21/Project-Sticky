@@ -108,7 +108,7 @@ const UpcomingTasks = () => {
         title={`You currently have ${count} tasks`}
       />
       <CardContent>
-          <Typography variant="body2" color="text.secondary">
+        <Typography component={'div'} variant="body2" color="text.secondary">
             <div className='class-divider'>
             <h2>Priorities:</h2>
             <div className='p-low'>Low: {low} </div>
