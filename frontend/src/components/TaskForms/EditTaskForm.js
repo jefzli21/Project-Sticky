@@ -9,6 +9,8 @@ import {
 } from "../../store/tasks";
 import Footer from "../Footer/Footer";
 import "./EditTask.css";
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function EditTaskForm() {
   const dispatch = useDispatch();
@@ -73,13 +75,11 @@ export default function EditTaskForm() {
 
           <label>
             Deadline:
-            <input
+            <DatePicker
               className="form-field"
-              type="date"
-              value={task.deadline}
-              onChange={(e) => {
-                // console.log(e.target.value);
-              }}
+              dateFormat="yyyy-MM-dd"
+              selected={new Date(task.deadline)}
+              onChange={(date) => setTask({ ...task, deadline: date })}
             />
           </label>
 

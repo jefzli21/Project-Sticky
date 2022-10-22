@@ -3,14 +3,10 @@ import git from "./git.png";
 import linked from "./linked.png"
 import React from "react";
 
-
 function Footer(){
-
-
 
     return(
         <>
-        
         <div className="footer">
             <h1>About Us</h1>
         <ul className="about-us">
@@ -53,7 +49,5 @@ function Footer(){
     )
 
 }
-
-
 
 export default Footer;

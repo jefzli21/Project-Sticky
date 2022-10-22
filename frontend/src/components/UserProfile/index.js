@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 
 function UserProfile() {
   const sessionUser = useSelector((state) => state.session.user);
-
+//readme, favicon, error page
   return (
     <>
       {sessionUser && (

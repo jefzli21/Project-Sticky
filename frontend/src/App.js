@@ -40,7 +40,7 @@ function App() {
       <Switch>
         <AuthRoute exact path='/' component={Splash} />
         <ProtectedRoute exact path='/home' component={MainPage} />
-        <ProtectedRoute exact path='/home/:userId' component={UserProfile} />
+        <ProtectedRoute exact path='/home/user' component={UserProfile} />
         <ProtectedRoute exact path='/projects/:projectId' component={Project} />
         <ProtectedRoute exact path='/tasks' component={Tasks} />
         <ProtectedRoute exact path='/projects/:projectId/createtask' component={CreateTask} />
